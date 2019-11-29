@@ -4,7 +4,7 @@
 
 ---
 ### STRUCTURE
-![](src/SSDStructure_0.png)  
+![](src/Structure_0.png)  
 
 ---
 ### Experimental Results
