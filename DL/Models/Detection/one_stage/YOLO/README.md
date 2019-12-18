@@ -35,18 +35,50 @@
 You Only Look Once，人们看了一眼图像，立即知道图像中有什么对象，它们在哪里以及它们如何相互作用。
 YOLO将候选区和对象识别这两个阶段合二为一，旨在可以进行实时的目标检测。
 
-### YOLOv2(YOLO9000)
+### YOLOv2
+[paper](https://arxiv.org/pdf/1612.08242.pdf)  
+[code](http://pjreddie.com/yolo9000/) 
 
 ---
 #### STRUCTURE
+![](src/Structure_1.png)  
 
 ---
 #### Experimental Results
+* PASCAL VOC 2007  
+![](src/ER_1.png)
+* PASCAL VOC2012 test  
+![](src/ER_2.png)
+* COCO test-dev2015  
+![](src/ER_3.png)
 
 ---
 #### Algorithm  
+* Better  
+1.Batch Normalization  
+相当于一种正则化手段，提高网络收敛性，更快收敛，最终使得mAP提高2%，而且使得模型的泛化能力更强。  
+2.High resolution classifier  
+输入尺寸更大的图片224->448，并且将backbone在Imagenet上进行微调，最终使得mAP提高4%。  
+3.Convolution with anchor boxes  
+YOLOv1使用全连接层直接预测Bounding Boxes的坐标值，借鉴Faster R-CNN的RPN网络，通过预测Anchor Box的
+坐标偏移量来简化检测问题。使用416尺寸的输入图像，最终输出13x13的特征图，再在特征图上做Anchor Box的
+框回归和类别分类，使用anchor后mAP降低了0.3，但是能够预测出大于一千的预测框，相对于YOLOv1的98个预测框
+提高了召回率7%。  
+4.Dimension clusters  
+Faster R-CNN中使用的Anchor Box都是手动选择的，YOLOv2通过聚类的方式选取出预选框，
+其与ground truth的匹配效果优于默认的anchor。  
+5.Direct location prediction  
+YOLOv2还是像YOLOv1一样，预测框坐标是与网格相关的。假设一个网格的大小是1，
+只要在预测框x,y坐标输出之前加一个sigmoid即可让比例在0-1之间，从而让框的中心点限制在一个网格中。  
+![](src/Oth_0.png)  
+使用聚类Dimension clusters和直接位置预测Direct location prediction的方法，
+使YOLO比其他使用Anchor Box的版本提高了近5％。（这里的之所以还是直接位置预测是因为之前的聚类只对
+宽高做了一个预选，而v1是直接做的相对于整图宽高做的预测）  
+6.Fine-Grained Features  
+SSD通过多尺度的特征图来进行预测获取不同的分辨率
 
 ---
 #### Intuition
+对YOLO的改进，Better，Faster，Stronger
 
 ### YOLOv3
