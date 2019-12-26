@@ -1,4 +1,4 @@
-## SegNet
+## PSP
 [paper](https://arxiv.org/pdf/1612.01105.pdf)  
 [code](https://github.com/hszhao/PSPNet)  
 
