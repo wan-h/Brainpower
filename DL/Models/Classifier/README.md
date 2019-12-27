@@ -1,2 +1,3 @@
 ## Classifier
-[AlexNet](AlexNet/README.md)
+[AlexNet](AlexNet/README.md)  
+[LeNet](LeNet/README.md)
