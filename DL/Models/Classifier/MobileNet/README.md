@@ -1,7 +1,7 @@
 ## MobileNet
 ### MobileNetv1
 [paper](https://arxiv.org/pdf/1506.02640.pdf)  
-[code](http://pjreddie.com/yolo/)  
+[code](https://github.com/pytorch/vision)  
 
 ---
 #### STRUCTURE
@@ -9,7 +9,7 @@
 
 ---
 #### Experimental Results
-* ImageNet  
+* Classification(ImageNet)  
 ![](src/ER_0.png)  
 ![](src/ER_1.png)  
 * Face Attributes  
@@ -45,22 +45,40 @@ pointwise convolution再通过1x1的卷积将深度卷积的输出组合起来�
 且通过两个简单的全局超参数来折中模型的性能。
 
 ### MobileNetv2
-[paper]()  
-[code]() 
+[paper](https://arxiv.org/abs/1801.04381.pdf)  
+[code](https://github.com/pytorch/vision) 
 
 ---
 #### STRUCTURE
-
+![](src/Structure_1.png)
 
 ---
 #### Experimental Results
-
+* Classification(ImageNet)  
+![](src/ER_5.png)  
+* Object Detection(COCO test-dev)  
+![](src/ER_6.png)  
+* Semantic Segmentation(PASCAL VOC 2012 validation set)
+![](src/ER_7.png)
 ---
 #### Algorithm  
+* Linear Bottlenecks(线性瓶颈)  
+V2在DW卷积之前新加了一个PW卷积。  
+![](src/Oth_5.png)  
+DW卷积由于本身的计算特性决定它自己没有改变通道数的能力，上一层给它多少通道，它就只能输出多少通道。
+所以如果上一层给的通道数本身很少的话，DW也只能在低维空间提特征，因此会存在信息丢失。
+V2为了改善这个问题，给每个DW之前都配备了一个PW，专门用来升维，经过第一个PW升维之后，DW都是在相对的更高维进行特征提取。  
+V2去掉了第二个PW的激活函数，论文提出激活函数在高维空间能够有效的增加非线性，而在低维空间时则会破坏特征，
+而第二个PW的主要功能就是降维，因此按照这个理论，降维之后就不再使用激活函数。  
+* Inverted residuals(倒残差块)  
+ResNet使用标准卷积提特征,通过先降维再升维的方式来减小参数量。
+而MobileNetV2使用的是DW卷积，需要通过升维来提取高维特征，然后再降维。
+这个结构个ResNet的残差块刚好相反，所以也称为倒残差。
 
 ---
 #### Intuition
-
+MobileNetV1的进一步研究，网络显著减少了计算操作和内存数量，同时保持了模型的准确性，并在
+检测和分割上分别演化出了轻量级的网络SSDLite和Mobile DeepLabv3。
 
 ### MobileNetv3
 [paper]()  
