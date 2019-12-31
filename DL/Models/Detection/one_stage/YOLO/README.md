@@ -35,6 +35,8 @@
 You Only Look Once，人们看了一眼图像，立即知道图像中有什么对象，它们在哪里以及它们如何相互作用。
 YOLO将候选区和对象识别这两个阶段合二为一，旨在可以进行实时的目标检测。
 
+---
+--- 
 ### YOLOv2
 [paper](https://arxiv.org/pdf/1612.08242.pdf)  
 [code](http://pjreddie.com/yolo9000/) 
@@ -98,6 +100,8 @@ SSD通过多尺度的特征图来进行预测获取不同的分辨率，YOLOv2�
 #### Intuition
 对YOLO的改进，Better，Faster，Stronger
 
+---
+---
 ### YOLOv3
 [paper](https://arxiv.org/pdf/1804.02767.pdf)  
 [code](https://pjreddie.com/yolo/) 

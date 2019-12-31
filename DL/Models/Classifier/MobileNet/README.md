@@ -44,6 +44,8 @@ pointwise convolution再通过1x1的卷积将深度卷积的输出组合起来�
 专门针对移动设备和嵌入式设备提出的网络，通过特殊的设计来构建轻量级的深度神经网络
 且通过两个简单的全局超参数来折中模型的性能。
 
+---
+---
 ### MobileNetv2
 [paper](https://arxiv.org/abs/1801.04381.pdf)  
 [code](https://github.com/pytorch/vision) 
@@ -80,16 +82,56 @@ ResNet使用标准卷积提特征,通过先降维再升维的方式来减小参�
 MobileNetV1的进一步研究，网络显著减少了计算操作和内存数量，同时保持了模型的准确性，并在
 检测和分割上分别演化出了轻量级的网络SSDLite和Mobile DeepLabv3。
 
+---
+---
 ### MobileNetv3
-[paper]()  
-[code]() 
+[paper](https://arxiv.org/pdf/1905.02244v2.pdf)  
+[code](https://github.com/SpikeKing/mobilenet_v3) 
 
 ---
 #### STRUCTURE
-
+![](src/Structure_2.png)
 
 ---
 #### Experimental Results
+* Classification(ImageNet)  
+![](src/ER_8.png)  
+* Object Detection(COCO test-dev)  
+![](src/ER_9.png)  
+* Semantic Segmentation(Cityscapes val set)  
+![](src/ER_10.png)  
+* Semantic Segmentation(Cityscapes test set)  
+![](src/ER_11.png)
 
 ---
 #### Algorithm  
+* MobileNet V3 block  
+![](src/Oth_6.png)  
+MobileNetV3是综合了以下三种模型的思想:  
+1.MobileNetV1的深度可分离卷积  
+2.MobileNetV2的具有线性瓶颈的逆残差结构  
+3.MnasNet的基于squeeze and excitation结构的轻量级注意力模型  
+* Network Search（网络搜索）  
+1.资源受限的NAS（platform-aware NAS）：计算和参数量受限的前提下搜索网络的各个模块，所以称之为模块级的搜索  
+2.NetAdapt：用于对各个模块确定之后网络层的微调。  
+* 改进Last Stage  
+论文中提出 MobileNetV2模型中反残差结构和变量利用了1*1卷积来构建最后层，以便于拓展到高维的特征空间，
+虽然对于提取丰富特征进行预测十分重要，但却引入了额外的计算开销与延时。为了在保留高维特征的前提下减小延时，
+将平均池化前的层移除并用1*1卷积来计算特征图。特征生成层被移除后，先前用于瓶颈映射的层也不再需要了，
+这将为减少Last Stage 10ms的开销，减小了3千万次乘加操作，提速了15%。  
+![](src/Oth_7.png) 
+* 提出h-swish激活函数  
+论文提出swish激活函数能够有效提高网络的精度，但是计算量太大，于是提出改进版本h-swish进行激活函数的替换。  
+swish激活函数:  
+![](src/Oth_8.png)  
+h-swish激活函数：  
+![](src/Oth_9.png)  
+激活函数对比：  
+![](src/Oth_10.png)  
+* 提出Lite R-ASPP做语义分割  
+![](src/Oth_11.png)
+
+---
+#### Intuition
+从网路角度出发，尽可能的做到在网络设计上满足低计算消耗低延迟的要求。
+利用网络搜索来做性能和模型大小之间的平衡。
