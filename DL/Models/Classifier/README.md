@@ -5,5 +5,6 @@
 [MobileNet](MobileNet/README.md)  
 [ResNet](ResNet/README.md)  
 [SENet](SENet/README.md)  
+[ShuffleNet](ShuffleNet/README.md)  
 [Vgg](Vgg/README.md)  
 [ZFNet](ZFNet/README.md)
