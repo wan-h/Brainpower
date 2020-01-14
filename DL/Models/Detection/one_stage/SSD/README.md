@@ -1,5 +1,5 @@
 ## SSD
-[paper](https://arxiv.org/pdf/1611.10012.pdf)  
+[paper](https://arxiv.org/pdf/1512.02325.pdf)  
 [code](https://github.com/weiliu89/caffe/tree/ssd)  
 
 ---
