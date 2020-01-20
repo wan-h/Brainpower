@@ -1,5 +1,6 @@
 ## Classifier
 [AlexNet](AlexNet/README.md)  
+[DenseNet](DenseNet/README.md)  
 [GoogleNet](GoogleNet/README.md)  
 [LeNet](LeNet/README.md)  
 [MobileNet](MobileNet/README.md)  
