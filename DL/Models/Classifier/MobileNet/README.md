@@ -60,7 +60,7 @@ pointwise convolution再通过1x1的卷积将深度卷积的输出组合起来�
 ![](src/ER_5.png)  
 * Object Detection(COCO test-dev)  
 ![](src/ER_6.png)  
-* Semantic Segmentation(PASCAL VOC 2012 validation set)
+* Semantic Segmentation(PASCAL VOC 2012 validation set)  
 ![](src/ER_7.png)
 ---
 #### Algorithm  

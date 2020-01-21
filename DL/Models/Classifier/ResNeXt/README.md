@@ -1,4 +1,4 @@
-## Vgg
+## ResNeXt
 [paper](https://arxiv.org/pdf/1611.05431.pdf)  
 [code](https://github.com/facebookresearch/ResNeXt)  
 

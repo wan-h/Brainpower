@@ -10,4 +10,5 @@
 [ShuffleNet](ShuffleNet/README.md)  
 [SqeezeNet](SqueezeNet/README.md)  
 [Vgg](Vgg/README.md)  
+[Xception](Xception/README.md)  
 [ZFNet](ZFNet/README.md)
