@@ -5,6 +5,7 @@
 [LeNet](LeNet/README.md)  
 [MobileNet](MobileNet/README.md)  
 [ResNet](ResNet/README.md)  
+[ResNeXt](ResNeXt/README.md)  
 [SENet](SENet/README.md)  
 [ShuffleNet](ShuffleNet/README.md)  
 [SqeezeNet](SqueezeNet/README.md)  
