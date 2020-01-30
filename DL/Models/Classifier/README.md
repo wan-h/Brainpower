@@ -3,6 +3,7 @@
 [DenseNet](DenseNet/README.md)  
 [GoogleNet](GoogleNet/README.md)  
 [LeNet](LeNet/README.md)  
+[MansNet](MansNet/README.md)  
 [MobileNet](MobileNet/README.md)  
 [ResNet](ResNet/README.md)  
 [ResNeXt](ResNeXt/README.md)  
