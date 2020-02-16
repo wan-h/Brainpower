@@ -1,5 +1,5 @@
 ## Mask R-CNN
-[paper](ttps://arxiv.org/pdf/1703.06870.pdf)  
+[paper](https://arxiv.org/pdf/1703.06870.pdf)  
 [code](https://github.com/facebookresearch/maskrcnn-benchmark)  
 
 ---

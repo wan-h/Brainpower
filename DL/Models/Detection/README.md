@@ -5,6 +5,7 @@
 ### two stage
 [FastRCNN](two_stage/FastRCNN/README.md)  
 [FasterRCNN](two_stage/FasterRCNN/README.md)  
+[FPN](two_stage/FPN/README.md)  
 [MaskRCNN](two_stage/MaskRCNN/README.md)  
 [RCNN](two_stage/RCNN/README.md)  
 [SPPNet](two_stage/SPPNet/README.md)
