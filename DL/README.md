@@ -7,4 +7,5 @@
 [Generative Adversarial](Models/GAN/README.md)  
 
 ---
-[Common Algorithm](Algorithm/README.md)
+[Common Algorithm](Algorithm/README.md)  
+[Inspiratin](Inspiration/README.md)
