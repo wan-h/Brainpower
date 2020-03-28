@@ -1,2 +1,3 @@
 ## Computer Science  
-[Kalman Filter](KalmanFilter/README.md)
+[Algorithm](Algorithm/README.md)  
+[DesignPatterns](DesignPatterns/README.md)  
