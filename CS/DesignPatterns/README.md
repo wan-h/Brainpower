@@ -1,2 +1,3 @@
 ## Design Patterns
-[Simple Factory Pattern](SimpleFactoryPattern/README.md)
+[Simple Factory Pattern](SimpleFactoryPattern/README.md)  
+[Strategy Pattern](StrategyPattern/README.md)
