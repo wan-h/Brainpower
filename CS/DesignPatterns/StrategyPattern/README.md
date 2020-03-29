@@ -44,7 +44,11 @@
 
 ---
 ### UML  
-![](src/UML_0.PNG)
+定义活动的 Strategy 接口和实现了 Strategy 接口的实体策略类。
+Context 是一个使用了某种策略的类。
+StrategyPatternDemo，演示类使用 Context 和策略对象来演示 Context 在它所配置或使用的策略
+改变时的行为变化。  
+![](src/UML_0.PNG)  
 
 ---
 ### Intuition  
