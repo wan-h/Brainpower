@@ -54,3 +54,4 @@ Color（RED / GREEN / BLUE），以便获取它所需对象的类型。
 
 ---
 ### Intuition  
+可以理解为管理多个工厂模式中的工厂
