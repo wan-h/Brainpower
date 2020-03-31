@@ -1,5 +1,6 @@
 ## URLs
 ### Learning
+[MindSpore](https://www.mindspore.cn)  
 [Pytorch](https://pytorch.org/)  
 [TensorFlow](https://tensorflow.google.cn/)  
 [Caffe](http://caffe.berkeleyvision.org/)
