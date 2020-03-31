@@ -23,7 +23,8 @@
 这使得程序在判断针对某个给定实例需要创建哪些对象时更加灵活。  
 其模式包含：  
 [Abstract Factory Pattern](AbstractFactoryPattern/README.md)  
-[Simple Factory Pattern](SimpleFactoryPattern/README.md)
+[Simple Factory Pattern](SimpleFactoryPattern/README.md)  
+[Singleton Pattern](SingletonPattern/README.md)
 ### 结构型模式
 这些设计模式关注类和对象的组合。继承的概念被用来组合接口和定义组合对象获得新功能的方式。
 ### 行为型模式
