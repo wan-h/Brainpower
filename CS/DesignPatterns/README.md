@@ -23,6 +23,7 @@
 这使得程序在判断针对某个给定实例需要创建哪些对象时更加灵活。  
 其模式包含：  
 [Abstract Factory Pattern](AbstractFactoryPattern/README.md)  
+[Builder Pattern](BuilderPattern/README.md)  
 [Simple Factory Pattern](SimpleFactoryPattern/README.md)  
 [Singleton Pattern](SingletonPattern/README.md)
 ### 结构型模式
