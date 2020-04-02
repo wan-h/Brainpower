@@ -24,6 +24,7 @@
 其模式包含：  
 [Abstract Factory Pattern](AbstractFactoryPattern/README.md)  
 [Builder Pattern](BuilderPattern/README.md)  
+[Prototype Pattern](PrototypePattern/README.md)  
 [Simple Factory Pattern](SimpleFactoryPattern/README.md)  
 [Singleton Pattern](SingletonPattern/README.md)
 ### 结构型模式
