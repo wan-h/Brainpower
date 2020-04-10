@@ -32,6 +32,7 @@
 其模式包含：  
 [Adapter Pattern](AdapterPattern/README.md)  
 [Bridge Pattern](BridgePattern/README.md)  
+[Composite Pattern](CompositePattern/README.md)  
 [Filter Pattern](FilterPattern/README.md)
 ### 行为型模式
 这些设计模式特别关注对象之间的通信。  
