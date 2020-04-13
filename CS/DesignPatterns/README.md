@@ -34,6 +34,7 @@
 [Bridge Pattern](BridgePattern/README.md)  
 [Composite Pattern](CompositePattern/README.md)  
 [Decorator Pattern](DecoratorPattern/README.md)  
+[Facade Pattern](FacadePattern/README.md)  
 [Filter Pattern](FilterPattern/README.md)
 ### 行为型模式
 这些设计模式特别关注对象之间的通信。  
