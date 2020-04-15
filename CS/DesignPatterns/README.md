@@ -36,7 +36,8 @@
 [Decorator Pattern](DecoratorPattern/README.md)  
 [Facade Pattern](FacadePattern/README.md)  
 [Filter Pattern](FilterPattern/README.md)  
-[Flyweight Pattern](FlyweightPattern/README.md)
+[Flyweight Pattern](FlyweightPattern/README.md)  
+[Proxy Pattern](ProxyPattern/README.md)
 ### 行为型模式
 这些设计模式特别关注对象之间的通信。  
 其模式包含：  
