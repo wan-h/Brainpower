@@ -41,6 +41,7 @@
 ### 行为型模式
 这些设计模式特别关注对象之间的通信。  
 其模式包含：  
+[Chain Of Responsibility Pattern](ChainOfResponsibilityPattern/README.md)  
 [Strategy Pattern](StrategyPattern/README.md)
 ### J2EE模式
 这些设计模式特别关注表示层。这些模式是由 Sun Java Center 鉴定的。  
