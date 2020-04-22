@@ -44,6 +44,7 @@
 [Command Pattern](CommandPattern/README.md)  
 [Chain Of Responsibility Pattern](ChainOfResponsibilityPattern/README.md)  
 [Interpreter Pattern](InterpreterPattern/README.md)  
+[Iterator Pattern](IteratorPattern/README.md)  
 [Strategy Pattern](StrategyPattern/README.md)
 ### J2EE模式
 这些设计模式特别关注表示层。这些模式是由 Sun Java Center 鉴定的。  
