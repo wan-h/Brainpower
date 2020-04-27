@@ -48,6 +48,7 @@
 [Mediator Pattern](MediatorPattern/README.md)  
 [Memento Pattern](MementoPattern/README.md)  
 [Observer Pattern](ObserverPattern/README.md)  
+[State Pattern](StatePattern/README.md)  
 [Strategy Pattern](StrategyPattern/README.md)
 ### J2EE模式
 这些设计模式特别关注表示层。这些模式是由 Sun Java Center 鉴定的。  
