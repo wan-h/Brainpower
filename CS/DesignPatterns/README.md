@@ -47,6 +47,7 @@
 [Iterator Pattern](IteratorPattern/README.md)  
 [Mediator Pattern](MediatorPattern/README.md)  
 [Memento Pattern](MementoPattern/README.md)  
+[Null Object Pattern](NullObjectPattern/README.md)  
 [Observer Pattern](ObserverPattern/README.md)  
 [State Pattern](StatePattern/README.md)  
 [Strategy Pattern](StrategyPattern/README.md)
