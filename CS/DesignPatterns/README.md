@@ -50,6 +50,7 @@
 [Null Object Pattern](NullObjectPattern/README.md)  
 [Observer Pattern](ObserverPattern/README.md)  
 [State Pattern](StatePattern/README.md)  
-[Strategy Pattern](StrategyPattern/README.md)
+[Strategy Pattern](StrategyPattern/README.md)  
+[Template Pattern](TemplatePattern/README.md)
 ### J2EE模式
 这些设计模式特别关注表示层。这些模式是由 Sun Java Center 鉴定的。  
