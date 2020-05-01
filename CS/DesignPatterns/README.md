@@ -17,7 +17,9 @@
 * 迪米特法则，又称最少知道原则（Demeter Principle）
 一个实体应当尽量少地与其他实体之间发生相互作用，使得系统功能模块相对独立。
 * 合成复用原则（Composite Reuse Principle）
-尽量使用合成/聚合的方式，而不是使用继承。
+尽量使用合成/聚合的方式，而不是使用继承。  
+
+---
 ### 创建型模式
 这些设计模式提供了一种在创建对象的同时隐藏创建逻辑的方式，而不是使用 new 运算符直接实例化对象。
 这使得程序在判断针对某个给定实例需要创建哪些对象时更加灵活。  
@@ -54,10 +56,12 @@
 [Template Pattern](TemplatePattern/README.md)
 ### J2EE模式
 这些设计模式特别关注表示层。这些模式是由 Sun Java Center 鉴定的。  
+其模式包含：  
 [Business Delegate Pattern](BusinessDelegatePattern/README.md)  
 [Composite Entity Pattern](CompositeEntityPattern/README.md)  
 [Data Access Object Pattern](DataAccessObjectPattern/README.md)  
 [Front Controller Pattern](FrontControllerPattern/README.md) 
 [Intercepting Filter Pattern](InterceptingFilterPattern/README.md)  
 [Model View Controller Pattern](MVCPattern/README.md)  
-[Service Locator Pattern](ServiceLocatorPattern/README.md)
+[Service Locator Pattern](ServiceLocatorPattern/README.md)  
+[Transfer Object Pattern](TransferObjectPattern/README.md)
