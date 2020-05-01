@@ -57,5 +57,6 @@
 [Business Delegate Pattern](BusinessDelegatePattern/README.md)  
 [Composite Entity Pattern](CompositeEntityPattern/README.md)  
 [Data Access Object Pattern](DataAccessObjectPattern/README.md)  
-[Front Controller Pattern](FrontControllerPattern/README.md)  
+[Front Controller Pattern](FrontControllerPattern/README.md) 
+[Intercepting Filter Pattern](InterceptingFilterPattern/README.md)  
 [Model View Controller Pattern](MVCPattern/README.md)
