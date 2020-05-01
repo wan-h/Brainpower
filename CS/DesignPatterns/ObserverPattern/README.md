@@ -1,4 +1,4 @@
-## Interpreter Pattern
+## Observer Pattern
 [Insight](https://www.runoob.com/design-pattern/observer-pattern.html)  
 [code](https://github.com/wan-h/BrainpowerCode/blob/master/DesignPatterns/ObserverPattern.py)
 

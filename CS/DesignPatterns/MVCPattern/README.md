@@ -1,4 +1,4 @@
-## Interpreter Pattern
+## Model View Controller Pattern
 [Insight](https://www.runoob.com/design-pattern/mvc-pattern.html)  
 [code](https://github.com/wan-h/BrainpowerCode/blob/master/DesignPatterns/ModelViewControllerPattern.py)
 

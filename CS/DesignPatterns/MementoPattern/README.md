@@ -1,4 +1,4 @@
-## Interpreter Pattern
+## Memento Pattern
 [Insight](https://www.runoob.com/design-pattern/memento-pattern.html)  
 [code](https://github.com/wan-h/BrainpowerCode/blob/master/DesignPatterns/MementoPattern.py)
 

@@ -1,4 +1,4 @@
-## Interpreter Pattern
+## Composite Entity Pattern
 [Insight](https://www.runoob.com/design-pattern/composite-entity-pattern.html)  
 [code](https://github.com/wan-h/BrainpowerCode/blob/master/DesignPatterns/CompositeEntityPattern.py)
 

@@ -1,4 +1,4 @@
-## Interpreter Pattern
+## Visitor Pattern
 [Insight](https://www.runoob.com/design-pattern/visitor-pattern.html)  
 [code](https://github.com/wan-h/BrainpowerCode/blob/master/DesignPatterns/VisitorPattern.py)
 
