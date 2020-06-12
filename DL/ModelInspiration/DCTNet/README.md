@@ -1,4 +1,4 @@
-## AlexNet
+## Learning in the Frequency Domain
 [paper](https://arxiv.org/pdf/2002.12416.pdf)  
 [code](https://github.com/calmevtime/DCTNet)  
 
