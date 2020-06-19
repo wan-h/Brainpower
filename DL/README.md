@@ -9,3 +9,4 @@
 ---
 [Model Compression](ModelCompression/README.md)  
 [Model Inspiration](ModelInspiration/README.md)  
+[Model Operator](ModelOperator/README.md)

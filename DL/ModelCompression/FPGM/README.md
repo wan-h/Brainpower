@@ -23,7 +23,7 @@ norm-based的剪枝方法剪掉norm值最小的filter，为了选择出最佳阈
 1. norm分布足够该广（体现出大小norm filter的差异性）  
 2. norm的最小值尽可能逼近于零（体现出小norm的影响小）  
 然为filter实际的norm分布却往往不能满足理论需求  
-![](src/Oth_3.PNG)  
+![](src/Oth_1.PNG)  
 存在分布窄，最小值远大于0的问题  
 所以本论文从另一个角度出发，剪枝去掉信息表达相似度高的filter  
 * GM计算方法  
