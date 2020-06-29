@@ -9,7 +9,7 @@
 ---
 ### Experimental Results
 * ResNet on CIFAR-10  
-![](src/ＥＲ_0.PNG)  
+![](src/ER_0.PNG)  
 * ResNet on ILSVRC-2012  
 ![](src/ER_1.PNG)  
 * VGGNet on CIFAR-10  
