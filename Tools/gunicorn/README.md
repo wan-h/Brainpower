@@ -1,0 +1,6 @@
+## gunicorn
+[Link](https://docs.gunicorn.org/en/stable/)  
+
+---
+### OVERVIEW  
+gunicorn是一个wsgi http server，gunicorn在启动时，会在主进程中预先fork出指定数量的worker进程来处理请求。
