@@ -3,6 +3,7 @@
 [DCN](DCN/README.md)  
 [DLA](DLA/README.md)  
 [DenseNet](DenseNet/README.md)  
+[EfficientNet](EfficientNet/README.md)  
 [GoogleNet](GoogleNet/README.md)  
 [LeNet](LeNet/README.md)  
 [MansNet](MansNet/README.md)  

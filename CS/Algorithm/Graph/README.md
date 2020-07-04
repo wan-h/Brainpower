@@ -34,5 +34,5 @@
 路径最短问题：[广度优先搜索（BFS）](https://github.com/wan-h/BrainpowerCode/blob/master/CS/Graph.py)  
 路径最长问题：[深度优先搜索（DFS）](https://github.com/wan-h/BrainpowerCode/blob/master/CS/Graph.py)  
 * 解决有权图路径相关问题  
-路径最快问题：[狄克斯特拉算法](https://github.com/wan-h/BrainpowerCode/blob/master/CS/Graph.py)（针对有向无环图）  
+路径最快问题：[狄克斯特拉算法](https://github.com/wan-h/BrainpowerCode/blob/master/CS/Graph.py) （针对有向无环图）   
 狄克斯特拉算法不能用于包含负权值的图，含负权值图使用[贝尔曼-福德算法(Bellman ford)](https://github.com/wan-h/BrainpowerCode/blob/master/CS/Graph.py)
