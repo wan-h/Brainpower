@@ -3,5 +3,5 @@
 [Flask](Flask/README.md)  
 [gcc](gcc/README.md)  
 [gunicorn](gunicorn/README.md)  
-[nose](nose/README.md)
+[pytest](pytest/README.md)
 [tensorRT](tensorRT/README.md)
