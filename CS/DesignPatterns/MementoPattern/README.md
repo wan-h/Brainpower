@@ -1,6 +1,6 @@
 ## Memento Pattern
 [Insight](https://www.runoob.com/design-pattern/memento-pattern.html)  
-[code](../../../Code/CS/DesignPatterns/MementoPattern.py)
+[code](https://github.com/wan-h/Brainpower/blob/master/Code/CS/DesignPatterns/MementoPattern.py)
 
 ---
 ### Overview  

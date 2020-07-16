@@ -1,6 +1,6 @@
 ## Data Access Object Pattern
 [Insight](https://www.runoob.com/design-pattern/data-access-object-pattern.html)  
-[code](../../../Code/CS/DesignPatterns/DataAccessObjectPattern.py)
+[code](https://github.com/wan-h/Brainpower/blob/master/Code/CS/DesignPatterns/DataAccessObjectPattern.py)
 
 ---
 ### Overview  

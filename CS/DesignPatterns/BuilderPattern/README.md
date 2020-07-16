@@ -1,6 +1,6 @@
 ## Builder Pattern
 [Insight](https://www.runoob.com/design-pattern/builder-pattern.html)  
-[code](../../../Code/CS/DesignPatterns/BuilderPattern.py)
+[code](https://github.com/wan-h/Brainpower/blob/master/Code/CS/DesignPatterns/BuilderPattern.py)
 
 ---
 ### Overview  

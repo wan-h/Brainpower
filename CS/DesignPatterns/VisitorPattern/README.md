@@ -1,6 +1,6 @@
 ## Visitor Pattern
 [Insight](https://www.runoob.com/design-pattern/visitor-pattern.html)  
-[code](../../../Code/CS/DesignPatterns/VisitorPattern.py)
+[code](https://github.com/wan-h/Brainpower/blob/master/Code/CS/DesignPatterns/VisitorPattern.py)
 
 ---
 ### Overview  

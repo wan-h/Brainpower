@@ -1,6 +1,6 @@
 ## Interpreter Pattern
 [Insight](https://www.runoob.com/design-pattern/interpreter-pattern.html)  
-[code](../../../Code/CS/DesignPatterns/InterpreterPattern.py)
+[code](https://github.com/wan-h/Brainpower/blob/master/Code/CS/DesignPatterns/InterpreterPattern.py)
 
 ---
 ### Overview  

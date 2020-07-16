@@ -1,6 +1,6 @@
 ## Chain Of Responsibility Pattern
 [Insight](https://www.runoob.com/design-pattern/chain-of-responsibility-pattern.html)  
-[code](../../../Code/CS/DesignPatterns/ChainOfResponsibilityPattern.py)
+[code](https://github.com/wan-h/Brainpower/blob/master/Code/CS/DesignPatterns/ChainOfResponsibilityPattern.py)
 
 ---
 ### Overview  

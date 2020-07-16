@@ -1,6 +1,6 @@
 ## Model View Controller Pattern
 [Insight](https://www.runoob.com/design-pattern/mvc-pattern.html)  
-[code](../../../Code/CS/DesignPatterns/ModelViewControllerPattern.py)
+[code](https://github.com/wan-h/Brainpower/blob/master/Code/CS/DesignPatterns/ModelViewControllerPattern.py)
 
 ---
 ### Overview  

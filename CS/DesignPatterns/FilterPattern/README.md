@@ -1,6 +1,6 @@
 ## Filter Pattern
 [Insight](https://www.runoob.com/design-pattern/filter-pattern.html)  
-[code](../../../Code/CS/DesignPatterns/FilterPattern.py)
+[code](https://github.com/wan-h/Brainpower/blob/master/Code/CS/DesignPatterns/FilterPattern.py)
 
 ---
 ### Overview  

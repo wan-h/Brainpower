@@ -1,6 +1,6 @@
 ## Abstract Factory Pattern
 [Insight](https://www.runoob.com/design-pattern/abstract-factory-pattern.html)  
-[code](../../../Code/CS/DesignPatterns/AbstractFactoryPattern.py)
+[code](https://github.com/wan-h/Brainpower/blob/master/Code/CS/DesignPatterns/AbstractFactoryPattern.py)
 
 ---
 ### Overview  

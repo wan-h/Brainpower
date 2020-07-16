@@ -1,6 +1,6 @@
 ## State Pattern
 [Insight](https://www.runoob.com/design-pattern/state-pattern.html)  
-[code](../../../Code/CS/DesignPatterns/StatePattern.py)
+[code](https://github.com/wan-h/Brainpower/blob/master/Code/CS/DesignPatterns/StatePattern.py)
 
 ---
 ### Overview  

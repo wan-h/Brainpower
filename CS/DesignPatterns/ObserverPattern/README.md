@@ -1,6 +1,6 @@
 ## Observer Pattern
 [Insight](https://www.runoob.com/design-pattern/observer-pattern.html)  
-[code](../../../Code/CS/DesignPatterns/ObserverPattern.py)
+[code](https://github.com/wan-h/Brainpower/blob/master/Code/CS/DesignPatterns/ObserverPattern.py)
 
 ---
 ### Overview  

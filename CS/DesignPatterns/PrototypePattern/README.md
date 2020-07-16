@@ -1,6 +1,6 @@
 ## Prototype Pattern
 [Insight](https://www.runoob.com/design-pattern/prototype-pattern.html)  
-[code](../../../Code/CS/DesignPatterns/PrototypePattern.py)
+[code](https://github.com/wan-h/Brainpower/blob/master/Code/CS/DesignPatterns/PrototypePattern.py)
 
 ---
 ### Overview  

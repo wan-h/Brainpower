@@ -1,6 +1,6 @@
 ## Composite Entity Pattern
 [Insight](https://www.runoob.com/design-pattern/composite-entity-pattern.html)  
-[code](../../../Code/CS/DesignPatterns/CompositeEntityPattern.py)
+[code](https://github.com/wan-h/Brainpower/blob/master/Code/CS/DesignPatterns/CompositeEntityPattern.py)
 
 ---
 ### Overview  

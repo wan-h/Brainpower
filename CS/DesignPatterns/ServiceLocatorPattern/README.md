@@ -1,6 +1,6 @@
 ## Service Locator Pattern
 [Insight](https://www.runoob.com/design-pattern/service-locator-pattern.html)  
-[code](../../../Code/CS/DesignPatterns/ServiceLocatorPattern.py)
+[code](https://github.com/wan-h/Brainpower/blob/master/Code/CS/DesignPatterns/ServiceLocatorPattern.py)
 
 ---
 ### Overview  

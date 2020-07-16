@@ -1,6 +1,6 @@
 ## Adapter Pattern
 [Insight](https://www.runoob.com/design-pattern/adapter-pattern.html)  
-[code](../../../Code/CS/DesignPatterns/AdapterPattern.py)
+[code](https://github.com/wan-h/Brainpower/blob/master/Code/CS/DesignPatterns/AdapterPattern.py)
 
 ---
 ### Overview  

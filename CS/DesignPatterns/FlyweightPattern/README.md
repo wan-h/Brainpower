@@ -1,6 +1,6 @@
 ## Flyweight Pattern
 [Insight](https://www.runoob.com/design-pattern/flyweight-pattern.html)  
-[code](../../../Code/CS/DesignPatterns/FlyweightPattern.py)
+[code](https://github.com/wan-h/Brainpower/blob/master/Code/CS/DesignPatterns/FlyweightPattern.py)
 
 ---
 ### Overview  

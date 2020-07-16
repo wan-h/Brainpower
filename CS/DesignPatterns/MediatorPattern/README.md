@@ -1,6 +1,6 @@
 ## Mediator Pattern
 [Insight](https://www.runoob.com/design-pattern/mediator-pattern.html)  
-[code](../../../Code/CS/DesignPatterns/MediatorPattern.py)
+[code](https://github.com/wan-h/Brainpower/blob/master/Code/CS/DesignPatterns/MediatorPattern.py)
 
 ---
 ### Overview  

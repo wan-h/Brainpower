@@ -1,6 +1,6 @@
 ## Business Delegate Pattern
 [Insight](https://www.runoob.com/design-pattern/business-delegate-pattern.html)  
-[code](../../../Code/CS/DesignPatterns/BusinessDelegatePattern.py)
+[code](https://github.com/wan-h/Brainpower/blob/master/Code/CS/DesignPatterns/BusinessDelegatePattern.py)
 
 ---
 ### Overview  
