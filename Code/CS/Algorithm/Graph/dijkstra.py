@@ -5,8 +5,6 @@
 图相关算法
 '''
 
-from collections import deque
-
 
 class Graph(object):
     '''
