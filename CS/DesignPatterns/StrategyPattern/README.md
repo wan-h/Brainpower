@@ -1,6 +1,6 @@
 ## Strategy Pattern
 [Insight](https://www.cnblogs.com/onepiece-andy/p/python-strategy.html)  
-[code](https://github.com/wan-h/BrainpowerCode/blob/master/DesignPatterns/StrategyPattern.py)
+[code](../../../Code/CS/DesignPatterns/StrategyPattern.py)
 
 ---
 ### Overview  

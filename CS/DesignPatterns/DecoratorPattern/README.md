@@ -1,6 +1,6 @@
 ## Decorator Pattern
 [Insight](https://www.runoob.com/design-pattern/decorator-pattern.html)  
-[code](https://github.com/wan-h/BrainpowerCode/blob/master/DesignPatterns/DecoratorPattern.py)
+[code](../../../Code/CS/DesignPatterns/DecoratorPattern.py)
 
 ---
 ### Overview  

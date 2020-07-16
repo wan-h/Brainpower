@@ -1,6 +1,6 @@
 ## Composite Pattern
 [Insight](https://www.runoob.com/design-pattern/composite-pattern.html)  
-[code](https://github.com/wan-h/BrainpowerCode/blob/master/DesignPatterns/CompositePattern.py)
+[code](../../../Code/CS/DesignPatterns/CompositePattern.py)
 
 ---
 ### Overview  

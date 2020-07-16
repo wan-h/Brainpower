@@ -1,6 +1,6 @@
 ## Facade Pattern
 [Insight](https://www.runoob.com/design-pattern/facade-pattern.html)  
-[code](https://github.com/wan-h/BrainpowerCode/blob/master/DesignPatterns/FacadePattern.py)
+[code](../../../Code/CS/DesignPatterns/FacadePattern.py)
 
 ---
 ### Overview  

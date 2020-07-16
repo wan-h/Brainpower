@@ -1,6 +1,6 @@
 ## Template Pattern
 [Insight](https://www.runoob.com/design-pattern/template-pattern.html)  
-[code](https://github.com/wan-h/BrainpowerCode/blob/master/DesignPatterns/TemplatePattern.py)
+[code](../../../Code/CS/DesignPatterns/TemplatePattern.py)
 
 ---
 ### Overview  

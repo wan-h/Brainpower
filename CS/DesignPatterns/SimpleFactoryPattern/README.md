@@ -1,6 +1,6 @@
 ## Simple Factory Pattern
 [Insight](https://www.runoob.com/design-pattern/factory-pattern.html)  
-[code](https://github.com/wan-h/BrainpowerCode/blob/master/DesignPatterns/SimpleFactoryPattern.py)
+[code](../../../Code/CS/DesignPatterns/SimpleFactoryPattern.py)
 
 ---
 ### Overview  

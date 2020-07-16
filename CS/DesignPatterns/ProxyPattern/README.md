@@ -1,6 +1,6 @@
 ## Proxy Pattern
 [Insight](https://www.runoob.com/design-pattern/proxy-pattern.html)  
-[code](https://github.com/wan-h/BrainpowerCode/blob/master/DesignPatterns/ProxyPattern.py)
+[code](../../../Code/CS/DesignPatterns/ProxyPattern.py)
 
 ---
 ### Overview  

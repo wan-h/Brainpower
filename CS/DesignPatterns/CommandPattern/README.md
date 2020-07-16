@@ -1,6 +1,6 @@
 ## Command Pattern
 [Insight](https://www.runoob.com/design-pattern/command-pattern.html)  
-[code](https://github.com/wan-h/BrainpowerCode/blob/master/DesignPatterns/CommandPattern.py)
+[code](../../../Code/CS/DesignPatterns/CommandPattern.py)
 
 ---
 ### Overview  

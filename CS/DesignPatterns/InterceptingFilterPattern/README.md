@@ -1,6 +1,6 @@
 ## Intercepting Filter Pattern
 [Insight](https://www.runoob.com/design-pattern/intercepting-filter-pattern.html)  
-[code](https://github.com/wan-h/BrainpowerCode/blob/master/DesignPatterns/InterceptingFilterPattern.py)
+[code](../../../Code/CS/DesignPatterns/InterceptingFilterPattern.py)
 
 ---
 ### Overview  

@@ -1,6 +1,6 @@
 ## Singleton Pattern
 [Insight](https://www.runoob.com/design-pattern/singleton-pattern.html)  
-[code](https://github.com/wan-h/BrainpowerCode/blob/master/DesignPatterns/SingletonPattern.py)
+[code](../../../Code/CS/DesignPatterns/SingletonPattern.py)
 
 ---
 ### Overview  

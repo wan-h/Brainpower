@@ -1,6 +1,6 @@
 ## Null Object Pattern
 [Insight](https://www.runoob.com/design-pattern/null-object-pattern.html)  
-[code](https://github.com/wan-h/BrainpowerCode/blob/master/DesignPatterns/NullObjectPattern.py)
+[code](../../../Code/CS/DesignPatterns/NullObjectPattern.py)
 
 ---
 ### Overview  

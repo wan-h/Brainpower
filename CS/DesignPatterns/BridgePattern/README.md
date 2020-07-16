@@ -1,6 +1,6 @@
 ## Bridge Pattern
 [Insight](https://www.runoob.com/design-pattern/bridge-pattern.html)  
-[code](https://github.com/wan-h/BrainpowerCode/blob/master/DesignPatterns/BridgePattern.py)
+[code](../../../Code/CS/DesignPatterns/BridgePattern.py)
 
 ---
 ### Overview  

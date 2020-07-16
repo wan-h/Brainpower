@@ -1,6 +1,6 @@
 ## Front Controller Pattern
 [Insight](https://www.runoob.com/design-pattern/front-controller-pattern.html)  
-[code](https://github.com/wan-h/BrainpowerCode/blob/master/DesignPatterns/FrontControllerPattern.py)
+[code](../../../Code/CS/DesignPatterns/FrontControllerPattern.py)
 
 ---
 ### Overview  

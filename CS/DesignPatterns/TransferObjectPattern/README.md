@@ -1,6 +1,6 @@
 ## Transfer Object Pattern
 [Insight](https://www.runoob.com/design-pattern/transfer-object-pattern.html)  
-[code](https://github.com/wan-h/BrainpowerCode/blob/master/DesignPatterns/TransferObjectPattern.py)
+[code](../../../Code/CS/DesignPatterns/TransferObjectPattern.py)
 
 ---
 ### Overview  
