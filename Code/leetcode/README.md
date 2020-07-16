@@ -1,0 +1,50 @@
+* 动态规划
+    - [house-robber](https://github.com/wan-h/Brainpower/blob/master/Code/leetcode/code/house-robber.py)
+    - [maximum-subarray](https://github.com/wan-h/Brainpower/blob/master/Code/leetcode/code/maximum-subarray.py)
+* 递归
+    - [factorial-trailing-zeroes](https://github.com/wan-h/Brainpower/blob/master/Code/leetcode/code/factorial-trailing-zeroes.py)
+* 二进制运算
+    - [number-of-1-bits](https://github.com/wan-h/Brainpower/blob/master/Code/leetcode/code/number-of-1-bits.py)
+    - [power-of-four](https://github.com/wan-h/Brainpower/blob/master/Code/leetcode/code/power-of-four.py)
+    - [reverse-bits](https://github.com/wan-h/Brainpower/blob/master/Code/leetcode/code/reverse-bits.py)
+    - [single-number](https://github.com/wan-h/Brainpower/blob/master/Code/leetcode/code/single-number.py)
+* 分治法
+    - [maximum-depth-of-binary-tree](https://github.com/wan-h/Brainpower/blob/master/Code/leetcode/code/maximum-depth-of-binary-tree.py)
+    - [maximum-subarray](https://github.com/wan-h/Brainpower/blob/master/Code/leetcode/code/maximum-subarray.py)
+* hashmap(空间换取时间)
+    - [contains-duplicate-ii](https://github.com/wan-h/Brainpower/blob/master/Code/leetcode/code/contains-duplicate-ii.py)
+* 链表操作
+    - [add_two_numbers](https://github.com/wan-h/Brainpower/blob/master/Code/leetcode/code/add_two_numbers.py)
+    - [remove-linked-list-elements](https://github.com/wan-h/Brainpower/blob/master/Code/leetcode/code/remove-linked-list-elements.py)
+    - [remove-linked-list](https://github.com/wan-h/Brainpower/blob/master/Code/leetcode/code/remove-linked-list.py)
+* 双指针法
+    - [merge-sorted-array](https://github.com/wan-h/Brainpower/blob/master/Code/leetcode/code/merge-sorted-array.py)
+    - [move-zeroes](https://github.com/wan-h/Brainpower/blob/master/Code/leetcode/code/move-zeroes.py)
+    - [remove-duplicates-from-sorted-array](https://github.com/wan-h/Brainpower/blob/master/Code/leetcode/code/remove-duplicates-from-sorted-array.py)
+    - [two-sum-ii-input-array-is-sorted](https://github.com/wan-h/Brainpower/blob/master/Code/leetcode/code/two-sum-ii-input-array-is-sorted.py)
+    - [valid-palindrome](https://github.com/wan-h/Brainpower/blob/master/Code/leetcode/code/valid-palindrome.py)
+* 树操作
+    - [invert-binary-tree](https://github.com/wan-h/Brainpower/blob/master/Code/leetcode/code/invert-binary-tree.py)
+    - [maximum-depth-of-binary-tree](https://github.com/wan-h/Brainpower/blob/master/Code/leetcode/code/maximum-depth-of-binary-tree.py)
+* 贪心算法
+    - [remove-covered-intervals](https://github.com/wan-h/Brainpower/blob/master/Code/leetcode/code/remove-covered-intervals.py)
+* 栈操作
+    - [invert-binary-tree](https://github.com/wan-h/Brainpower/blob/master/Code/leetcode/code/invert-binary-tree.py)
+    - [min-stack](https://github.com/wan-h/Brainpower/blob/master/Code/leetcode/code/min-stack.py)
+    - [valid-parentheses](https://github.com/wan-h/Brainpower/blob/master/Code/leetcode/code/valid-parentheses.py)
+
+
+* 根据实际问题分析解决方案  
+    - [best-time-to-buy-and-sell-stock](https://github.com/wan-h/Brainpower/blob/master/Code/leetcode/code/best-time-to-buy-and-sell-stock.py)
+    - [best-time-to-buy-and-sell-stock-ii](https://github.com/wan-h/Brainpower/blob/master/Code/leetcode/code/best-time-to-buy-and-sell-stock-ii.py)
+    - [excel-sheet-column-number](https://github.com/wan-h/Brainpower/blob/master/Code/leetcode/code/excel-sheet-column-number.py)
+    - [fizz-buzz](https://github.com/wan-h/Brainpower/blob/master/Code/leetcode/code/fizz-buzz.py)
+    - [intersection-of-two-arrays](https://github.com/wan-h/Brainpower/blob/master/Code/leetcode/code/intersection-of-two-arrays.py)
+    - [longest_substring_without_repeating_characters](https://github.com/wan-h/Brainpower/blob/master/Code/leetcode/code/longest_substring_without_repeating_characters.py)
+    - [majority-element](https://github.com/wan-h/Brainpower/blob/master/Code/leetcode/code/majority-element.py)
+    - [maximum-subarray](https://github.com/wan-h/Brainpower/blob/master/Code/leetcode/code/maximum-subarray.py)
+    - [product-of-array-except-self](https://github.com/wan-h/Brainpower/blob/master/Code/leetcode/code/product-of-array-except-self.py)
+    - [subsets](https://github.com/wan-h/Brainpower/blob/master/Code/leetcode/code/subsets.py)
+    - [top-k-frequent-elements](https://github.com/wan-h/Brainpower/blob/master/Code/leetcode/code/top-k-frequent-elements.py)
+    - [ugly-number](https://github.com/wan-h/Brainpower/blob/master/Code/leetcode/code/ugly-number.py)
+    - [valid-palindrome](https://github.com/wan-h/Brainpower/blob/master/Code/leetcode/code/valid-palindrome.py)
