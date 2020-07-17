@@ -1,4 +1,4 @@
-## K8s
+## Kubernetes
 [Link](https://kubernetes.io/docs/home/)  
 [Insight](https://zhuanlan.zhihu.com/p/53260098)  
 [中文社区](http://docs.kubernetes.org.cn/)  
