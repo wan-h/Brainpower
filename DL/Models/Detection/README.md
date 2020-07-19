@@ -1,6 +1,7 @@
 ## Detection
 ### one stage
 [CenterNet](one_stage/CenterNet/README.md)  
+[DETR](one_stage/DETR/README.md)  
 [RetinaNet](one_stage/RetinaNet/README.md)  
 [SSD](one_stage/SSD/README.md)  
 [YOLO](one_stage/YOLO/README.md)

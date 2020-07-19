@@ -1,6 +1,6 @@
 ## Attention Is All You Need
 [paper](https://arxiv.org/pdf/2005.12872.pdf)  
-[code](https://github.com/facebookresearch/detr)  
+[code](https://github.com/jadore801120/attention-is-all-you-need-pytorch)  
 [insight](https://blog.csdn.net/longxinchen_ml/article/details/86533005)
 
 ---
