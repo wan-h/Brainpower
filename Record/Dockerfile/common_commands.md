@@ -1,22 +1,22 @@
-# dockerfile 常用命令
+## dockerfile 常用命令
 
-## 中文问题
+### 中文问题
 ```
 ENV LANG=C.UTF-8 LC_ALL=C.UTF-8
 ```
 
-## 东八区问题
+### 东八区问题
 ```
 ENV TZ=Asia/Shanghai
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 ```
 
-## ubuntu系统更改阿里源
+### ubuntu系统更改阿里源
 ```
 RUN sed -i 's/archive.ubuntu.com/mirrors.aliyun.com/' /etc/apt/sources.list
 ```
 
-## 安装Anaconda以及conda配置清华源
+### 安装Anaconda以及conda配置清华源
 ```
 ENV PATH /opt/conda/bin:$PATH
 RUN wget -c https://repo.anaconda.com/archive/Anaconda3-2020.02-Linux-x86_64.sh -O ~/anaconda.sh \
