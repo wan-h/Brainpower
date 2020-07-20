@@ -16,6 +16,12 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 RUN sed -i 's/archive.ubuntu.com/mirrors.aliyun.com/' /etc/apt/sources.list
 ```
 
+### 删除apt缓存
+```
+RUN apt-get install -y git openssh-server \
+  && rm -rf /var/lib/apt/lists/*
+```
+
 ### 安装Anaconda以及conda配置清华源
 ```
 ENV PATH /opt/conda/bin:$PATH

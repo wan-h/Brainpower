@@ -11,4 +11,5 @@ Docker可以让开发者打包他们的应用以及依赖包到一个轻量级�
 ---
 ### Dockerfile
 Dockerfile 是一个用来构建镜像的文本文件，文本内容包含了一条条构建镜像所需的指令和说明。  
+[Doceker镜像下载加速](https://www.daocloud.io/mirror)  
 [常用的dockerfile语句](../../Record/Dockerfile/common_commands.md)
