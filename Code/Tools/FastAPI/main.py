@@ -3,10 +3,14 @@
 
 from enum import Enum
 from typing import Optional, List
-from fastapi import FastAPI, Query, Path, Body
+from fastapi import FastAPI, Query, Path, Body, File, UploadFile, HTTPException
 from pydantic import BaseModel, Field
 
-app = FastAPI()
+app = FastAPI(
+    title="My Super Project",
+    description="This is a very fancy project, with auto docs for the API and everything",
+    version="2.5.0",
+)
 
 # 声明请求体
 # Field 在 Pydantic 模型内部声明校验
@@ -51,7 +55,8 @@ def read_root():
     return {"Hello": "World"}
 
 # 请求体 + 路径参数 + 查询参数
-@app.put("/item/{item_id}")
+# tag在doc上做分组划分
+@app.put("/items/{item_id}", tags=["items"])
 def update_item(item_id: int, item: Item, q: Optional[str] = None):
     result = {"item_name": item.name, "item_id": item_id}
     if q:
@@ -59,13 +64,13 @@ def update_item(item_id: int, item: Item, q: Optional[str] = None):
     return result
 
 # 在/item/{item_id}之前，防止被提前解析
-@app.get("/items/me")
+@app.get("/items/me", tags=["items"])
 async def read_user_me():
     return {"item_name": "me", "item_id": 0}
 
 # 多个路径和查询参数
 # 可选参数，存在默认值
-@app.get("/users/{user_id}/items/{item_id}")
+@app.get("/users/{user_id}/items/{item_id}", tags=["users"])
 async def read_item(user_id: int, item_id: str, q: Optional[str] = None, short: bool = False):
     item = {"item_id": item_id, "owner_id": user_id}
     if q:
@@ -77,12 +82,12 @@ async def read_item(user_id: int, item_id: str, q: Optional[str] = None, short: 
     return item
 
 # response_model定义输出模型
-@app.post("/user/", response_model=UserOut)
+@app.post("/users/", response_model=UserOut, tags=["users"])
 async def create_user(user: User):
     return user
 
 # 参数列表，使用定义的enum
-@app.get("/model/{model_name}")
+@app.get("/model/{model_name}", tags=["model"])
 async def get_model(model_name: ModelName):
     if model_name == ModelName.alexnet:
         return {"model_name": model_name, "message": "Deep Learning FTW!"}
@@ -95,7 +100,7 @@ async def get_model(model_name: ModelName):
 # Query 为查询参数声明更多的校验,定义参数描述
 # alias="item-query",表示参数别名，请求可以匹配这个别名赋值给该参数
 # deprecated将在文档中说明该参数已弃用，但是接口正常运行
-@app.get("/items/")
+@app.get("/items/", tags=["items"])
 async def read_items(
     q: Optional[str] = Query(
         None,
@@ -113,7 +118,7 @@ async def read_items(
     return results
 
 #Path 为路径参数声明相同类型的校验
-@app.get("/items/{item_id}")
+@app.get("/items/{item_id}", tags=["items"])
 async def read_items(
     *,
     item_id: int = Path(..., title="The ID of the item to get", ge=0, le=1000),
@@ -126,7 +131,7 @@ async def read_items(
     return results
 
 # 请求体中的单一值body, 直接使用时doc显示不出来
-@app.post("/items/{item_id}")
+@app.post("/items/{item_id}", tags=["items"])
 async def update_item(
     item_id: int, item: Item, user: User = Body(...), importance: int = Body(...)
 ):
@@ -150,12 +155,54 @@ async def update_item(
 #     "tax": 0
 #   }
 # }
-@app.post("/model/{model_name}")
+@app.post("/model/{model_name}", tags=["model"])
 async def update_item(
     model_name: str, item: Item = Body(..., embed=True)
 ):
     results = {"item_id": model_name, "item": item}
     return results
+
+# 文件请求
+@app.post("/files/", tags=["file"])
+async def create_file(file: bytes = File(...)):
+    return {"file_size": len(file)}
+
+@app.post("/uploadfile/", tags=["uploadfile"])
+async def create_upload_file(file: UploadFile = File(...)):
+    return {"filename": file.filename}
+
+@app.post("/uploadfiles/", tags=["uploadfiles"])
+async def create_upload_files(files: List[UploadFile] = File(...)):
+    return {"filenames": [file.filename for file in files]}
+
+#  HTTPException
+items = {"admin": "I am admin"}
+@app.get("/users/{user_id}", tags=["users"])
+async def read_item(item_id: str):
+    if item_id not in items:
+        raise HTTPException(status_code=404, detail="Item not found")
+    return {"item": items[item_id]}
+
+# 增加doc接口相关描述
+@app.post(
+    "/items/",
+    response_model=Item,
+    summary="Create an item",
+    # description="Create an item with all the information, name, description, price, tax and a set of unique tags",
+    response_description="The created item",
+    tags=["items"]
+)
+async def create_item(item: Item):
+    """
+    Create an item with all the information:
+
+    - **name**: each item must have a name
+    - **description**: a long description
+    - **price**: required
+    - **tax**: if the item doesn't have tax, you can omit this
+    - **tags**: a set of unique tag strings for this item
+    """
+    return item
 
 """
 运行web服务
