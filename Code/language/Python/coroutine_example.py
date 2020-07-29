@@ -69,8 +69,42 @@ def example_3():
     loop.run_until_complete(asyncio.wait(tasks))
     loop.close()
 
+# 最高效率，多进程+协程，gevent和进程池存在冲突，不建议一起使用
+import gevent
+import requests
+from multiprocessing import Process
+# 需要阻塞时自动切换协程
+from gevent import monkey; monkey.patch_all()
+def fetch(url):
+    try:
+        s = requests.Session()
+        r = s.get(url, timeout=1)
+    except Exception as e:
+        print(e)
+    return ''
+
+def process_start(url_list):
+    tasks = []
+    for url in url_list:
+        tasks.append(gevent.spawn(fetch, url))
+    # 使用协程执行
+    gevent.joinall(tasks)
+
+def example_4():
+    url_list = []
+    for i in range(1000):
+        url_list.append('https://www.baidu.com')
+        if i % 100 == 0:
+            p = Process(target=process_start, args=(url_list,))
+            p.start()
+            url_list = []
+    if url_list is not []:  # 若退出循环后任务队列里还有url剩余
+        p = Process(target=process_start, args=(url_list,))  # 把剩余的url全都放到最后这个进程来执行
+        p.start()
+
 
 if __name__ == '__main__':
     # example_1()
     # example_2()
-    example_3()
+    # example_3()
+    example_4()
