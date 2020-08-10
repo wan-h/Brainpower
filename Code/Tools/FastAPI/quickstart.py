@@ -1,16 +1,39 @@
 # coding: utf-8
 # Author: wanhui0729@gmail.com
 
+import time
+import traceback
+import logging
 from enum import Enum
 from typing import Optional, List
-from fastapi import FastAPI, Query, Path, Body, File, UploadFile, HTTPException
+from fastapi import FastAPI, Request, Query, Path, Body, File, UploadFile, HTTPException
 from pydantic import BaseModel, Field
+
+logger = logging.getLogger(__name__)
 
 app = FastAPI(
     title="My Super Project",
     description="This is a very fancy project, with auto docs for the API and everything",
     version="2.5.0",
 )
+
+
+# 添加中间件:
+# 计算每次接口请求的响应时间
+# 接口请求异常捕获
+
+@app.middleware("http")
+async def add_process_time_header(request: Request, call_next):
+    try:
+        start_time = time.time()
+        response = await call_next(request)
+        process_time = round(time.time() - start_time, 4)
+        response.headers["X-Process-Time"] = f"{process_time} (s)"
+        return response
+    except:
+        logger.error(f"{request.url.path} \n {traceback.format_exc()}")
+        raise HTTPException(status_code=400, detail={"message": "user unfound..."})
+
 
 # 声明请求体
 # Field 在 Pydantic 模型内部声明校验
@@ -33,16 +56,19 @@ class Item(BaseModel):
             }
         }
 
+
 class User(BaseModel):
     username: str
     password: str
     email: str
     full_name: Optional[str] = None
 
+
 class UserOut(BaseModel):
     username: str
     email: str
     full_name: Optional[str] = None
+
 
 # 构建可选参数值
 class ModelName(str, Enum):
@@ -50,23 +76,27 @@ class ModelName(str, Enum):
     resnet = "resnet"
     lenet = "lenet"
 
+
 @app.get("/")
-def read_root():
+async def read_root():
     return {"Hello": "World"}
+
 
 # 请求体 + 路径参数 + 查询参数
 # tag在doc上做分组划分
 @app.put("/items/{item_id}", tags=["items"])
-def update_item(item_id: int, item: Item, q: Optional[str] = None):
+async def update_item(item_id: int, item: Item, q: Optional[str] = None):
     result = {"item_name": item.name, "item_id": item_id}
     if q:
         result.update({"q": q})
     return result
 
+
 # 在/item/{item_id}之前，防止被提前解析
 @app.get("/items/me", tags=["items"])
 async def read_user_me():
     return {"item_name": "me", "item_id": 0}
+
 
 # 多个路径和查询参数
 # 可选参数，存在默认值
@@ -81,10 +111,12 @@ async def read_item(user_id: int, item_id: str, q: Optional[str] = None, short: 
         )
     return item
 
+
 # response_model定义输出模型
 @app.post("/users/", response_model=UserOut, tags=["users"])
 async def create_user(user: User):
     return user
+
 
 # 参数列表，使用定义的enum
 @app.get("/model/{model_name}", tags=["model"])
@@ -97,46 +129,50 @@ async def get_model(model_name: ModelName):
 
     return {"model_name": model_name, "message": "Have some residuals"}
 
+
 # Query 为查询参数声明更多的校验,定义参数描述
 # alias="item-query",表示参数别名，请求可以匹配这个别名赋值给该参数
 # deprecated将在文档中说明该参数已弃用，但是接口正常运行
 @app.get("/items/", tags=["items"])
 async def read_items(
-    q: Optional[str] = Query(
-        None,
-        alias="item-query",
-        title="Query string",
-        description="Query string for the items to search in the database that have a good match",
-        min_length=3,
-        max_length=50,
-        deprecated=True
-    )
+        q: Optional[str] = Query(
+            None,
+            alias="item-query",
+            title="Query string",
+            description="Query string for the items to search in the database that have a good match",
+            min_length=3,
+            max_length=50,
+            deprecated=True
+        )
 ):
     results = {"items": [{"item_id": "Foo"}, {"item_id": "Bar"}]}
     if q:
         results.update({"q": q})
     return results
 
-#Path 为路径参数声明相同类型的校验
+
+# Path 为路径参数声明相同类型的校验
 @app.get("/items/{item_id}", tags=["items"])
 async def read_items(
-    *,
-    item_id: int = Path(..., title="The ID of the item to get", ge=0, le=1000),
-    q: str,
-    size: float = Query(..., gt=0, lt=10.5)
+        *,
+        item_id: int = Path(..., title="The ID of the item to get", ge=0, le=1000),
+        q: str,
+        size: float = Query(..., gt=0, lt=10.5)
 ):
     results = {"item_id": item_id, "size": size}
     if q:
         results.update({"q": q})
     return results
 
+
 # 请求体中的单一值body, 直接使用时doc显示不出来
 @app.post("/items/{item_id}", tags=["items"])
 async def update_item(
-    item_id: int, item: Item, user: User = Body(...), importance: int = Body(...)
+        item_id: int, item: Item, user: User = Body(...), importance: int = Body(...)
 ):
     results = {"item_id": item_id, "item": item, "user": user, "importance": importance}
     return results
+
 
 # body嵌入单个请求体参数
 # 当只存在一个请求体时其输出会直接映射 Pydantic 模型格式
@@ -157,31 +193,38 @@ async def update_item(
 # }
 @app.post("/model/{model_name}", tags=["model"])
 async def update_item(
-    model_name: str, item: Item = Body(..., embed=True)
+        model_name: str, item: Item = Body(..., embed=True)
 ):
     results = {"item_id": model_name, "item": item}
     return results
+
 
 # 文件请求
 @app.post("/files/", tags=["file"])
 async def create_file(file: bytes = File(...)):
     return {"file_size": len(file)}
 
+
 @app.post("/uploadfile/", tags=["uploadfile"])
 async def create_upload_file(file: UploadFile = File(...)):
     return {"filename": file.filename}
+
 
 @app.post("/uploadfiles/", tags=["uploadfiles"])
 async def create_upload_files(files: List[UploadFile] = File(...)):
     return {"filenames": [file.filename for file in files]}
 
+
 #  HTTPException
 items = {"admin": "I am admin"}
+
+
 @app.get("/users/{user_id}", tags=["users"])
 async def read_item(item_id: str):
     if item_id not in items:
         raise HTTPException(status_code=404, detail="Item not found")
     return {"item": items[item_id]}
+
 
 # 增加doc接口相关描述
 @app.post(
@@ -203,6 +246,7 @@ async def create_item(item: Item):
     - **tags**: a set of unique tag strings for this item
     """
     return item
+
 
 """
 运行web服务
