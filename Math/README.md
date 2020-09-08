@@ -1,8 +1,10 @@
 ## Math
 ### Basic
-[Complex number](ComplexNumber/README.md)  
-[Entroy](Entory/README.md)  
-[Euler](Euler/README.md)  
-[Fourier](Fourier/README.md)  
-[Taylor](Taylor/README.md)  
-[Trigonometric](Trigonometric/README.md)
+[Complex number](Basic/ComplexNumber/README.md)  
+[Entroy](Basic/Entory/README.md)  
+[Euler](Basic/Euler/README.md)  
+[Fourier](Basic/Fourier/README.md)  
+[Taylor](Basic/Taylor/README.md)  
+[Trigonometric](Basic/Trigonometric/README.md)
+### Methodology
+[Interpolation](Methodology/Interpolation/README.md)
