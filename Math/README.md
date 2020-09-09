@@ -5,6 +5,7 @@
 [Entroy](Basic/Entory/README.md)  
 [Euler](Basic/Euler/README.md)  
 [Fourier](Basic/Fourier/README.md)  
+[Natural Logarithm](Basic/NaturalLogarithm/README.md)  
 [Taylor](Basic/Taylor/README.md)  
 [Trigonometric](Basic/Trigonometric/README.md)
 ### Methodology
