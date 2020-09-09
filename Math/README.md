@@ -6,6 +6,7 @@
 [Euler](Basic/Euler/README.md)  
 [Fourier](Basic/Fourier/README.md)  
 [Natural Logarithm](Basic/NaturalLogarithm/README.md)  
+[Poisson](Basic/Poisson/README.md)  
 [Taylor](Basic/Taylor/README.md)  
 [Trigonometric](Basic/Trigonometric/README.md)
 ### Methodology
