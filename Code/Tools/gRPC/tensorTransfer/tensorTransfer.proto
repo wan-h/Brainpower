@@ -1,0 +1,21 @@
+// python -m grpc_tools.protoc -I. --python_out=. --grpc_python_out=. helloworld.proto
+
+syntax = "proto3";
+
+package tensorTransfer;
+
+// The request message containing the user's name.
+message Request {
+  repeated int64 shape = 1;
+  bytes data = 2;
+}
+
+// The response message containing the greetings
+message Reponse {
+  string message = 1;
+}
+
+// The greeting service definition.
+service tensorTransfer{
+  rpc SimpleMethod (Request) returns (Reponse);
+}
