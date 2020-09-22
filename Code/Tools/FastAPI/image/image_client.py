@@ -17,11 +17,7 @@ from fastapi.testclient import TestClient
 # 初始化测试 client
 c_client = TestClient(app)
 
-# image_path = os.path.join(root_path, 'test.jpg')
-# image_path = os.path.join(root_path, '512.png')
-# image_path = os.path.join(root_path, '1080P.png')
-image_path = os.path.join(root_path, '2K.png')
-# image_path = os.path.join(root_path, '4K.png')
+image_path = os.path.join(root_path, 'test.jpg')
 
 def test_base64_api():
     url = "/images/base64/1"
@@ -39,7 +35,10 @@ def test_numpy_api():
     print(url)
     image_ndarray = cv2.imread(image_path)
     shape = image_ndarray.shape
-    resp = c_client.post(url=url, params={'shape': json.dumps(shape)}, files={'file': image_ndarray.tobytes()})
+    ndarray_bytes = image_ndarray.tobytes()
+    a = time.time()
+    resp = c_client.post(url=url, params={'shape': json.dumps(shape)}, files={'file': ndarray_bytes})
+    print('a time: ', time.time() - a)
     res_data = resp.json()
     print(res_data)
 

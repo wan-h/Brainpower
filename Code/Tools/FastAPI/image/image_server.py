@@ -39,6 +39,7 @@ async def image_base64_parse(image_id: int, item: ImagesIn):
     # cv2.waitKey()
     return {"image_id": image_id}
 
+@app.post("/images/file/{image_id}")
 async def image_file_parse(image_id: int, file: UploadFile = File(...)):
     image_tmp_file = file.file
     image_bytes_stream = BytesIO(image_tmp_file.read())
