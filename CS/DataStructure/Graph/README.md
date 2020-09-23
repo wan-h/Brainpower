@@ -1,5 +1,4 @@
 ## Graph
-
 ### OVERVIEW  
 #### 定义
 图是由顶点的有穷非空集合和顶点之间边的集合组成，通常表示为: G（V，E），其中，G表示一个图，V是图G中顶点的集合，E是图G中边的集合。  
@@ -41,10 +40,10 @@
 ---
 ### 相关算法  
 * 解决无权图路径相关问题  
-路径最短问题：[广度优先搜索（BFS）](https://github.com/wan-h/Brainpower/blob/master/Code/CS/Algorithm/Graph/BFS_DFS.py)  
-路径最长问题：[深度优先搜索（DFS）](https://github.com/wan-h/Brainpower/blob/master/Code/CS/Algorithm/Graph/BFS_DFS.py)  
+路径最短问题：[广度优先搜索（BFS）](https://github.com/wan-h/Brainpower/blob/master/Code/CS/DataStructure/Graph/BFS_DFS.py)  
+路径最长问题：[深度优先搜索（DFS）](https://github.com/wan-h/Brainpower/blob/master/Code/CS/DataStructure/Graph/BFS_DFS.py)  
 * 解决有权图路径相关问题  
-路径最快问题：[狄克斯特拉算法](https://github.com/wan-h/Brainpower/blob/master/Code/CS/Algorithm/Graph/dijkstra.py) （针对有向无环图）   
-狄克斯特拉算法不能用于包含负权值的图，含负权值图使用[贝尔曼-福德算法(Bellman ford)](https://github.com/wan-h/Brainpower/blob/master/Code/CS/Algorithm/Graph/bellman_fold.py)  
+路径最快问题：[狄克斯特拉算法](https://github.com/wan-h/Brainpower/blob/master/Code/CS/DataStructure/Graph/dijkstra.py) （针对有向无环图）   
+狄克斯特拉算法不能用于包含负权值的图，含负权值图使用[贝尔曼-福德算法(Bellman ford)](https://github.com/wan-h/Brainpower/blob/master/Code/CS/DataStructure/Graph/bellman_fold.py)  
 * 解决二分图匹配问题  
-最大匹配：[匈牙利算法](https://github.com/wan-h/Brainpower/blob/master/Code/CS/Algorithm/Graph/hungary.py)
+最大匹配：[匈牙利算法](https://github.com/wan-h/Brainpower/blob/master/Code/CS/DataStructure/Graph/hungary.py)
