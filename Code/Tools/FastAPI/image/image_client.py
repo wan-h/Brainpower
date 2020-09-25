@@ -36,9 +36,7 @@ def test_numpy_api():
     image_ndarray = cv2.imread(image_path)
     shape = image_ndarray.shape
     ndarray_bytes = image_ndarray.tobytes()
-    a = time.time()
     resp = c_client.post(url=url, params={'shape': json.dumps(shape)}, files={'file': ndarray_bytes})
-    print('a time: ', time.time() - a)
     res_data = resp.json()
     print(res_data)
 
@@ -50,7 +48,8 @@ pip install python-multipart
 def test_file_api():
     url = "/images/file/1"
     print(url)
-    resp = c_client.post(url=url, files={'file': open(image_path, 'rb')})
+    image_stream = open(image_path, 'rb')
+    resp = c_client.post(url=url, files={'file': image_stream})
     res_data = resp.json()
     print(res_data)
 
