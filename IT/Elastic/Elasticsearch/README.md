@@ -3,6 +3,7 @@
 
 ---
 ### OVERVIEW  
+**Ask your data questions of all kind**  
 Elasticsearch 是一个分布式、RESTful 风格的搜索和数据分析引擎。
 通过 Elasticsearch，您能够分析大规模数据并执行合并多种类型的搜索（结构化数据、非结构化数据、地理位置、指标）。
 
@@ -34,7 +35,3 @@ Index里面单条的记录称为 Document（文档）。许多条 Document 构�
 每个Document都类似一个JSON结构，它包含了许多字段，每个字段都有其对应的值，多个字段组成了一个 Document，可以类比关系型数据库数据表中的字段。
 在 Elasticsearch 中，文档（Document）归属于一种类型（Type），而这些类型存在于索引（Index）中，下图展示了Elasticsearch与传统关系型数据库的类比：  
 ![](src/Oth_0.png)
-
-### Kibana  
-[Link](https://www.elastic.co/kibana)  
-Kibana将Elasticsearch视为存储和处理数据的引擎，然后构建漂亮的可视化效果和仪表板。
