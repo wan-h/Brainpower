@@ -13,6 +13,8 @@
     - [maximum-subarray](https://github.com/wan-h/Brainpower/blob/master/Code/leetcode/code/maximum-subarray.py)
 * hashmap(空间换取时间)
     - [contains-duplicate-ii](https://github.com/wan-h/Brainpower/blob/master/Code/leetcode/code/contains-duplicate-ii.py)
+* 回溯法  
+    - [Letter Combinations of a Phone Number](https://github.com/wan-h/Brainpower/blob/master/Code/leetcode/code/letter-combinations-of-a-phone-number.py)
 * 链表操作
     - [add_two_numbers](https://github.com/wan-h/Brainpower/blob/master/Code/leetcode/code/add_two_numbers.py)
     - [remove-linked-list-elements](https://github.com/wan-h/Brainpower/blob/master/Code/leetcode/code/remove-linked-list-elements.py)
