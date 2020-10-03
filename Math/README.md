@@ -1,13 +1,13 @@
 ## Math
 ### Basic
-[Combination](Basic/Combination/README.md)  
-[Complex number](Basic/ComplexNumber/README.md)  
-[Entroy](Basic/Entory/README.md)  
-[Euler](Basic/Euler/README.md)  
-[Fourier](Basic/Fourier/README.md)  
-[Natural Logarithm](Basic/NaturalLogarithm/README.md)  
-[Poisson](Basic/Poisson/README.md)  
-[Taylor](Basic/Taylor/README.md)  
-[Trigonometric](Basic/Trigonometric/README.md)
+[熵](Basic/Entory/README.md)  
+[复数](Basic/ComplexNumber/README.md)  
+[自然对数](Basic/NaturalLogarithm/README.md)  
+[柏松分布](Basic/Poisson/README.md)  
+[排列组合](Basic/Combination/README.md)  
+[三角函数](Basic/Trigonometric/README.md)  
+[欧拉公式](Basic/Euler/README.md)  
+[泰勒展开式](Basic/Taylor/README.md)  
+[傅立叶变换](Basic/Fourier/README.md)  
 ### Methodology
-[Interpolation](Methodology/Interpolation/README.md)
+[插值](Methodology/Interpolation/README.md)
