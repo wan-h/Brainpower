@@ -12,5 +12,6 @@
 [0-1分布](Probability_and_Statistics/0-1_Distribution/README.md)  
 [二项分布](Probability_and_Statistics/BinomialDistribution/README.md)  
 [柏松分布](Probability_and_Statistics/PoissonDistribution/README.md)  
+[正态分布](Probability_and_Statistics/NormalDistribution/README.md)
 ### Methodology
 [插值](Methodology/Interpolation/README.md)
