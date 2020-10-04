@@ -15,4 +15,5 @@
 [柏松分布](Probability_and_Statistics/PoissonDistribution/README.md)  
 [正态分布](Probability_and_Statistics/NormalDistribution/README.md)
 ### Methodology
-[插值](Methodology/Interpolation/README.md)
+[插值](Methodology/Interpolation/README.md)  
+[最小二乘法](Methodology/OrdinaryLeastSquares/README.md)
