@@ -1,13 +1,9 @@
 ## Kalman Filter
 [Insight 1](https://zhuanlan.zhihu.com/p/36745755)  
 [Insight 2](https://blog.csdn.net/varyshare/article/details/95065650)
-
----
 ### OVERVIEW  
 卡尔曼滤波（Kalman filtering）是一种利用线性系统状态方程，通过系统输入输出观测数据，对系统状态进行最优估计的算法。
 由于观测数据中包括系统中的噪声和干扰的影响，所以最优估计也可看作是滤波过程。  
-
----
 ### Example
 t=k-1时小车的位置服从红色的正态分布。假设位置在21cm，位置误差为0.3cm，即μ=21，σ=0.3,速度为2cm/s  
 ![](src/Oth_0.png)  
