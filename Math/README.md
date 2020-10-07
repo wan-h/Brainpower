@@ -6,6 +6,7 @@
 [排列组合](Basic/Combination/README.md)  
 [三角函数](Basic/Trigonometric/README.md)  
 [高斯函数](Basic/Gaussian/README.md)  
+[贝叶斯公式](Basic/Bayes/README.md)  
 [欧拉公式](Basic/Euler/README.md)  
 [泰勒展开式](Basic/Taylor/README.md)  
 [傅立叶变换](Basic/Fourier/README.md)
