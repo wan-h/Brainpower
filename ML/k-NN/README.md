@@ -5,4 +5,4 @@ k近邻法的思路为在特征空间中，如果一个样本附近的k个最近
 ![](src/Oth_0.PNG)  
 k-NN也是一种回归方法，其回归值为k最近邻点的平均值
 ### 代码示例
-[code](https://github.com/wan-h/Brainpower/blob/master/Code/ML/k-NN.ipynb)
+[code](https://nbviewer.jupyter.org/github/wan-h/Brainpower/blob/master/Code/ML/k-NN.ipynb)

@@ -26,4 +26,4 @@
 ![](src/Oth_6.PNG)
 * 转到第二步，直到训练集中没有误分类点
 ### 代码示例
-[code](https://github.com/wan-h/Brainpower/blob/master/Code/ML/Perceptron.ipynb)
+[code](https://nbviewer.jupyter.org/github/wan-h/Brainpower/blob/master/Code/ML/Perceptron.ipynb)
