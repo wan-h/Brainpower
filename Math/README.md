@@ -9,7 +9,8 @@
 [贝叶斯公式](Basic/Bayes/README.md)  
 [欧拉公式](Basic/Euler/README.md)  
 [泰勒展开式](Basic/Taylor/README.md)  
-[傅立叶变换](Basic/Fourier/README.md)
+[傅立叶变换](Basic/Fourier/README.md)  
+[拉格朗日乘数](Basic/LagrangeMultiplierMethod/README.md)  
 ### Probability and Statistics
 [0-1分布](Probability_and_Statistics/0-1_Distribution/README.md)  
 [二项分布](Probability_and_Statistics/BinomialDistribution/README.md)  
