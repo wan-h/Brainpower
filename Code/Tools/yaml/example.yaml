@@ -1,0 +1,6 @@
+USER:
+  NAME: 'test1'
+  AGE: 18
+  COMM:
+    PHONE: 123456
+    EMAIL: '123456@google.com'
