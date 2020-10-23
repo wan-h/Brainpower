@@ -6,4 +6,5 @@
 [Gunicorn](Gunicorn/README.md)  
 [Locust](Locust/README.md)  
 [Pytest](Pytest/README.md)  
-[TensorRT](TensorRT/README.md)
+[TensorRT](TensorRT/README.md)  
+[Uvicorn](Uvicorn/README.md)
