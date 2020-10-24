@@ -23,3 +23,9 @@ class QuickstartUser(HttpUser):
     # 每个模拟用户在启动时都会调用具有该名称的方法
     def on_start(self):
         self.client.post("/login", {"username": "foo", "password": "bar"})
+
+'''
+使用bash启动locust开始测试
+eg: locust -f locust_files/my_locust_file.py --host http://0.0.0.0:5000 --web-host 0.0.0.0
+先关参数见https://docs.locust.io/en/stable/configuration.html
+'''
