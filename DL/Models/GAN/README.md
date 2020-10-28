@@ -1,3 +1,2 @@
 ## GAN
-### Generating Adversarial Examples
-[Overview](GeneratingAdversarialExamplesOverview.md)
+[Generative Adversarial Nets](GAN/README.md)
