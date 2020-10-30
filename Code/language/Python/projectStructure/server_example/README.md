@@ -44,6 +44,14 @@ python服务代码架构示例
 
 ## 研发流程
 * 启动镜像
+```
+docker run \
+--name=truck \
+-v `pwd`:/workspace \
+-p 8080:80 \
+--privileged=true \
+-it *** /bin/bash
+```
 * 编码
 * 单元测试
 * 性能测试
@@ -51,6 +59,16 @@ python服务代码架构示例
 
 ## 测试流程
 * 启动镜像
+```
+(nvidia-)docker build -t ***:latest ./ --network host
+
+(nvidia-)docker run \
+--rm \
+-p 8080:80 \
+-p 8089:8089 \
+--privileged=true \
+-it ***:latest /bin/bash
+```
 * 单元测试
 ```
 python test/run_pytest.pu
