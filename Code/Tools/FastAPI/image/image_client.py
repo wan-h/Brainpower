@@ -64,7 +64,7 @@ def test_files_api():
 
 # 需要先启动server
 def test_files_by_requests_api():
-    url = "http://0.0.0.0:5000/images/files/"
+    url = "http://0.0.0.0:5000/images/files"
     print(url)
     files = [('files', (open(image_path, 'rb'))), (('files', open(image_path, 'rb')))]
     resp = requests.post(url=url, files=files)
