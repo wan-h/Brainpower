@@ -49,6 +49,28 @@ async def image_file_parse(image_id: int, file: UploadFile = File(...)):
     # cv2.waitKey()
     return {"image_id": image_id}
 
+@app.post("/images/files/{image_ids}")
+async def image_files_parse(image_ids: int, files: List[UploadFile] = File(...)):
+    for image_tmp_file in files:
+        image_bytes_stream = BytesIO(image_tmp_file.file.read())
+        capture_image = Image.open(image_bytes_stream)
+        image = cv2.cvtColor(np.asarray(capture_image), cv2.COLOR_RGB2BGR)
+        # cv2.imshow('test.jpg', image)
+        # cv2.waitKey()
+    return {"image_ids": image_ids}
+
+
+@app.post("/images/files")
+async def image_files_parse(files: List[UploadFile] = File(...)):
+    for image_tmp_file in files:
+        print(image_tmp_file.filename)
+        image_bytes_stream = BytesIO(image_tmp_file.file.read())
+        capture_image = Image.open(image_bytes_stream)
+        image = cv2.cvtColor(np.asarray(capture_image), cv2.COLOR_RGB2BGR)
+        # cv2.imshow('test.jpg', image)
+        # cv2.waitKey()
+    return {"image_ids": 'ok'}
+
 @app.post("/images/numpy/{image_id}")
 async def image_numpy_parse(image_id: int, shape: str, file: UploadFile = File(...)):
     image_tmp_file = file.file
@@ -58,5 +80,6 @@ async def image_numpy_parse(image_id: int, shape: str, file: UploadFile = File(.
     # cv2.imshow('test.jpg', image_np)
     # cv2.waitKey()
     return {"image_id": image_id}
+
 if __name__ == '__main__':
     uvicorn.run(app, host='0.0.0.0', port=5000, access_log=True, use_colors=True)
