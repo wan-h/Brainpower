@@ -54,14 +54,16 @@ def test_file_api():
     res_data = resp.json()
     print(res_data)
 
+# 多图像传输
 def test_files_api():
-    url = "/images/files/1"
+    url = "/images/files"
     print(url)
     files = [('files', (open(image_path, 'rb'))), (('files', open(image_path, 'rb')))]
     resp = c_client.post(url=url, files=files)
     res_data = resp.json()
     print(res_data)
 
+# 使用原生的request访问
 # 需要先启动server
 def test_files_by_requests_api():
     url = "http://0.0.0.0:5000/images/files"
@@ -70,6 +72,17 @@ def test_files_by_requests_api():
     resp = requests.post(url=url, files=files)
     res_data = resp.json()
     print(res_data)
+
+# 带参数图像传输
+def test_image_files_with_info_api():
+    url = "/images/files_with_info"
+    print(url)
+    files = [('files', (open(image_path, 'rb'))), (('files', open(image_path, 'rb')))]
+    # data将信息以表单的形式发送
+    resp = c_client.post(url=url, files=files, params={"id": 1}, data={"name": "test.jpg"})
+    res_data = resp.json()
+    print(res_data)
+
 
 T = 3
 if __name__ == '__main__':
@@ -80,7 +93,8 @@ if __name__ == '__main__':
         # test_file_api()
         # test_numpy_api()
         # test_files_api()
-        test_files_by_requests_api()
+        # test_files_by_requests_api()
+        test_image_files_with_info_api()
         end = time.time()
         times.append(end - start)
     ave_time = np.mean(sorted(times)[1:-1])

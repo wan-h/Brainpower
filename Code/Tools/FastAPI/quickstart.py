@@ -21,6 +21,7 @@ app = FastAPI(
 # 添加中间件:
 # 计算每次接口请求的响应时间
 # 接口请求异常捕获
+# 通过装饰器装饰之后定义为该app的中间件
 
 @app.middleware("http")
 async def add_process_time_header(request: Request, call_next):
