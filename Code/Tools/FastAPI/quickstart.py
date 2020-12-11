@@ -1,6 +1,7 @@
 # coding: utf-8
 # Author: wanhui0729@gmail.com
 
+import uvicorn
 import time
 import traceback
 import logging
@@ -248,7 +249,8 @@ async def create_item(item: Item):
     """
     return item
 
-
+if __name__ == '__main__':
+    uvicorn.run(app)
 """
 运行web服务
 uvicorn main:app --reload
