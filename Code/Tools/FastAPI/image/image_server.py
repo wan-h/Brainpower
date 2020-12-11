@@ -66,8 +66,9 @@ async def image_files_parse(files: List[UploadFile] = File(...)):
 
 # 带参数图像传输
 # 其他信息通过表单的信息传输
+# Form(...)表示必须传输信息, 所以使用默认为None
 @app.post("/images/files_with_info")
-async def image_files_with_info_parse(id: str, name: str = Form(...), files: List[UploadFile] = File(...)):
+async def image_files_with_info_parse(id: str, name: str = Form(None), files: List[UploadFile] = File(...)):
     # data = json.loads(item.json())
     # name = data['name']
     for image_tmp_file in files:
