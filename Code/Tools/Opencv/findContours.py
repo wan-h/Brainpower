@@ -1,6 +1,10 @@
 # coding: utf-8
 # Author: wanhui0729@gmail.com
 
+'''
+找轮廓
+'''
+
 import cv2
 import numpy as np
 
@@ -13,6 +17,8 @@ image = image.astype(np.uint8)
 gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 
 # 找轮廓
+# mode为轮廓检索模式
+# method为轮廓近似办法
 contours, hierarchy = cv2.findContours(
     gray,
     mode=cv2.RETR_EXTERNAL,
