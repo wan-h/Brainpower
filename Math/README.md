@@ -1,6 +1,7 @@
 ## Math
 ### Basic
 [熵](Basic/Entory/README.md)  
+[矩阵](Basic/Matrix/README.md)  
 [复数](Basic/ComplexNumber/README.md)  
 [自然对数](Basic/NaturalLogarithm/README.md)  
 [排列组合](Basic/Combination/README.md)  
