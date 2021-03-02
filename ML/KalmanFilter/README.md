@@ -1,6 +1,5 @@
 ## Kalman Filter
-[Insight 1](https://zhuanlan.zhihu.com/p/36745755)  
-[Insight 2](https://blog.csdn.net/varyshare/article/details/95065650)
+[Insight 1](http://www.bzarg.com/p/how-a-kalman-filter-works-in-pictures/)  
 ### OVERVIEW  
 卡尔曼滤波（Kalman filtering）是一种利用线性系统状态方程，通过系统输入输出观测数据，对系统状态进行最优估计的算法。
 由于观测数据中包括系统中的噪声和干扰的影响，所以最优估计也可看作是滤波过程。  
