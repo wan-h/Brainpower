@@ -25,7 +25,7 @@ class MySQLClient(object):
             self._pool = PooledDB(MySQLdb, pool_count, **conf)
         except Exception as e:
             logging.exception(e)
-            exit()
+            raise SystemError(e)
 
     def _get_connect_from_pool(self):
         return self._pool.connection()
