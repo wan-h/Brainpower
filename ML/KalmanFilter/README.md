@@ -48,3 +48,6 @@ t=k-1时小车的位置服从红色的正态分布。假设位置在21cm，位�
 ![](src/Oth_25.png)  
 ![](src/Oth_26.png)  
 ![](src/Oth_27.png)  
+### Information Flow  
+上面结尾为卡尔曼五大公式，编码也分为预测和矫正两个部分，详情见[deep sort](https://github.com/nwojke/deep_sort)代码  
+![](src/Oth_28.png)
