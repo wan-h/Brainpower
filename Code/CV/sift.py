@@ -10,23 +10,23 @@ img1 = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 # SURF 快速sift版本
 # decriptor = cv2.xfeatures2d.SURF_create()
 # ORB 结合Fast与Brief算法,更快
-# decriptor = cv2.xfeatures2d.SURF_create()
+# decriptor = cv2.xfeatures2d.ORB_create()
 # 128代表查找的关键点个数
-decriptor = cv2.xfeatures2d.SIFT_create(128)
+descriptor = cv2.xfeatures2d.SIFT_create(128)
 # 找到关键点
-kp = decriptor.detect(img1, None)
+kp = descriptor.detect(img1, None)
 # 绘制关键点
 img1_keypoints = cv2.drawKeypoints(img1, kp, img)
 cv2.imshow('sp', img1_keypoints)
 cv2.waitKey()
 
 # 计算关键点描述符, kp为关键点列表, des为numpy数组, 大小为(len(kp), 128)
-kp1, des1 = decriptor.compute(img1, kp)
+kp1, des1 = descriptor.compute(img1, kp)
 print(des1.shape)
 
 img2 = cv2.rotate(img1, cv2.ROTATE_90_CLOCKWISE)
 # 直接计算
-kp2, des2 = decriptor.detectAndCompute(img2, None)
+kp2, des2 = descriptor.detectAndCompute(img2, None)
 print(des2.shape)
 
 # 特征点匹配, BF
