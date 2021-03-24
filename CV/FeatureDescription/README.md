@@ -10,6 +10,8 @@ SIFT特征对旋转、尺度缩放、亮度变化等保持不变性，是一种�
 * 删除不合适的关键点  
 * 计算关键点方向  
 * 计算关键点描述子
+
+
 ### HOG
 [参考1](https://zhuanlan.zhihu.com/p/85829145)  
 [参考2](https://www.jianshu.com/p/44bd4473da65)  
