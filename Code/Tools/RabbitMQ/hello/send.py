@@ -1,6 +1,11 @@
 # coding: utf-8
 # Author: wanhui0729@gmail.com
 
+'''
+使用docker环境: docker run -it --rm --name rabbitmq -p 5672:5672 -p 15672:15672 rabbitmq:3-management
+安装python包 python -m pip install pika --upgrade
+'''
+
 import pika
 
 connection = pika.BlockingConnection(pika.ConnectionParameters('localhost'))
