@@ -6,6 +6,8 @@
 # include <limits>
 
 using namespace std;
+// typedef 为一个已有的类型取一个新的名字
+typedef int MYINT;
 
 int main(){
     cout << "type: \t\t" << "************size**************" << endl;
@@ -34,9 +36,9 @@ int main(){
     cout << "\t最大值:" << (numeric_limits<short>::max)();
     cout << "\t\t最小值:" << (numeric_limits<short>::min)() << endl;
 
-    cout << "int: \t\t" << "所占字节数" << sizeof(int);
-    cout << "\t最大值:" << (numeric_limits<int>::max)();
-    cout << "\t\t最小值:" << (numeric_limits<int>::min)() << endl;
+    cout << "int: \t\t" << "所占字节数" << sizeof(MYINT);
+    cout << "\t最大值:" << (numeric_limits<MYINT>::max)();
+    cout << "\t\t最小值:" << (numeric_limits<MYINT>::min)() << endl;
 
     cout << "unsigned: \t\t" << "所占字节数" << sizeof(unsigned);
     cout << "\t最大值:" << (numeric_limits<unsigned>::max)();
