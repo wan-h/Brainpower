@@ -9,7 +9,7 @@ from .celery import app
 def add(x, y):
     try:
         # 模拟耗时
-        time.sleep(10)
+        time.sleep(5)
         return x + y
     except:
         pass

@@ -34,9 +34,9 @@ celery_control.revoke(str(result.id), terminate=True, signal='SIGKILL')
 time.sleep(1)
 print("task done: ", task.status)
 
-# 同步阻塞等待结果
+# # 同步阻塞等待结果
 # print("result: ", result.get(timeout=1))
-#
+
 # 参数签名
 s1 = mul.s(2, 2)
 res = s1.delay()
