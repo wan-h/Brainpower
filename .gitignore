@@ -1,5 +1,6 @@
 .idea
 .cache
+.vscode
 *.pyc
 __pycache__
 .pytest_cache
