@@ -20,7 +20,7 @@ int main(){
     cout << "Enter your age : ";
     cin >> data;
     // cin.ignore(1, EOF), 忽略回车键
-    // cin.ignore();
+    cin.ignore();
 
     // 再次向文件写入用户输入的数据
     outfile << data << endl;
