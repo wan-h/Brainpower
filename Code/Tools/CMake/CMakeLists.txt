@@ -45,7 +45,12 @@ install(FILES "${PROJECT_BINARY_DIR}/TutorialConfig.h"
 
 # 测试
 # make test
-enable_testing()
+# CTest模块会自动执行enable_testing()
+# 在build目录下执行 ctest [-VV] -C Debug -D Experimental
+# 可访问 https://my.cdash.org/index.php?project=CMakeTutorial 测试的dashboard
+# enable_testing()
+include(CTest)
+
 # 使用目标执行
 add_test(NAME Runs COMMAND Tutorial 25)
 # 测试使用说明
@@ -67,6 +72,9 @@ do_test(Tutorial -25 "-25 is [-nan|nan|0]")
 do_test(Tutorial 0.0001 "0.0001 is 0.01")
 
 # setup installer
+# 在build目录下执行cpack -G ZIP -C Debug
+# -G 指定生成器，-C 指定配置
+# 等价命令 make package
 include(InstallRequiredSystemLibraries)
 set(CPACK_RESOURCE_FILE_LICENSE "${CMAKE_CURRENT_SOURCE_DIR}/License.txt")
 set(CPACK_PACKAGE_VERSION_MAJOR "${Tutorial_VERSION_MAJOR}")
