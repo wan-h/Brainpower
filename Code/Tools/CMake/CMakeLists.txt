@@ -21,7 +21,7 @@ if(USE_MYMATH)
     # 构建EXTRA_LIBS列表
     list(APPEND EXTRA_LIBS MathFunctions)
     # 构建EXTRA_INCLUDES列表
-    list(APPEND EXTRA_INCLUDES "${PROJECT_SOURCE_DIR}/MathFunctions")
+    # list(APPEND EXTRA_INCLUDES "${PROJECT_SOURCE_DIR}/MathFunctions")
 endif()
 
 # 生成一个可执行文件
@@ -33,5 +33,5 @@ target_link_libraries(Tutorial PUBLIC ${EXTRA_LIBS})
 # 增加CMake二进制目录到头文件的搜索路径中，因为configure_file生成的头文件在该路径下
 target_include_directories(Tutorial PUBLIC
                            "${PROJECT_BINARY_DIR}"
-                           ${EXTRA_INCLUDES}
+                        #    ${EXTRA_INCLUDES}
                            )
