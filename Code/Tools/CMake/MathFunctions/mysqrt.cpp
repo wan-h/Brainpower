@@ -30,6 +30,6 @@ double mysqrt(double x){
         result = result + 0.5 * delta / result;
         std::cout << "Computing sqrt of " << x << " to be " << result << std::endl;
     }
-    return result;
 #endif
+    return result;
 }
