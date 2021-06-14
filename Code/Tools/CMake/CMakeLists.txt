@@ -20,7 +20,7 @@ if(USE_MYMATH)
     add_subdirectory(MathFunctions)
     # 构建EXTRA_LIBS列表
     list(APPEND EXTRA_LIBS MathFunctions)
-    # 构建EXTRA_INCLUDES列表
+    # 构建EXTRA_INCLUDES列表， 直接在MathFunctions做了添加
     # list(APPEND EXTRA_INCLUDES "${PROJECT_SOURCE_DIR}/MathFunctions")
 endif()
 
@@ -35,3 +35,33 @@ target_include_directories(Tutorial PUBLIC
                            "${PROJECT_BINARY_DIR}"
                         #    ${EXTRA_INCLUDES}
                            )
+
+# 增加安装目标 make install
+# 指定安装目录 cmake .. -DCMAKE_INSTALL_PREFIX=""
+install(TARGETS Tutorial DESTINATION bin)
+install(FILES "${PROJECT_BINARY_DIR}/TutorialConfig.h"
+    DESTINATION include
+    )
+
+# 测试
+# make test
+enable_testing()
+# 使用目标执行
+add_test(NAME Runs COMMAND Tutorial 25)
+# 测试使用说明
+add_test(NAME Usage COMMAND Tutorial)
+set_tests_properties(Usage
+    PROPERTIES PASS_REGULAR_EXPRESSION "Usage:.*number"
+)
+# 定义一个函数指定添加测试
+function(do_test target arg result)
+    add_test(NAME Comp${arg} COMMAND ${target} ${arg})
+endfunction(do_test)
+# 检测字符串匹配
+do_test(Tutorial 4 "4 is 2")
+do_test(Tutorial 9 "9 is 3")
+do_test(Tutorial 5 "5 is 2.236")
+do_test(Tutorial 7 "7 is 2.645")
+do_test(Tutorial 25 "25 is 5")
+do_test(Tutorial -25 "-25 is [-nan|nan|0]")
+do_test(Tutorial 0.0001 "0.0001 is 0.01")
