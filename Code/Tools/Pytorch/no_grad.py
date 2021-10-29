@@ -1,6 +1,13 @@
 # coding: utf-8
 # Author: wanhui0729@gmail.com
 
+"""
+pytorch截断反向传播有三种方法
+1. 设置 required_grad = False, Tensor不计算grad但是不影响bp流
+2. 使用　torch.no_grad(), Tensor不计算grad且没有grad_fn记录．影响bp流，无法继续反传
+3. 使用　detach(), 相当于Tensor的一份拷贝，内存共享，但是没有grad_fn和grad记录，在GAN网络中教常使用
+"""
+
 import torch
 from torch import nn
 from torch.nn import functional as F
