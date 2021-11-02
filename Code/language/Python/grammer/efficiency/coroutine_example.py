@@ -58,6 +58,9 @@ def example_2():
     loop.close()
 
 # 为了简化并更好地标识异步IO，从Python 3.5开始引入了新的语法async和await，可以让coroutine的代码更简洁易读。
+# async和await不是配对使用的，async标志一个函数为协程函数，await表示等待另一个协程函数执行完成
+# 协程函数自动检测有阻塞操作时挂起回到主线程去选择其他协程函数执行,协程函数运行中遇到其他协程函数挂起结束的也会直接进行跳转
+# 总而言之就是把异步等待的时间(io等)都利用起来了
 async def hello_2():
     print('Hello world! (%s)' % threading.current_thread())
     await asyncio.sleep(1)
@@ -70,6 +73,7 @@ def example_3():
     loop.close()
 
 # 最高效率，多进程+协程，gevent和进程池存在冲突，不建议一起使用
+# gevent是一种基于协程的Python网络库 https://www.jianshu.com/p/73ccb425a710
 import gevent
 import requests
 from multiprocessing import Process
