@@ -9,7 +9,7 @@ import os, sys
 import cv2
 from io import BytesIO
 from typing import List
-from fastapi import FastAPI, File, UploadFile, Form
+from fastapi import FastAPI, File, UploadFile, Form, WebSocket
 from pydantic import BaseModel
 from PIL import Image
 
@@ -78,6 +78,21 @@ async def image_files_with_info_parse(id: str, name: str = Form(None), files: Li
         # cv2.imshow('test.jpg', image)
         # cv2.waitKey()
     return {"id": id, "name": name}
+
+# 使用websocket进行传输
+@app.websocket("/images/{image_id}/ws")
+async def image_base64_ws_parse(websocket: WebSocket, image_id: int):
+    await websocket.accept()
+    for _ in range(10):
+        data = await websocket.receive_text()
+        image_str = data
+        image_decode = base64.b64decode(image_str.encode())
+        image_np = np.frombuffer(image_decode, np.uint8)
+        image = cv2.imdecode(image_np, cv2.COLOR_RGB2BGR)
+        # cv2.imshow('test.jpg', image)
+        # cv2.waitKey()
+        await websocket.send_json({"image_id": image_id})
+
 
 if __name__ == '__main__':
     uvicorn.run(app, host='0.0.0.0', port=5000, access_log=True, use_colors=True)

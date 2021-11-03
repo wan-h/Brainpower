@@ -83,19 +83,43 @@ def test_image_files_with_info_api():
     res_data = resp.json()
     print(res_data)
 
+def test_base64_ws_10_times_api():
+    url = "/images/1/ws"
+    print(url)
+    with open(image_path, 'rb') as f:
+        image_data = f.read()
+        base64_data = base64.b64encode(image_data)
+        image_str = base64_data.decode()
+    with c_client.websocket_connect(url) as websocket:
+        for _ in range(10):
+            start = time.time()
+            websocket.send_text(image_str)
+            resp = websocket.receive_json()
+            print(time.time()-start)
+            res_data = resp
+            print(res_data)
 
-T = 3
+T = 10
 if __name__ == '__main__':
     times = []
     for _ in range(T):
         start = time.time()
-        # test_base64_api()
+        test_base64_api()
         # test_file_api()
         # test_numpy_api()
         # test_files_api()
         # test_files_by_requests_api()
-        test_image_files_with_info_api()
+        # test_image_files_with_info_api()
         end = time.time()
         times.append(end - start)
-    ave_time = np.mean(sorted(times)[1:-1])
+    # ave_time = np.mean(sorted(times)[1:-1])
+    ave_time = np.mean(times)
     print(f"Ave time: {ave_time}")
+
+    # 测试websocket时间
+    start = time.time()
+    test_base64_ws_10_times_api()
+    end = time.time()
+    ave_time = (end - start) / 10
+    # 实验证明传输大文件时才有较大的优势
+    print(f"webSocket Ave time: {ave_time}")
