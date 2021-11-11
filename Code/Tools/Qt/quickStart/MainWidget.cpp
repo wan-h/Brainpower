@@ -6,7 +6,7 @@ MainWidget::MainWidget()
      * 主界面利用 QHBoxLayout 布局为两个区域，左边区域用 Left_Table_Box 实现，右边由 Right_Table_Box 实现
     */
     setWindowIcon(QIcon(":/logo.ico"));
-    setWindowTitle("学生信息管理系统(C语言中文网出品)");
+    setWindowTitle("学生信息管理系统");
     this->resize(1000,600);
     QHBoxLayout *HBoxLayout = new QHBoxLayout(this);
 
