@@ -9,3 +9,4 @@ cmake-build-debug
 *.bin
 *.param
 build
+node_modules
