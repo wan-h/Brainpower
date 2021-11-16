@@ -1,7 +1,7 @@
 {
-  "name": "dark-mode",
+  "name": "shortcuts",
   "version": "1.0.0",
-  "description": "Dark Mode",
+  "description": "shortCuts",
   "main": "main.js",
   "scripts": {
     "start": "electron ."
