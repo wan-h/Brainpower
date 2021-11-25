@@ -1,0 +1,13 @@
+/* 使用 prefers-color-scheme 媒体查询 设置 <body> 元素背景和文本颜色 */
+/* prefers-color-scheme有三个结果：
+1. no-preference 浏览器宿主系统不支持主题色
+2. light
+3. dark
+*/
+@media (prefers-color-scheme: dark) {
+    body { background: #333; color: white; }
+}
+
+@media (prefers-color-scheme: light) {
+    body { background: #ddd; color: black; }
+}

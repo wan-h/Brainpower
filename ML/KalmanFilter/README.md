@@ -1,6 +1,5 @@
 ## Kalman Filter
-[Insight 1](https://zhuanlan.zhihu.com/p/36745755)  
-[Insight 2](https://blog.csdn.net/varyshare/article/details/95065650)
+[Insight 1](http://www.bzarg.com/p/how-a-kalman-filter-works-in-pictures/)  
 ### OVERVIEW  
 卡尔曼滤波（Kalman filtering）是一种利用线性系统状态方程，通过系统输入输出观测数据，对系统状态进行最优估计的算法。
 由于观测数据中包括系统中的噪声和干扰的影响，所以最优估计也可看作是滤波过程。  
@@ -24,4 +23,31 @@ t=k-1时小车的位置服从红色的正态分布。假设位置在21cm，位�
 于是乎，卡尔曼滤波的思想诞生了！Kalman找到了相应权值，使红蓝分布合并为下图这个绿色的正态分布  
 ![](src/Oth_3.png)  
 绿色分布不仅保证了在红蓝给定的条件下，小车位于该点的概率最大，而且，它居然还是一个正态分布！
-正态分布就意味着，可以把它当做初值继续往下算了！这是Kalman滤波能够迭代的关键
+正态分布就意味着，可以把它当做初值继续往下算了！这是Kalman滤波能够迭代的关键  
+### Derivation
+![](src/Oth_4.png)  
+![](src/Oth_5.png)  
+![](src/Oth_6.png)  
+![](src/Oth_7.png)  
+![](src/Oth_8.png)  
+![](src/Oth_9.png)  
+![](src/Oth_10.png)  
+![](src/Oth_12.png)  
+![](src/Oth_13.png)  
+![](src/Oth_14.png)  
+![](src/Oth_15.png)  
+![](src/Oth_16.png)  
+![](src/Oth_17.png)  
+![](src/Oth_18.png)  
+![](src/Oth_19.png)  
+![](src/Oth_20.png)  
+![](src/Oth_21.png)  
+![](src/Oth_22.png)  
+![](src/Oth_23.png)  
+![](src/Oth_24.png)  
+![](src/Oth_25.png)  
+![](src/Oth_26.png)  
+![](src/Oth_27.png)  
+### Information Flow  
+上面结尾为卡尔曼五大公式，编码也分为预测和矫正两个部分，详情见[deep sort](https://github.com/nwojke/deep_sort)代码  
+![](src/Oth_28.png)

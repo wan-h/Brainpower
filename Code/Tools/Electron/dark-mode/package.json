@@ -1,0 +1,14 @@
+{
+  "name": "dark-mode",
+  "version": "1.0.0",
+  "description": "Dark Mode",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "author": "wanh",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^15.3.1"
+  }
+}

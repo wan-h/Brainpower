@@ -1,8 +1,9 @@
-FROM hub-my-docker:dev
+FROM hub-dev.rockontrol.com/rk-ai-tools/env-nvidia-cuda-amd64:dev
 
-ENV PYTHONPATH=/workspace/rock_caffe/python:$PYTHONPATH
+ENV PYTHONPATH=/opt/rock_caffe/python:$PYTHONPATH
 
-RUN sed -i 's/mirrors.aliyun.com/mirrors.myhuaweicloud.com/g' /etc/apt/sources.list
+# 华为云更加稳定
+RUN sed -i 's/mirrors.aliyun.com/mirrors.huaweicloud.com/g' /etc/apt/sources.list
 # apt安装caffe依赖库
 RUN apt update \
   && apt-get install -y libprotobuf-dev \
@@ -11,26 +12,26 @@ RUN apt update \
                         libgoogle-glog-dev \
                         libblas-dev \
                         libopencv-dev \
-                        cmake \
                         libgflags-dev \
                         libgoogle-glog-dev \
                         liblmdb-dev \
                         libopenblas-dev \
                         libleveldb-dev \
+                        cmake \
   && rm -rf /var/lib/apt/lists/*
 
 
 RUN ssh-keyscan git.querycap.com > /root/.ssh/known_hosts
 
 # 下载caffe源码
-WORKDIR /workspace
+WORKDIR /opt
 RUN git clone git@git.querycap.com:ai/rock/rock_caffe.git -b ssd
 
 # caffe安装配置文件
-COPY caffe/Makefile.config /workspace/rock_caffe/Makefile.config
+COPY caffe/Makefile.config /opt/rock_caffe/Makefile.config
 
 # 编译安装caffe
-RUN cd /workspace/rock_caffe/ \
+RUN cd /opt/rock_caffe/ \
   && make -j8 \
   && make py -j8
 

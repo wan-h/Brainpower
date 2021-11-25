@@ -26,6 +26,7 @@
     - [two-sum-ii-input-array-is-sorted](https://github.com/wan-h/Brainpower/blob/master/Code/leetcode/code/two-sum-ii-input-array-is-sorted.py)
     - [valid-palindrome](https://github.com/wan-h/Brainpower/blob/master/Code/leetcode/code/valid-palindrome.py)
 * 树操作
+    - [implement-trie(Prefix Tree)](https://github.com/wan-h/Brainpower/blob/master/Code/leetcode/code/implement-trie.py)
     - [invert-binary-tree](https://github.com/wan-h/Brainpower/blob/master/Code/leetcode/code/invert-binary-tree.py)
     - [maximum-depth-of-binary-tree](https://github.com/wan-h/Brainpower/blob/master/Code/leetcode/code/maximum-depth-of-binary-tree.py)
 * 贪心算法

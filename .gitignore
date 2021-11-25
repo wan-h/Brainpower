@@ -1,7 +1,14 @@
 .idea
 .cache
+.vscode
 *.pyc
 __pycache__
 .pytest_cache
 runs
 .DS_Store
+cmake-build-debug
+*.bin
+*.param
+build
+node_modules
+dist
