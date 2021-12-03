@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Routes, Route, Link } from "react-router-dom";
+import { Routes, Route, Link, matchPath, useLocation } from "react-router-dom";
 
 function Home() {
   return (
@@ -9,13 +9,20 @@ function Home() {
         <p>You can do this, I believe in you.</p>
       </main>
       <nav>
-        <Link to="/about">About</Link>
+        <Link to="/test/about">About</Link>
       </nav>
     </>
   );
 }
 
 function About() {
+  let location = useLocation();
+  // 获取当前url
+  const pathname = location.pathname;
+  console.log(pathname);
+  // 解析当前路径
+  const PathMath = matchPath("test/:id", pathname);
+  console.log(PathMath.pathname, PathMath.params)
   return (
     <>
       <main>
@@ -40,7 +47,7 @@ function App() {
       <h1>Welcome to React Router!</h1>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="about" element={<About />} />
+        <Route path="/test/about" element={<About />} />
       </Routes>
     </div>
   );
