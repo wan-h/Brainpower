@@ -121,6 +121,7 @@ SSD通过多尺度的特征图来进行预测获取不同的分辨率，YOLOv2�
 ![](src/Oth_2.png)  
 * 类FPN结构  
 ![](src/Oth_3.png)  
+类似SSD的结构，在三个不同尺度的特征图上进行预测  
 * 替换Softmax  
 分类器Softmax层被替换为一个1x1卷积层＋logistic激活函数的结构，使用Softmax层已经假设输出只对应单个class,但是某些class存在重叠的情况
 (例如woman和person的数据集中)，使用Softmax不能对该类数据进行较好的拟合。  
@@ -128,4 +129,23 @@ SSD通过多尺度的特征图来进行预测获取不同的分辨率，YOLOv2�
 ---
 #### Intuition  
 使用类FPN结构网络，对于小目标等困难目标有更好的检测效果，且在不同特征尺度上进行预测(类似SSD的head部分)，使得小目标可以在较大的特征图上进行预测，
-由于网络更加复杂，所有整体耗时上相比v2有所增加。
+由于网络更加复杂，所有整体耗时上相比v2有所增加。  
+
+--- 
+--- 
+### YOLOv4  
+[paper](https://arxiv.org/pdf/2004.10934.pdf)  
+[code](https://github.com/AlexeyAB/darknet)  
+
+---  
+#### STRUCTURE  
+![](src/Structure_4.png)  
+
+---  
+#### Experimental Results  
+* COCO test-dev2017  
+![](src/ER_5.png)  
+
+---  
+#### Algorithm  
+* backbone修改为CSPDarknet53  
