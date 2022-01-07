@@ -1,0 +1,4 @@
+MODEL:
+  DEVICE: "cuda"
+  BACKBONE:
+    IN_CHANNELS: 3
