@@ -148,4 +148,45 @@ SSD通过多尺度的特征图来进行预测获取不同的分辨率，YOLOv2�
 
 ---  
 #### Algorithm  
-* backbone修改为CSPDarknet53  
+###### BoF for backbone
+* CutMix  
+* Mosaic data augmentation
+* DropBlock regularization
+* Class label smoothing
+###### BoS for backbone
+* Mish activation
+* [Cross-stage partial cinnections(CSP)](https://arxiv.org/pdf/1911.11929.pdf)  
+使用CSP结构改造Darknet53，CSPDarknet53    
+![](src/Oth_8.png)
+CSP结构将base layer按channel一分为二，该结构有三点优势：1.加强CNN的学习能力; 2.消除计算瓶颈; 3.降低内存成本
+* [Multi-input weighted residual connections(MiWRC)](https://arxiv.org/pdf/1605.08831.pdf)  
+修改残差结构,原始结构为  
+![](src/Oth_4.png)  
+![](src/Oth_5.png)  
+新结构为  
+![](src/Oth_6.png)  
+![](src/Oth_7.png)  
+论文中描述Weighted-Residual可以更好更快的结合不同层传递过来的残差，虽然增加了一些计算量，
+但是当网络层数从100+增加到1000+时，网络效果更好，收敛速度更快
+###### BoF for detector
+* CIOU-loss  
+使用[IOU 损失](../../../../ModelOperator/DistanceIouLoss/README.md)替代MSE 损失   
+* CmBN  
+归一化均值方差是前面几个mini-batch均值方差的共同计算，
+以此解决batch_size过小时分布统计量不准确的问题
+![](src/Oth_9.png)  
+* DropBlock regularization
+* Mosaic data augmentation
+* Self-Adversarial Training
+* Eliminate grid sensitivity
+* Using multiple anchors for a single ground truth
+* Cosing annealing scheduler
+* Optimal hyper-parameters
+* Random training shapes
+###### BoS for detector
+* Mish activate
+* SPP-block
+* SAM-block
+* PAN path-aggregation block
+* DIoU-NMS
+        
