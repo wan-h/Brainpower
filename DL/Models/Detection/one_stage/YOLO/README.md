@@ -150,13 +150,20 @@ SSD通过多尺度的特征图来进行预测获取不同的分辨率，YOLOv2�
 #### Algorithm  
 ###### BoF for backbone
 * [CutMix](https://arxiv.org/pdf/1905.04899v2.pdf)  
-将一部分区域cut掉但不填充0像素而是随机填充训练集中的其他数据的区域像素值，label结果按照比例分配
+将一部分区域cut掉但不填充0像素而是随机填充训练集中的其他数据的区域像素值，label结果按照比例分配  
 ![](src/Oth_10.png)  
 * Mosaic data augmentation  
 CutMix主要用于分类，Mosaic就是参考CutMix的改进版，用于检测任务中，主要思想就是将四张图片进行裁剪，
-再拼接到一张图上作为训练数据
-* DropBlock regularization
-* Class label smoothing
+再拼接到一张图上作为训练数据，若裁剪了样本中标签框的部分区域就直接将其舍弃  
+![](src/Oth_11.png)  
+* [DropBlock regularization](https://arxiv.org/pdf/1810.12890.pdf)  
+一种针对卷积的正则化，通过dropout掉一部分相邻的整片的区域（比如头和脚），网络就会去注重学习狗的别的部位的特征，
+来实现正确分类，从而表现出更好的泛化  
+![](src/Oth_12.png)  
+* Class label smoothing  
+一种正则化的策略，通过soft one-hot来加入噪声，减少了真实样本标签的类别在计算损失函数时的权重，最终起到抑制过拟合的效果，
+也配合类似Mixup这类数据增强方法，生成soft label  
+
 ###### BoS for backbone
 * Mish activation
 * [Cross-stage partial cinnections(CSP)](https://arxiv.org/pdf/1911.11929.pdf)  
@@ -171,7 +178,8 @@ CSP结构将base layer按channel一分为二，该结构有三点优势：1.加�
 ![](src/Oth_6.png)  
 ![](src/Oth_7.png)  
 论文中描述Weighted-Residual可以更好更快的结合不同层传递过来的残差，虽然增加了一些计算量，
-但是当网络层数从100+增加到1000+时，网络效果更好，收敛速度更快
+但是当网络层数从100+增加到1000+时，网络效果更好，收敛速度更快  
+
 ###### BoF for detector
 * CIOU-loss  
 使用[IOU 损失](../../../../ModelOperator/DistanceIouLoss/README.md)替代MSE 损失   
@@ -186,7 +194,8 @@ CSP结构将base layer按channel一分为二，该结构有三点优势：1.加�
 * Using multiple anchors for a single ground truth
 * Cosing annealing scheduler
 * Optimal hyper-parameters
-* Random training shapes
+* Random training shapes  
+
 ###### BoS for detector
 * Mish activate
 * SPP-block
