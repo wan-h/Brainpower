@@ -149,15 +149,19 @@ SSD通过多尺度的特征图来进行预测获取不同的分辨率，YOLOv2�
 ---  
 #### Algorithm  
 ###### BoF for backbone
-* CutMix  
-* Mosaic data augmentation
+* [CutMix](https://arxiv.org/pdf/1905.04899v2.pdf)  
+将一部分区域cut掉但不填充0像素而是随机填充训练集中的其他数据的区域像素值，label结果按照比例分配
+![](src/Oth_10.png)  
+* Mosaic data augmentation  
+CutMix主要用于分类，Mosaic就是参考CutMix的改进版，用于检测任务中，主要思想就是将四张图片进行裁剪，
+再拼接到一张图上作为训练数据
 * DropBlock regularization
 * Class label smoothing
 ###### BoS for backbone
 * Mish activation
 * [Cross-stage partial cinnections(CSP)](https://arxiv.org/pdf/1911.11929.pdf)  
 使用CSP结构改造Darknet53，CSPDarknet53    
-![](src/Oth_8.png)
+![](src/Oth_8.png)  
 CSP结构将base layer按channel一分为二，该结构有三点优势：1.加强CNN的学习能力; 2.消除计算瓶颈; 3.降低内存成本
 * [Multi-input weighted residual connections(MiWRC)](https://arxiv.org/pdf/1605.08831.pdf)  
 修改残差结构,原始结构为  
