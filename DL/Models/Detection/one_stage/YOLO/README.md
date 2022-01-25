@@ -165,11 +165,17 @@ CutMix主要用于分类，Mosaic就是参考CutMix的改进版，用于检测�
 也配合类似Mixup这类数据增强方法，生成soft label  
 
 ###### BoS for backbone
-* Mish activation
-* [Cross-stage partial cinnections(CSP)](https://arxiv.org/pdf/1911.11929.pdf)  
+* [Mish activation](https://arxiv.org/pdf/1908.08681.pdf)  
+实验结论比relu的效果更好，相比relu处处可导且允许负梯度的传播  
+![](src/Oth_13.png)  
+* [Cross-stage partial connections(CSP)](https://arxiv.org/pdf/1911.11929.pdf)  
 使用CSP结构改造Darknet53，CSPDarknet53    
 ![](src/Oth_8.png)  
-CSP结构将base layer按channel一分为二，该结构有三点优势：1.加强CNN的学习能力; 2.消除计算瓶颈; 3.降低内存成本
+CSP结构将base layer按channel一分为二，保留了denseNet特征重复使用的优点，该结构有三点优势：
+1.加强CNN的学习能力(增加了梯度路径); 
+2.消除计算瓶颈(输入砍半); 
+3.降低内存成本(输入砍半)  
+后融合的Transition相当于梯度截断，避免了重复的梯度信息更新不同的dense block权重，使梯度组合的差异最大化
 * [Multi-input weighted residual connections(MiWRC)](https://arxiv.org/pdf/1605.08831.pdf)  
 修改残差结构,原始结构为  
 ![](src/Oth_4.png)  
@@ -178,7 +184,9 @@ CSP结构将base layer按channel一分为二，该结构有三点优势：1.加�
 ![](src/Oth_6.png)  
 ![](src/Oth_7.png)  
 论文中描述Weighted-Residual可以更好更快的结合不同层传递过来的残差，虽然增加了一些计算量，
-但是当网络层数从100+增加到1000+时，网络效果更好，收敛速度更快  
+但是当网络层数从100+增加到1000+时，网络效果更好，收敛速度更快，主要原因在于Relu和残差的加法存在不兼容，
+Relu只能输出大于0也就只能增强信号，这限制了残差函数负无穷到正无穷的可表示性，其次将Relu从高速通道移动到
+分支通道，保证了高速信号可以畅通传递，也就更好地适应了更深的网络结构  
 
 ###### BoF for detector
 * CIOU-loss  
@@ -187,19 +195,37 @@ CSP结构将base layer按channel一分为二，该结构有三点优势：1.加�
 归一化均值方差是前面几个mini-batch均值方差的共同计算，
 以此解决batch_size过小时分布统计量不准确的问题
 ![](src/Oth_9.png)  
-* DropBlock regularization
-* Mosaic data augmentation
-* Self-Adversarial Training
-* Eliminate grid sensitivity
-* Using multiple anchors for a single ground truth
-* Cosing annealing scheduler
-* Optimal hyper-parameters
+* DropBlock regularization  
+同BoF for Backbone  
+* Mosaic data augmentation  
+同BoF for Backbone  
+* Self-Adversarial Training  
+BP时不调整参数，而是调整image，然后将调整后的imnage加入训练来防止过拟合  
+* Eliminate grid sensitivity  
+在计算box信息时，若bx=cx or bx=cx+1两种情况需要tx是一个极大的负值或则正值才能使得loss很小，
+所以再激活函数σ乘以一个系数，那么产生较小的loss就要容易一些  
+![](src/Oth_14.png)  
+* Using multiple anchors for a single ground truth  
+有可能存在多个anchors和groud truth的IOU大于阈值，每个groud truth对应多个anchor都加入计算，
+以往通常的操作是每个groud truth只将最匹配的anchor作为正样本  
+* Cosing annealing scheduler  
+使用余弦退火调整学习率  
+![](src/Oth_15.png)  
+* Optimal hyper-parameters  
+对于超参数，用类似遗传算法进行分组寻优  
 * Random training shapes  
+对于image用多shape进行输入，使模型具有更好的通用性  
 
 ###### BoS for detector
-* Mish activate
-* SPP-block
-* SAM-block
-* PAN path-aggregation block
-* DIoU-NMS
-        
+* Mish activate  
+同BoS for Backbone  
+* SPP-block  
+![](src/Oth_16.jpg)  
+* PAN path-aggregation block  
+![](src/Oth_17.png)  
+* [SAM-block(Spatial Attention Module)](https://arxiv.org/pdf/1807.06521.pdf%22%20%5Ct%20%22https://heartbeat.fritz.ai/_blank)  
+![](src/Oth_18.png)  
+* [DIoU-NMS](https://arxiv.org/pdf/1911.08287.pdf)  
+在进行NMS计算是后，除了通过IOU计算外，增加Box之间的距离信息
+![](src/Oth_19.png)  
+![](src/Oth_20.png)  
