@@ -229,3 +229,28 @@ BP时不调整参数，而是调整image，然后将调整后的imnage加入训�
 在进行NMS计算是后，除了通过IOU计算外，增加Box之间的距离信息
 ![](src/Oth_19.png)  
 ![](src/Oth_20.png)  
+
+---
+#### Intuition  
+yolov4是可以说是tricks万花筒，可以看做是目标检测模型tricks文献综述，将大量的炼丹技巧应用到了论文中  
+
+--- 
+--- 
+### YOLOv5  
+[paper]()  
+[code](https://github.com/ultralytics/yolov5)  
+
+---  
+#### STRUCTURE  
+![](src/Structure_5.png)  
+
+---  
+#### Experimental Results  
+* COCO test-dev2017  
+![](src/ER_6.png)  
+
+---  
+#### Algorithm  
+
+---
+#### Intuition  
