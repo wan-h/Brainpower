@@ -1,0 +1,5 @@
+# 申明使用setuptools来打包项目，该文件是为了符合PEP517构建标准，本身对于打包过程没有任何影响
+# https://www.python.org/dev/peps/pep-0517/#build-requirements
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
