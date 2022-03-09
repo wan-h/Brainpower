@@ -1,13 +1,3 @@
-/*
- * @Author       : wanhui
- * @Date         : 2022-03-07 17:09:58
- * @LastEditors  : OBKoro1
- * @LastEditTime : 2022-03-09 10:01:54
- * @FilePath     : \Brainpower\Code\language\C++\grammer\file.cpp
- * @Description  : 
- * 
- * Copyright (c) 2022 by willw/vastai, All Rights Reserved. 
- */
 #include <iostream>
 #include <fstream>
 

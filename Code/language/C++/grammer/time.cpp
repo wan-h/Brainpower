@@ -1,5 +1,8 @@
 #include <iostream>
 #include <ctime>
+// c++11中的新特性
+#include <chrono>
+#include <ratio>
 
 using namespace std;
 
@@ -30,4 +33,45 @@ int main() {
     cout << "时间: " << ltm -> tm_hour << ":";
     cout << 1 + ltm -> tm_min << ":";
     cout << 1 + ltm -> tm_sec << endl;
+
+    // 使用chrono,duration默认的单位就是秒
+    typedef chrono::duration<int> second_type;
+    typedef chrono::duration<int, milli> milliseconds_type;
+    typedef chrono::duration<int, ratio<60 * 60>> hours_type;
+
+    hours_type h_oneday(24);
+    second_type s_oneday(60*60*24);
+    milliseconds_type ms_oneday(s_oneday);
+    // count()返回Rep类型的Period数量
+    cout << ms_oneday.count() << "ms in 1 day" << endl;
+
+    chrono::milliseconds foo(6000); // 6s
+    cout << "duration (in periods): " << foo.count() << " milliseconds." << endl;
+    // chrono::microseconds::period实际上就是s和ms的换算比例
+    cout << "duration (in periods): " << foo.count() * chrono::milliseconds::period::num / chrono::milliseconds::period::den << " seconds." << endl;
+
+    // time_point表示一个时间点
+    time_t tt;
+    chrono::system_clock::time_point _now = chrono::system_clock::now();
+    tt = chrono::system_clock::to_time_t(_now);
+    cout << "today is: " << ctime(&tt);
+    typedef chrono::duration<int, std::ratio<60*60*24>> days_type;
+    // time_point_cast将时间转换为以天为单位
+    // chrono::time_point<chrono::system_clock, days_type> today = chrono::time_point_cast<days_type>(chrono::system_clock::now());
+    chrono::system_clock::time_point today = chrono::system_clock::now();
+    chrono::duration<int, std::ratio<60*60*24> > one_day (1);
+    chrono::system_clock::time_point tomorrow = today + one_day;
+    tt = chrono::system_clock::to_time_t ( tomorrow );
+    cout << "tomorrow will be: " << ctime(&tt);
+    // time_since_epoch计算1970年1月1日到time_point时间经过的duration
+    cout << today.time_since_epoch().count() << " days since epoch" << endl;
+
+    // 计算时间差, chrono::steady_clock 为了表示稳定的时间间隔
+    chrono::steady_clock::time_point t1 = chrono::steady_clock::now();
+    for (int i=0; i<1000; ++i) {cout << "*";}
+    chrono::steady_clock::time_point t2 = chrono::steady_clock::now();
+    chrono::duration<double> time_span = chrono::duration_cast<chrono::duration<double>>(t2 - t1);
+    cout << "It took me " << time_span.count() << " seconds." << endl;
+
+    return 0;
 }
