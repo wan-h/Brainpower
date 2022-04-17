@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygenindex xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="index.xsd" version="1.8.13">
+  <compound refid="structDLDataType" kind="struct"><name>DLDataType</name>
+    <member refid="structDLDataType_1aaa84983c485752e4401d80ce0e2b6e54" kind="variable"><name>code</name></member>
+    <member refid="structDLDataType_1a412e36fa9c58e808a2333e9044c5d9b5" kind="variable"><name>bits</name></member>
+    <member refid="structDLDataType_1a24de092fe56d358c1582e41499862594" kind="variable"><name>lanes</name></member>
+  </compound>
+  <compound refid="structDLDevice" kind="struct"><name>DLDevice</name>
+    <member refid="structDLDevice_1a7c86f0ccd03a003aafb2e709ec1b46e0" kind="variable"><name>device_type</name></member>
+    <member refid="structDLDevice_1ad44a634a3820de880f89875a8dcdd289" kind="variable"><name>device_id</name></member>
+  </compound>
+  <compound refid="structDLManagedTensor" kind="struct"><name>DLManagedTensor</name>
+    <member refid="structDLManagedTensor_1a568171e573aca5ba30f2cbae9fd2489b" kind="variable"><name>dl_tensor</name></member>
+    <member refid="structDLManagedTensor_1af9bfa572555bd0b7855c5ae74ff96929" kind="variable"><name>manager_ctx</name></member>
+    <member refid="structDLManagedTensor_1a3b5ac9adc40f2dbaf072531eb957d7ea" kind="variable"><name>deleter</name></member>
+  </compound>
+  <compound refid="structDLTensor" kind="struct"><name>DLTensor</name>
+    <member refid="structDLTensor_1a6af4539ae2c74d60e8dbc4c6047ed805" kind="variable"><name>data</name></member>
+    <member refid="structDLTensor_1a38995144d9ea19deeec30bfe80aa8362" kind="variable"><name>device</name></member>
+    <member refid="structDLTensor_1a028208c9b0c685fffe5eccf45f012388" kind="variable"><name>ndim</name></member>
+    <member refid="structDLTensor_1ae0cf02d1a8b19118838670b3b3d857f5" kind="variable"><name>dtype</name></member>
+    <member refid="structDLTensor_1a6e33904029ec8a18658b6bd62be28688" kind="variable"><name>shape</name></member>
+    <member refid="structDLTensor_1a0ad3b8079e712f711b716d34d418d44e" kind="variable"><name>strides</name></member>
+    <member refid="structDLTensor_1a647dfbb2a3b976c4e9d1e17740dca568" kind="variable"><name>byte_offset</name></member>
+  </compound>
+  <compound refid="dlpack_8hpp" kind="file"><name>dlpack.hpp</name>
+    <member refid="dlpack_8hpp_1a673d5372271f4182a2fb5315c2e335b4" kind="define"><name>DLPACK_EXTERN_C</name></member>
+    <member refid="dlpack_8hpp_1a493a8fe63f179b98d4e7a1728659a808" kind="define"><name>DLPACK_VERSION</name></member>
+    <member refid="dlpack_8hpp_1a417567bf468bbb5afb1149bb14625bdb" kind="define"><name>DLPACK_ABI_VERSION</name></member>
+    <member refid="dlpack_8hpp_1ad57157a7cb94036d48d0444fd14ab6cf" kind="define"><name>DLPACK_DLL</name></member>
+    <member refid="dlpack_8hpp_1a49db572e18d84c47738fc746568fb573" kind="enum"><name>DLDeviceType</name></member>
+    <member refid="dlpack_8hpp_1a49db572e18d84c47738fc746568fb573ab736fabc9e37c2acf3b09b88fdc65c9e" kind="enumvalue"><name>kDLCPU</name></member>
+    <member refid="dlpack_8hpp_1a49db572e18d84c47738fc746568fb573a4468b75cfc38e153206f4b6a2167a543" kind="enumvalue"><name>kDLCUDA</name></member>
+    <member refid="dlpack_8hpp_1a49db572e18d84c47738fc746568fb573a48f80c88f74bb10a057c6d36446adb46" kind="enumvalue"><name>kDLCUDAHost</name></member>
+    <member refid="dlpack_8hpp_1a49db572e18d84c47738fc746568fb573a71b2f851779936d824bf2c235ed94a8d" kind="enumvalue"><name>kDLOpenCL</name></member>
+    <member refid="dlpack_8hpp_1a49db572e18d84c47738fc746568fb573a31aefcffd60630580d74bf055c2c3ba0" kind="enumvalue"><name>kDLVulkan</name></member>
+    <member refid="dlpack_8hpp_1a49db572e18d84c47738fc746568fb573a36ced4bf0304d68b5c633ddba5633e66" kind="enumvalue"><name>kDLMetal</name></member>
+    <member refid="dlpack_8hpp_1a49db572e18d84c47738fc746568fb573af063bf37ea24c1839d3a78703c2468e7" kind="enumvalue"><name>kDLVPI</name></member>
+    <member refid="dlpack_8hpp_1a49db572e18d84c47738fc746568fb573adeeb5e6f50f4309676e49f7a12512171" kind="enumvalue"><name>kDLROCM</name></member>
+    <member refid="dlpack_8hpp_1a49db572e18d84c47738fc746568fb573a88c11300e9c35b53661c83479f5fb51c" kind="enumvalue"><name>kDLROCMHost</name></member>
+    <member refid="dlpack_8hpp_1a49db572e18d84c47738fc746568fb573aea5cdddfa3ac11130048ad8e2a012363" kind="enumvalue"><name>kDLExtDev</name></member>
+    <member refid="dlpack_8hpp_1a49db572e18d84c47738fc746568fb573a3aad819a783a24e7c84c13a3e03cf99d" kind="enumvalue"><name>kDLCUDAManaged</name></member>
+    <member refid="dlpack_8hpp_1a49db572e18d84c47738fc746568fb573a4e7dd98002fc937dd645dd1293575f28" kind="enumvalue"><name>kDLOneAPI</name></member>
+    <member refid="dlpack_8hpp_1a49db572e18d84c47738fc746568fb573a54e2a159c9e3f421d9a3093bb5def358" kind="enumvalue"><name>kDLWebGPU</name></member>
+    <member refid="dlpack_8hpp_1a49db572e18d84c47738fc746568fb573aad7f2a6159af2f349840446d850f1402" kind="enumvalue"><name>kDLHexagon</name></member>
+    <member refid="dlpack_8hpp_1a2a5dbaa5fb67f4845a973c09a7f2ec50" kind="enum"><name>DLDataTypeCode</name></member>
+    <member refid="dlpack_8hpp_1a2a5dbaa5fb67f4845a973c09a7f2ec50a291cf38955be5c45c3aa50cea13c5e6e" kind="enumvalue"><name>kDLInt</name></member>
+    <member refid="dlpack_8hpp_1a2a5dbaa5fb67f4845a973c09a7f2ec50aa19211076c5ae99e281ea430a25b102a" kind="enumvalue"><name>kDLUInt</name></member>
+    <member refid="dlpack_8hpp_1a2a5dbaa5fb67f4845a973c09a7f2ec50a8bd73646a2aa8465201b59ab7d1a83e0" kind="enumvalue"><name>kDLFloat</name></member>
+    <member refid="dlpack_8hpp_1a2a5dbaa5fb67f4845a973c09a7f2ec50adcbeeb07c5b8d5557e24ced65909a909" kind="enumvalue"><name>kDLOpaqueHandle</name></member>
+    <member refid="dlpack_8hpp_1a2a5dbaa5fb67f4845a973c09a7f2ec50a6a739f1b3ce2f8978da99a5ac4a887a6" kind="enumvalue"><name>kDLBfloat</name></member>
+    <member refid="dlpack_8hpp_1a2a5dbaa5fb67f4845a973c09a7f2ec50a2e0a5562d3aa842a0830c176af8aa980" kind="enumvalue"><name>kDLComplex</name></member>
+    <member refid="dlpack_8hpp_1a927ecc672891526a594bf5ef5ca25994" kind="typedef"><name>DLManagedTensor</name></member>
+  </compound>
+  <compound refid="dir_d44c64559bbebec7f509842c48db8b23" kind="dir"><name>include</name>
+  </compound>
+</doxygenindex>

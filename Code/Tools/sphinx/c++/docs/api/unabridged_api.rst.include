@@ -1,0 +1,74 @@
+
+Full API
+--------
+
+Classes and Structs
+*******************
+
+
+.. toctree::
+   :maxdepth: 5
+
+   structDLDataType.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   structDLDevice.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   structDLManagedTensor.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   structDLTensor.rst
+
+Enums
+*****
+
+
+.. toctree::
+   :maxdepth: 5
+
+   enum_dlpack_8hpp_1a2a5dbaa5fb67f4845a973c09a7f2ec50.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   enum_dlpack_8hpp_1a49db572e18d84c47738fc746568fb573.rst
+
+Defines
+*******
+
+
+.. toctree::
+   :maxdepth: 5
+
+   define_dlpack_8hpp_1a417567bf468bbb5afb1149bb14625bdb.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   define_dlpack_8hpp_1ad57157a7cb94036d48d0444fd14ab6cf.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   define_dlpack_8hpp_1a673d5372271f4182a2fb5315c2e335b4.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   define_dlpack_8hpp_1a493a8fe63f179b98d4e7a1728659a808.rst
+
+Typedefs
+********
+
+
+.. toctree::
+   :maxdepth: 5
+
+   typedef_dlpack_8hpp_1a927ecc672891526a594bf5ef5ca25994.rst

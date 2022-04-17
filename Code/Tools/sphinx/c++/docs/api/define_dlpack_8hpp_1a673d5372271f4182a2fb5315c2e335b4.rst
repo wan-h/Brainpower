@@ -1,0 +1,14 @@
+.. _exhale_define_dlpack_8hpp_1a673d5372271f4182a2fb5315c2e335b4:
+
+Define DLPACK_EXTERN_C
+======================
+
+- Defined in :ref:`file_include_dlpack.hpp`
+
+
+Define Documentation
+--------------------
+
+
+.. doxygendefine:: DLPACK_EXTERN_C
+   :project: My Project

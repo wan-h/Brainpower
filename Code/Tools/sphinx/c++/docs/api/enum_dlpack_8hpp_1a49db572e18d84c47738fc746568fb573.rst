@@ -1,0 +1,14 @@
+.. _exhale_enum_dlpack_8hpp_1a49db572e18d84c47738fc746568fb573:
+
+Enum DLDeviceType
+=================
+
+- Defined in :ref:`file_include_dlpack.hpp`
+
+
+Enum Documentation
+------------------
+
+
+.. doxygenenum:: DLDeviceType
+   :project: My Project

@@ -1,0 +1,14 @@
+.. _exhale_define_dlpack_8hpp_1a493a8fe63f179b98d4e7a1728659a808:
+
+Define DLPACK_VERSION
+=====================
+
+- Defined in :ref:`file_include_dlpack.hpp`
+
+
+Define Documentation
+--------------------
+
+
+.. doxygendefine:: DLPACK_VERSION
+   :project: My Project

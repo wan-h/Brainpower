@@ -1,0 +1,368 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="dlpack_8hpp" kind="file" language="C++">
+    <compoundname>dlpack.hpp</compoundname>
+    <includes local="no">stdint.h</includes>
+    <includes local="no">stddef.h</includes>
+    <incdepgraph>
+      <node id="1">
+        <label>stdint.h</label>
+      </node>
+      <node id="2">
+        <label>stddef.h</label>
+      </node>
+      <node id="0">
+        <label>include/dlpack.hpp</label>
+        <link refid="dlpack_8hpp"/>
+        <childnode refid="1" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+    <innerclass refid="structDLDevice" prot="public">DLDevice</innerclass>
+    <innerclass refid="structDLDataType" prot="public">DLDataType</innerclass>
+    <innerclass refid="structDLTensor" prot="public">DLTensor</innerclass>
+    <innerclass refid="structDLManagedTensor" prot="public">DLManagedTensor</innerclass>
+      <sectiondef kind="define">
+      <memberdef kind="define" id="dlpack_8hpp_1a673d5372271f4182a2fb5315c2e335b4" prot="public" static="no">
+        <name>DLPACK_EXTERN_C</name>
+        <briefdescription>
+<para>Compatibility with C++. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/dlpack.hpp" line="15" column="10" bodyfile="include/dlpack.hpp" bodystart="15" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="dlpack_8hpp_1a493a8fe63f179b98d4e7a1728659a808" prot="public" static="no">
+        <name>DLPACK_VERSION</name>
+        <initializer>60</initializer>
+        <briefdescription>
+<para>The current version of dlpack. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/dlpack.hpp" line="19" column="9" bodyfile="include/dlpack.hpp" bodystart="19" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="dlpack_8hpp_1a417567bf468bbb5afb1149bb14625bdb" prot="public" static="no">
+        <name>DLPACK_ABI_VERSION</name>
+        <initializer>1</initializer>
+        <briefdescription>
+<para>The current ABI version of dlpack. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/dlpack.hpp" line="22" column="9" bodyfile="include/dlpack.hpp" bodystart="22" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="dlpack_8hpp_1ad57157a7cb94036d48d0444fd14ab6cf" prot="public" static="no">
+        <name>DLPACK_DLL</name>
+        <briefdescription>
+<para>DLPACK_DLL prefix for windows. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/dlpack.hpp" line="32" column="10" bodyfile="include/dlpack.hpp" bodystart="32" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="enum">
+      <memberdef kind="enum" id="dlpack_8hpp_1a49db572e18d84c47738fc746568fb573" prot="public" static="no">
+        <name>DLDeviceType</name>
+        <enumvalue id="dlpack_8hpp_1a49db572e18d84c47738fc746568fb573ab736fabc9e37c2acf3b09b88fdc65c9e" prot="public">
+          <name>kDLCPU</name>
+          <initializer>= 1</initializer>
+          <briefdescription>
+<para>CPU device. </para>          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="dlpack_8hpp_1a49db572e18d84c47738fc746568fb573a4468b75cfc38e153206f4b6a2167a543" prot="public">
+          <name>kDLCUDA</name>
+          <initializer>= 2</initializer>
+          <briefdescription>
+<para>CUDA GPU device. </para>          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="dlpack_8hpp_1a49db572e18d84c47738fc746568fb573a48f80c88f74bb10a057c6d36446adb46" prot="public">
+          <name>kDLCUDAHost</name>
+          <initializer>= 3</initializer>
+          <briefdescription>
+<para>Pinned CUDA CPU memory by cudaMallocHost. </para>          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="dlpack_8hpp_1a49db572e18d84c47738fc746568fb573a71b2f851779936d824bf2c235ed94a8d" prot="public">
+          <name>kDLOpenCL</name>
+          <initializer>= 4</initializer>
+          <briefdescription>
+<para>OpenCL devices. </para>          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="dlpack_8hpp_1a49db572e18d84c47738fc746568fb573a31aefcffd60630580d74bf055c2c3ba0" prot="public">
+          <name>kDLVulkan</name>
+          <initializer>= 7</initializer>
+          <briefdescription>
+<para>Vulkan buffer for next generation graphics. </para>          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="dlpack_8hpp_1a49db572e18d84c47738fc746568fb573a36ced4bf0304d68b5c633ddba5633e66" prot="public">
+          <name>kDLMetal</name>
+          <initializer>= 8</initializer>
+          <briefdescription>
+<para>Metal for Apple GPU. </para>          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="dlpack_8hpp_1a49db572e18d84c47738fc746568fb573af063bf37ea24c1839d3a78703c2468e7" prot="public">
+          <name>kDLVPI</name>
+          <initializer>= 9</initializer>
+          <briefdescription>
+<para>Verilog simulator buffer. </para>          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="dlpack_8hpp_1a49db572e18d84c47738fc746568fb573adeeb5e6f50f4309676e49f7a12512171" prot="public">
+          <name>kDLROCM</name>
+          <initializer>= 10</initializer>
+          <briefdescription>
+<para>ROCm GPUs for AMD GPUs. </para>          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="dlpack_8hpp_1a49db572e18d84c47738fc746568fb573a88c11300e9c35b53661c83479f5fb51c" prot="public">
+          <name>kDLROCMHost</name>
+          <initializer>= 11</initializer>
+          <briefdescription>
+<para>Pinned ROCm CPU memory allocated by hipMallocHost. </para>          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="dlpack_8hpp_1a49db572e18d84c47738fc746568fb573aea5cdddfa3ac11130048ad8e2a012363" prot="public">
+          <name>kDLExtDev</name>
+          <initializer>= 12</initializer>
+          <briefdescription>
+<para>Reserved extension device type, used for quickly test extension device The semantics can differ depending on the implementation. </para>          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="dlpack_8hpp_1a49db572e18d84c47738fc746568fb573a3aad819a783a24e7c84c13a3e03cf99d" prot="public">
+          <name>kDLCUDAManaged</name>
+          <initializer>= 13</initializer>
+          <briefdescription>
+<para>CUDA managed/unified memory allocated by cudaMallocManaged. </para>          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="dlpack_8hpp_1a49db572e18d84c47738fc746568fb573a4e7dd98002fc937dd645dd1293575f28" prot="public">
+          <name>kDLOneAPI</name>
+          <initializer>= 14</initializer>
+          <briefdescription>
+<para>Unified shared memory allocated on a oneAPI non-partititioned device. Call to oneAPI runtime is required to determine the device type, the USM allocation type and the sycl context it is bound to. </para>          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="dlpack_8hpp_1a49db572e18d84c47738fc746568fb573a54e2a159c9e3f421d9a3093bb5def358" prot="public">
+          <name>kDLWebGPU</name>
+          <initializer>= 15</initializer>
+          <briefdescription>
+<para>GPU support for next generation WebGPU standard. </para>          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="dlpack_8hpp_1a49db572e18d84c47738fc746568fb573aad7f2a6159af2f349840446d850f1402" prot="public">
+          <name>kDLHexagon</name>
+          <initializer>= 16</initializer>
+          <briefdescription>
+<para>Qualcomm Hexagon DSP. </para>          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+<para>The device type in <ref refid="structDLDevice" kindref="compound">DLDevice</ref>. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/dlpack.hpp" line="47" column="1" bodyfile="include/dlpack.hpp" bodystart="47" bodyend="92"/>
+      </memberdef>
+      <memberdef kind="enum" id="dlpack_8hpp_1a2a5dbaa5fb67f4845a973c09a7f2ec50" prot="public" static="no">
+        <name>DLDataTypeCode</name>
+        <enumvalue id="dlpack_8hpp_1a2a5dbaa5fb67f4845a973c09a7f2ec50a291cf38955be5c45c3aa50cea13c5e6e" prot="public">
+          <name>kDLInt</name>
+          <initializer>= 0U</initializer>
+          <briefdescription>
+<para>signed integer </para>          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="dlpack_8hpp_1a2a5dbaa5fb67f4845a973c09a7f2ec50aa19211076c5ae99e281ea430a25b102a" prot="public">
+          <name>kDLUInt</name>
+          <initializer>= 1U</initializer>
+          <briefdescription>
+<para>unsigned integer </para>          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="dlpack_8hpp_1a2a5dbaa5fb67f4845a973c09a7f2ec50a8bd73646a2aa8465201b59ab7d1a83e0" prot="public">
+          <name>kDLFloat</name>
+          <initializer>= 2U</initializer>
+          <briefdescription>
+<para>IEEE floating point. </para>          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="dlpack_8hpp_1a2a5dbaa5fb67f4845a973c09a7f2ec50adcbeeb07c5b8d5557e24ced65909a909" prot="public">
+          <name>kDLOpaqueHandle</name>
+          <initializer>= 3U</initializer>
+          <briefdescription>
+<para>Opaque handle type, reserved for testing purposes. Frameworks need to agree on the handle data type for the exchange to be well-defined. </para>          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="dlpack_8hpp_1a2a5dbaa5fb67f4845a973c09a7f2ec50a6a739f1b3ce2f8978da99a5ac4a887a6" prot="public">
+          <name>kDLBfloat</name>
+          <initializer>= 4U</initializer>
+          <briefdescription>
+<para>bfloat16 </para>          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="dlpack_8hpp_1a2a5dbaa5fb67f4845a973c09a7f2ec50a2e0a5562d3aa842a0830c176af8aa980" prot="public">
+          <name>kDLComplex</name>
+          <initializer>= 5U</initializer>
+          <briefdescription>
+<para>complex number (C/C++/Python layout: compact struct per complex number) </para>          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+<para>The type code options <ref refid="structDLDataType" kindref="compound">DLDataType</ref>. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/dlpack.hpp" line="110" column="1" bodyfile="include/dlpack.hpp" bodystart="110" bodyend="129"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="typedef">
+      <memberdef kind="typedef" id="dlpack_8hpp_1a927ecc672891526a594bf5ef5ca25994" prot="public" static="no">
+        <type>struct <ref refid="structDLManagedTensor" kindref="compound">DLManagedTensor</ref></type>
+        <definition>typedef struct DLManagedTensor  DLManagedTensor</definition>
+        <argsstring></argsstring>
+        <name>DLManagedTensor</name>
+        <briefdescription>
+<para>C Tensor object, manage memory of <ref refid="structDLTensor" kindref="compound">DLTensor</ref>. This data structure is intended to facilitate the borrowing of <ref refid="structDLTensor" kindref="compound">DLTensor</ref> by another framework. It is not meant to transfer the tensor. When the borrowing framework doesn&apos;t need the tensor, it should call the deleter to notify the host that the resource is no longer needed. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/dlpack.hpp" line="225" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"></codeline>
+<codeline lineno="6"><highlight class="preprocessor">#ifndef<sp/>DLPACK_DLPACK_H_</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>DLPACK_DLPACK_H_</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>DLPACK_EXTERN_C<sp/>extern<sp/>&quot;C&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="preprocessor">#else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>DLPACK_EXTERN_C</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="preprocessor">#define<sp/>DLPACK_VERSION<sp/>60</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="preprocessor">#define<sp/>DLPACK_ABI_VERSION<sp/>1</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="preprocessor">#ifdef<sp/>_WIN32</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>DLPACK_EXPORTS</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>DLPACK_DLL<sp/>__declspec(dllexport)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="preprocessor">#else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>DLPACK_DLL<sp/>__declspec(dllimport)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight><highlight class="preprocessor">#else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>DLPACK_DLL</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdint.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stddef.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="stringliteral">&quot;C&quot;</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight></codeline>
+<codeline lineno="44"><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/>enum<sp/>:<sp/>int32_t<sp/>{</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight><highlight class="preprocessor">#else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">enum</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/>kDLCPU<sp/>=<sp/>1,</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/>kDLCUDA<sp/>=<sp/>2,</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/>kDLCUDAHost<sp/>=<sp/>3,</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/>kDLOpenCL<sp/>=<sp/>4,</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/>kDLVulkan<sp/>=<sp/>7,</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/>kDLMetal<sp/>=<sp/>8,</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/>kDLVPI<sp/>=<sp/>9,</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/>kDLROCM<sp/>=<sp/>10,</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/>kDLROCMHost<sp/>=<sp/>11,</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/>kDLExtDev<sp/>=<sp/>12,</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/>kDLCUDAManaged<sp/>=<sp/>13,</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/>kDLOneAPI<sp/>=<sp/>14,</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/>kDLWebGPU<sp/>=<sp/>15,</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/>kDLHexagon<sp/>=<sp/>16,</highlight></codeline>
+<codeline lineno="92"><highlight class="normal">}<sp/>DLDeviceType;</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"></highlight></codeline>
+<codeline lineno="97" refid="structDLDevice" refkind="compound"><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="99" refid="structDLDevice_1a7c86f0ccd03a003aafb2e709ec1b46e0" refkind="member"><highlight class="normal"><sp/><sp/>DLDeviceType<sp/><ref refid="structDLDevice_1a7c86f0ccd03a003aafb2e709ec1b46e0" kindref="member">device_type</ref>;</highlight></codeline>
+<codeline lineno="104" refid="structDLDevice_1ad44a634a3820de880f89875a8dcdd289" refkind="member"><highlight class="normal"><sp/><sp/>int32_t<sp/><ref refid="structDLDevice_1ad44a634a3820de880f89875a8dcdd289" kindref="member">device_id</ref>;</highlight></codeline>
+<codeline lineno="105"><highlight class="normal">}<sp/><ref refid="structDLDevice" kindref="compound">DLDevice</ref>;</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"></highlight></codeline>
+<codeline lineno="110"><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">enum</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/>kDLInt<sp/>=<sp/>0U,</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/>kDLUInt<sp/>=<sp/>1U,</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/>kDLFloat<sp/>=<sp/>2U,</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/>kDLOpaqueHandle<sp/>=<sp/>3U,</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/>kDLBfloat<sp/>=<sp/>4U,</highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/>kDLComplex<sp/>=<sp/>5U,</highlight></codeline>
+<codeline lineno="129"><highlight class="normal">}<sp/>DLDataTypeCode;</highlight></codeline>
+<codeline lineno="130"><highlight class="normal"></highlight></codeline>
+<codeline lineno="142" refid="structDLDataType" refkind="compound"><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="148" refid="structDLDataType_1aaa84983c485752e4401d80ce0e2b6e54" refkind="member"><highlight class="normal"><sp/><sp/>uint8_t<sp/><ref refid="structDLDataType_1aaa84983c485752e4401d80ce0e2b6e54" kindref="member">code</ref>;</highlight></codeline>
+<codeline lineno="152" refid="structDLDataType_1a412e36fa9c58e808a2333e9044c5d9b5" refkind="member"><highlight class="normal"><sp/><sp/>uint8_t<sp/><ref refid="structDLDataType_1a412e36fa9c58e808a2333e9044c5d9b5" kindref="member">bits</ref>;</highlight></codeline>
+<codeline lineno="154" refid="structDLDataType_1a24de092fe56d358c1582e41499862594" refkind="member"><highlight class="normal"><sp/><sp/>uint16_t<sp/><ref refid="structDLDataType_1a24de092fe56d358c1582e41499862594" kindref="member">lanes</ref>;</highlight></codeline>
+<codeline lineno="155"><highlight class="normal">}<sp/><ref refid="structDLDataType" kindref="compound">DLDataType</ref>;</highlight></codeline>
+<codeline lineno="156"><highlight class="normal"></highlight></codeline>
+<codeline lineno="160" refid="structDLTensor" refkind="compound"><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="187" refid="structDLTensor_1a6af4539ae2c74d60e8dbc4c6047ed805" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/><ref refid="structDLTensor_1a6af4539ae2c74d60e8dbc4c6047ed805" kindref="member">data</ref>;</highlight></codeline>
+<codeline lineno="189" refid="structDLTensor_1a38995144d9ea19deeec30bfe80aa8362" refkind="member"><highlight class="normal"><sp/><sp/><ref refid="structDLDevice" kindref="compound">DLDevice</ref><sp/><ref refid="structDLTensor_1a38995144d9ea19deeec30bfe80aa8362" kindref="member">device</ref>;</highlight></codeline>
+<codeline lineno="191" refid="structDLTensor_1a028208c9b0c685fffe5eccf45f012388" refkind="member"><highlight class="normal"><sp/><sp/>int32_t<sp/><ref refid="structDLTensor_1a028208c9b0c685fffe5eccf45f012388" kindref="member">ndim</ref>;</highlight></codeline>
+<codeline lineno="193" refid="structDLTensor_1ae0cf02d1a8b19118838670b3b3d857f5" refkind="member"><highlight class="normal"><sp/><sp/><ref refid="structDLDataType" kindref="compound">DLDataType</ref><sp/><ref refid="structDLTensor_1ae0cf02d1a8b19118838670b3b3d857f5" kindref="member">dtype</ref>;</highlight></codeline>
+<codeline lineno="195" refid="structDLTensor_1a6e33904029ec8a18658b6bd62be28688" refkind="member"><highlight class="normal"><sp/><sp/>int64_t*<sp/><ref refid="structDLTensor_1a6e33904029ec8a18658b6bd62be28688" kindref="member">shape</ref>;</highlight></codeline>
+<codeline lineno="200" refid="structDLTensor_1a0ad3b8079e712f711b716d34d418d44e" refkind="member"><highlight class="normal"><sp/><sp/>int64_t*<sp/><ref refid="structDLTensor_1a0ad3b8079e712f711b716d34d418d44e" kindref="member">strides</ref>;</highlight></codeline>
+<codeline lineno="202" refid="structDLTensor_1a647dfbb2a3b976c4e9d1e17740dca568" refkind="member"><highlight class="normal"><sp/><sp/>uint64_t<sp/><ref refid="structDLTensor_1a647dfbb2a3b976c4e9d1e17740dca568" kindref="member">byte_offset</ref>;</highlight></codeline>
+<codeline lineno="203"><highlight class="normal">}<sp/><ref refid="structDLTensor" kindref="compound">DLTensor</ref>;</highlight></codeline>
+<codeline lineno="204"><highlight class="normal"></highlight></codeline>
+<codeline lineno="212" refid="structDLManagedTensor" refkind="compound"><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structDLManagedTensor" kindref="compound">DLManagedTensor</ref><sp/>{</highlight></codeline>
+<codeline lineno="214" refid="structDLManagedTensor_1a568171e573aca5ba30f2cbae9fd2489b" refkind="member"><highlight class="normal"><sp/><sp/><ref refid="structDLTensor" kindref="compound">DLTensor</ref><sp/><ref refid="structDLManagedTensor_1a568171e573aca5ba30f2cbae9fd2489b" kindref="member">dl_tensor</ref>;</highlight></codeline>
+<codeline lineno="218" refid="structDLManagedTensor_1af9bfa572555bd0b7855c5ae74ff96929" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*<sp/><ref refid="structDLManagedTensor_1af9bfa572555bd0b7855c5ae74ff96929" kindref="member">manager_ctx</ref>;</highlight></codeline>
+<codeline lineno="224" refid="structDLManagedTensor_1a3b5ac9adc40f2dbaf072531eb957d7ea" refkind="member"><highlight class="normal"><sp/><sp/>void<sp/>(*<ref refid="structDLManagedTensor_1a3b5ac9adc40f2dbaf072531eb957d7ea" kindref="member">deleter</ref>)(</highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structDLManagedTensor" kindref="compound">DLManagedTensor</ref><sp/>*<sp/></highlight><highlight class="keyword">self</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="225"><highlight class="normal">}<sp/><ref refid="structDLManagedTensor" kindref="compound">DLManagedTensor</ref>;</highlight></codeline>
+<codeline lineno="226"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="227"><highlight class="normal">}<sp/><sp/></highlight><highlight class="comment">//<sp/>DLPACK_EXTERN_C</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="228"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="229"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/><sp/>//<sp/>DLPACK_DLPACK_H_</highlight></codeline>
+    </programlisting>
+    <location file="include/dlpack.hpp"/>
+  </compounddef>
+</doxygen>

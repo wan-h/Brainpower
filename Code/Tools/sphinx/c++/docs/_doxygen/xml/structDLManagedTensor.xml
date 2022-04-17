@@ -1,0 +1,85 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="structDLManagedTensor" kind="struct" language="C++" prot="public">
+    <compoundname>DLManagedTensor</compoundname>
+    <includes refid="dlpack_8hpp" local="no">dlpack.hpp</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structDLManagedTensor_1a568171e573aca5ba30f2cbae9fd2489b" prot="public" static="no" mutable="no">
+        <type><ref refid="structDLTensor" kindref="compound">DLTensor</ref></type>
+        <definition>DLTensor DLManagedTensor::dl_tensor</definition>
+        <argsstring></argsstring>
+        <name>dl_tensor</name>
+        <briefdescription>
+<para><ref refid="structDLTensor" kindref="compound">DLTensor</ref> which is being memory managed. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/dlpack.hpp" line="214" column="1" bodyfile="include/dlpack.hpp" bodystart="214" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structDLManagedTensor_1af9bfa572555bd0b7855c5ae74ff96929" prot="public" static="no" mutable="no">
+        <type>void *</type>
+        <definition>void* DLManagedTensor::manager_ctx</definition>
+        <argsstring></argsstring>
+        <name>manager_ctx</name>
+        <briefdescription>
+<para>the context of the original host framework of <ref refid="structDLManagedTensor" kindref="compound">DLManagedTensor</ref> in which <ref refid="structDLManagedTensor" kindref="compound">DLManagedTensor</ref> is used in the framework. It can also be NULL. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/dlpack.hpp" line="218" column="1" bodyfile="include/dlpack.hpp" bodystart="218" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structDLManagedTensor_1a3b5ac9adc40f2dbaf072531eb957d7ea" prot="public" static="no" mutable="no">
+        <type>void(*</type>
+        <definition>void(* DLManagedTensor::deleter) (struct DLManagedTensor *self)</definition>
+        <argsstring>)(struct DLManagedTensor *self)</argsstring>
+        <name>deleter</name>
+        <briefdescription>
+<para>Destructor signature void (*)(void*) - this should be called to destruct manager_ctx which holds the <ref refid="structDLManagedTensor" kindref="compound">DLManagedTensor</ref>. It can be NULL if there is no way for the caller to provide a reasonable destructor. The destructors deletes the argument self as well. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/dlpack.hpp" line="224" column="1" bodyfile="include/dlpack.hpp" bodystart="224" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>C Tensor object, manage memory of <ref refid="structDLTensor" kindref="compound">DLTensor</ref>. This data structure is intended to facilitate the borrowing of <ref refid="structDLTensor" kindref="compound">DLTensor</ref> by another framework. It is not meant to transfer the tensor. When the borrowing framework doesn&apos;t need the tensor, it should call the deleter to notify the host that the resource is no longer needed. </para>    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="8">
+        <label>DLDataType</label>
+        <link refid="structDLDataType"/>
+      </node>
+      <node id="7">
+        <label>DLDevice</label>
+        <link refid="structDLDevice"/>
+      </node>
+      <node id="6">
+        <label>DLTensor</label>
+        <link refid="structDLTensor"/>
+        <childnode refid="7" relation="usage">
+          <edgelabel>device</edgelabel>
+        </childnode>
+        <childnode refid="8" relation="usage">
+          <edgelabel>dtype</edgelabel>
+        </childnode>
+      </node>
+      <node id="5">
+        <label>DLManagedTensor</label>
+        <link refid="structDLManagedTensor"/>
+        <childnode refid="6" relation="usage">
+          <edgelabel>dl_tensor</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="include/dlpack.hpp" line="212" column="1" bodyfile="include/dlpack.hpp" bodystart="212" bodyend="225"/>
+    <listofallmembers>
+      <member refid="structDLManagedTensor_1a3b5ac9adc40f2dbaf072531eb957d7ea" prot="public" virt="non-virtual"><scope>DLManagedTensor</scope><name>deleter</name></member>
+      <member refid="structDLManagedTensor_1a568171e573aca5ba30f2cbae9fd2489b" prot="public" virt="non-virtual"><scope>DLManagedTensor</scope><name>dl_tensor</name></member>
+      <member refid="structDLManagedTensor_1af9bfa572555bd0b7855c5ae74ff96929" prot="public" virt="non-virtual"><scope>DLManagedTensor</scope><name>manager_ctx</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

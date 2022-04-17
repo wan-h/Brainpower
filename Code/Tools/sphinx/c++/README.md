@@ -17,7 +17,7 @@ pip install sphinx_markdown_tables
 # 文档参见 [https://exhale.readthedocs.io/en/latest]
 pip install exhale
 # 安装doxygen
-
+apt install doxygen
 ```
 
 ### 初始化
@@ -60,4 +60,6 @@ sphinx-autobuild source build/html
 ```
 
 ### c++支持步骤
-[Exhale](https://exhale.readthedocs.io/en/latest/quickstart.html#quickstart-guide)
+* 参照初始化sphinx[Exhale](https://exhale.readthedocs.io/en/latest/quickstart.html#quickstart-guide)
+* 解析方式
+   * 主要解析头文件，所以设置里面需要指定头文件位置

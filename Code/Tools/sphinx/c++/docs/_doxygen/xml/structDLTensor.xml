@@ -1,0 +1,142 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="structDLTensor" kind="struct" language="C++" prot="public">
+    <compoundname>DLTensor</compoundname>
+    <includes refid="dlpack_8hpp" local="no">dlpack.hpp</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structDLTensor_1a6af4539ae2c74d60e8dbc4c6047ed805" prot="public" static="no" mutable="no">
+        <type>void *</type>
+        <definition>void* DLTensor::data</definition>
+        <argsstring></argsstring>
+        <name>data</name>
+        <briefdescription>
+<para>The data pointer points to the allocated data. This will be CUDA device pointer or cl_mem handle in OpenCL. It may be opaque on some device types. This pointer is always aligned to 256 bytes as in CUDA. The <computeroutput>byte_offset</computeroutput> field should be used to point to the beginning of the data. </para>        </briefdescription>
+        <detaileddescription>
+<para>Note that as of Nov 2021, multiply libraries (CuPy, PyTorch, TensorFlow, TVM, perhaps others) do not adhere to this 256 byte aligment requirement on CPU/CUDA/ROCm, and always use <computeroutput>byte_offset=0</computeroutput>. This must be fixed (after which this note will be updated); at the moment it is recommended to not rely on the data pointer being correctly aligned.</para><para>For given <ref refid="structDLTensor" kindref="compound">DLTensor</ref>, the size of memory required to store the contents of data is calculated as follows:</para><para><programlisting><codeline><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>GetDataSize(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structDLTensor" kindref="compound">DLTensor</ref>*<sp/>t)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>size<sp/>=<sp/>1;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(tvm_index_t<sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/>t-&gt;<ref refid="structDLTensor_1a028208c9b0c685fffe5eccf45f012388" kindref="member">ndim</ref>;<sp/>++i)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>size<sp/>*=<sp/>t-&gt;<ref refid="structDLTensor_1a6e33904029ec8a18658b6bd62be28688" kindref="member">shape</ref>[i];</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>size<sp/>*=<sp/>(t-&gt;<ref refid="structDLTensor_1ae0cf02d1a8b19118838670b3b3d857f5" kindref="member">dtype</ref>.<ref refid="structDLDataType_1a412e36fa9c58e808a2333e9044c5d9b5" kindref="member">bits</ref><sp/>*<sp/>t-&gt;<ref refid="structDLTensor_1ae0cf02d1a8b19118838670b3b3d857f5" kindref="member">dtype</ref>.<ref refid="structDLDataType_1a24de092fe56d358c1582e41499862594" kindref="member">lanes</ref><sp/>+<sp/>7)<sp/>/<sp/>8;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>size;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/dlpack.hpp" line="187" column="1" bodyfile="include/dlpack.hpp" bodystart="187" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structDLTensor_1a38995144d9ea19deeec30bfe80aa8362" prot="public" static="no" mutable="no">
+        <type><ref refid="structDLDevice" kindref="compound">DLDevice</ref></type>
+        <definition>DLDevice DLTensor::device</definition>
+        <argsstring></argsstring>
+        <name>device</name>
+        <briefdescription>
+<para>The device of the tensor. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/dlpack.hpp" line="189" column="1" bodyfile="include/dlpack.hpp" bodystart="189" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structDLTensor_1a028208c9b0c685fffe5eccf45f012388" prot="public" static="no" mutable="no">
+        <type>int32_t</type>
+        <definition>int32_t DLTensor::ndim</definition>
+        <argsstring></argsstring>
+        <name>ndim</name>
+        <briefdescription>
+<para>Number of dimensions. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/dlpack.hpp" line="191" column="1" bodyfile="include/dlpack.hpp" bodystart="191" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structDLTensor_1ae0cf02d1a8b19118838670b3b3d857f5" prot="public" static="no" mutable="no">
+        <type><ref refid="structDLDataType" kindref="compound">DLDataType</ref></type>
+        <definition>DLDataType DLTensor::dtype</definition>
+        <argsstring></argsstring>
+        <name>dtype</name>
+        <briefdescription>
+<para>The data type of the pointer. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/dlpack.hpp" line="193" column="1" bodyfile="include/dlpack.hpp" bodystart="193" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structDLTensor_1a6e33904029ec8a18658b6bd62be28688" prot="public" static="no" mutable="no">
+        <type>int64_t *</type>
+        <definition>int64_t* DLTensor::shape</definition>
+        <argsstring></argsstring>
+        <name>shape</name>
+        <briefdescription>
+<para>The shape of the tensor. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/dlpack.hpp" line="195" column="1" bodyfile="include/dlpack.hpp" bodystart="195" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structDLTensor_1a0ad3b8079e712f711b716d34d418d44e" prot="public" static="no" mutable="no">
+        <type>int64_t *</type>
+        <definition>int64_t* DLTensor::strides</definition>
+        <argsstring></argsstring>
+        <name>strides</name>
+        <briefdescription>
+<para>strides of the tensor (in number of elements, not bytes) can be NULL, indicating tensor is compact and row-majored. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/dlpack.hpp" line="200" column="1" bodyfile="include/dlpack.hpp" bodystart="200" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structDLTensor_1a647dfbb2a3b976c4e9d1e17740dca568" prot="public" static="no" mutable="no">
+        <type>uint64_t</type>
+        <definition>uint64_t DLTensor::byte_offset</definition>
+        <argsstring></argsstring>
+        <name>byte_offset</name>
+        <briefdescription>
+<para>The offset in bytes to the beginning pointer to data. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/dlpack.hpp" line="202" column="1" bodyfile="include/dlpack.hpp" bodystart="202" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Plain C Tensor object, does not manage memory. </para>    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="12">
+        <label>DLDataType</label>
+        <link refid="structDLDataType"/>
+      </node>
+      <node id="11">
+        <label>DLDevice</label>
+        <link refid="structDLDevice"/>
+      </node>
+      <node id="10">
+        <label>DLTensor</label>
+        <link refid="structDLTensor"/>
+        <childnode refid="11" relation="usage">
+          <edgelabel>device</edgelabel>
+        </childnode>
+        <childnode refid="12" relation="usage">
+          <edgelabel>dtype</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="include/dlpack.hpp" line="160" column="1" bodyfile="include/dlpack.hpp" bodystart="160" bodyend="203"/>
+    <listofallmembers>
+      <member refid="structDLTensor_1a647dfbb2a3b976c4e9d1e17740dca568" prot="public" virt="non-virtual"><scope>DLTensor</scope><name>byte_offset</name></member>
+      <member refid="structDLTensor_1a6af4539ae2c74d60e8dbc4c6047ed805" prot="public" virt="non-virtual"><scope>DLTensor</scope><name>data</name></member>
+      <member refid="structDLTensor_1a38995144d9ea19deeec30bfe80aa8362" prot="public" virt="non-virtual"><scope>DLTensor</scope><name>device</name></member>
+      <member refid="structDLTensor_1ae0cf02d1a8b19118838670b3b3d857f5" prot="public" virt="non-virtual"><scope>DLTensor</scope><name>dtype</name></member>
+      <member refid="structDLTensor_1a028208c9b0c685fffe5eccf45f012388" prot="public" virt="non-virtual"><scope>DLTensor</scope><name>ndim</name></member>
+      <member refid="structDLTensor_1a6e33904029ec8a18658b6bd62be28688" prot="public" virt="non-virtual"><scope>DLTensor</scope><name>shape</name></member>
+      <member refid="structDLTensor_1a0ad3b8079e712f711b716d34d418d44e" prot="public" virt="non-virtual"><scope>DLTensor</scope><name>strides</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

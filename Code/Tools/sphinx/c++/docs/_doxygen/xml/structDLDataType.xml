@@ -1,0 +1,60 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="structDLDataType" kind="struct" language="C++" prot="public">
+    <compoundname>DLDataType</compoundname>
+    <includes refid="dlpack_8hpp" local="no">dlpack.hpp</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structDLDataType_1aaa84983c485752e4401d80ce0e2b6e54" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t DLDataType::code</definition>
+        <argsstring></argsstring>
+        <name>code</name>
+        <briefdescription>
+<para>Type code of base types. We keep it uint8_t instead of DLDataTypeCode for minimal memory footprint, but the value should be one of DLDataTypeCode enum values. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/dlpack.hpp" line="148" column="1" bodyfile="include/dlpack.hpp" bodystart="148" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structDLDataType_1a412e36fa9c58e808a2333e9044c5d9b5" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t DLDataType::bits</definition>
+        <argsstring></argsstring>
+        <name>bits</name>
+        <briefdescription>
+<para>Number of bits, common choices are 8, 16, 32. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/dlpack.hpp" line="152" column="1" bodyfile="include/dlpack.hpp" bodystart="152" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structDLDataType_1a24de092fe56d358c1582e41499862594" prot="public" static="no" mutable="no">
+        <type>uint16_t</type>
+        <definition>uint16_t DLDataType::lanes</definition>
+        <argsstring></argsstring>
+        <name>lanes</name>
+        <briefdescription>
+<para>Number of lanes in the type, used for vector types. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/dlpack.hpp" line="154" column="1" bodyfile="include/dlpack.hpp" bodystart="154" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>The data type the tensor can hold. The data type is assumed to follow the native endian-ness. An explicit error message should be raised when attempting to export an array with non-native endianness. </para>    </briefdescription>
+    <detaileddescription>
+<para>Examples<itemizedlist>
+<listitem><para>float: type_code = 2, bits = 32, lanes=1</para></listitem><listitem><para>float4(vectorized 4 float): type_code = 2, bits = 32, lanes=4</para></listitem><listitem><para>int8: type_code = 0, bits = 8, lanes=1</para></listitem><listitem><para>std::complex&lt;float&gt;: type_code = 5, bits = 64, lanes = 1 </para></listitem></itemizedlist>
+</para>    </detaileddescription>
+    <location file="include/dlpack.hpp" line="142" column="1" bodyfile="include/dlpack.hpp" bodystart="142" bodyend="155"/>
+    <listofallmembers>
+      <member refid="structDLDataType_1a412e36fa9c58e808a2333e9044c5d9b5" prot="public" virt="non-virtual"><scope>DLDataType</scope><name>bits</name></member>
+      <member refid="structDLDataType_1aaa84983c485752e4401d80ce0e2b6e54" prot="public" virt="non-virtual"><scope>DLDataType</scope><name>code</name></member>
+      <member refid="structDLDataType_1a24de092fe56d358c1582e41499862594" prot="public" virt="non-virtual"><scope>DLDataType</scope><name>lanes</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>
