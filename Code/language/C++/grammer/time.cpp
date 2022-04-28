@@ -31,8 +31,8 @@ int main() {
     cout << "月: " << 1 + ltm -> tm_mon << endl;
     cout << "日: " << ltm -> tm_mday << endl;
     cout << "时间: " << ltm -> tm_hour << ":";
-    cout << 1 + ltm -> tm_min << ":";
-    cout << 1 + ltm -> tm_sec << endl;
+    cout << ltm -> tm_min << ":";
+    cout << ltm -> tm_sec << endl;
 
     // 使用chrono,duration默认的单位就是秒
     typedef chrono::duration<int> second_type;
@@ -57,14 +57,22 @@ int main() {
     cout << "today is: " << ctime(&tt);
     typedef chrono::duration<int, std::ratio<60*60*24>> days_type;
     // time_point_cast将时间转换为以天为单位
-    // chrono::time_point<chrono::system_clock, days_type> today = chrono::time_point_cast<days_type>(chrono::system_clock::now());
-    chrono::system_clock::time_point today = chrono::system_clock::now();
+    chrono::time_point<chrono::system_clock, days_type> today = chrono::time_point_cast<days_type>(chrono::system_clock::now());
+    // chrono::system_clock::time_point today = chrono::system_clock::now();
     chrono::duration<int, std::ratio<60*60*24> > one_day (1);
     chrono::system_clock::time_point tomorrow = today + one_day;
-    tt = chrono::system_clock::to_time_t ( tomorrow );
+    tt = chrono::system_clock::to_time_t(tomorrow);
     cout << "tomorrow will be: " << ctime(&tt);
     // time_since_epoch计算1970年1月1日到time_point时间经过的duration
     cout << today.time_since_epoch().count() << " days since epoch" << endl;
+
+    // 获取毫秒级时间戳
+    chrono::system_clock::time_point __now = chrono::system_clock::now();
+    uint64_t dis_milliseconds = chrono::duration_cast<chrono::milliseconds>(__now.time_since_epoch()).count() - chrono::duration_cast<chrono::milliseconds>(__now.time_since_epoch()).count() * 1000;
+    time_t _tt = chrono::system_clock::to_time_t(__now);
+    tm* time_tm = localtime(&_tt);
+    // 毫秒保留六位
+    cout << time_tm -> tm_year + 1900 << "-" << 1 + ltm -> tm_mon << "-" << ltm -> tm_mday << " " << ltm -> tm_hour << ":" << ltm -> tm_min << ":" << ltm -> tm_sec << ":" << int(dis_milliseconds % 1000000) << endl;
 
     // 计算时间差, chrono::steady_clock 为了表示稳定的时间间隔
     chrono::steady_clock::time_point t1 = chrono::steady_clock::now();
