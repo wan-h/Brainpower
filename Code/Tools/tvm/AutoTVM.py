@@ -2,6 +2,7 @@
 # @Author  : wanhui
 
 """
+https://tvm.apache.org/docs/tutorial/autotvm_relay_x86.html
 Compiling and Optimizing a Model with the Python Interface (AutoTVM)
 """
 

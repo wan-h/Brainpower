@@ -2,6 +2,7 @@
 # @Author  : wanhui
 
 """
+https://tvm.apache.org/docs/tutorial/tensor_expr_get_started.html
 Working with Operators Using Tensor Expression
 """
 

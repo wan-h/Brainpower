@@ -2,6 +2,7 @@
 # @Author  : wanhui
 
 """
+https://tvm.apache.org/docs/tutorial/tvmc_python.html#
 Getting Starting using TVMC Python: a high-level API for TVM
 """
 
