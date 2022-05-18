@@ -3,8 +3,13 @@
 // c++11中的新特性
 #include <chrono>
 #include <ratio>
+// 获取系统时间
+#include <sys/time.h>
 
 using namespace std;
+
+// 如果出现中文乱码问题
+// chcp 65001
 
 // struct tm {
 //   int tm_sec;   // 秒，正常范围从 0 到 59，但允许至 61
@@ -80,6 +85,26 @@ int main() {
     chrono::steady_clock::time_point t2 = chrono::steady_clock::now();
     chrono::duration<double> time_span = chrono::duration_cast<chrono::duration<double>>(t2 - t1);
     cout << "It took me " << time_span.count() << " seconds." << endl;
+
+    // int gettimeofday(struct  timeval*tv,struct  timezone *tz )
+    // struct  timeval{
+    //    long  tv_sec;/*秒*/
+    //    long  tv_usec;/*微妙*/
+    // };
+    // struct  timezone{
+    //         int tz_minuteswest;/*和greenwich时间差*/
+    //         int tz_dsttime; 
+    // }
+    struct timeval start;
+    struct timeval end;
+    gettimeofday(&start, NULL);
+    cout << "start.tv_sec: "<< start.tv_sec << " ;start.tv_usec: " << start.tv_usec << endl;
+    int i = 10000;
+    while (i--);
+    gettimeofday(&end, NULL);
+    cout << "end.tv_sec: "<< end.tv_sec << " ;end.tv_usec: " << end.tv_usec << endl;
+    float time_use = (end.tv_sec-start.tv_sec)*1000000+(end.tv_usec-start.tv_usec); // 微秒
+    cout << "time use(us): " << time_use << endl;
 
     return 0;
 }
