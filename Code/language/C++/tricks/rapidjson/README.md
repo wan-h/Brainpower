@@ -1,10 +1,10 @@
-# ×ÊÔ´ĞÅÏ¢
+# èµ„æºä¿¡æ¯
 a header-only C++ library
-¿ÉÒÔÖ±½ÓÔÚgithubÉÏÏÂÔØ×îĞÂ°æ
+å¯ä»¥ç›´æ¥åœ¨githubä¸Šä¸‹è½½æœ€æ–°ç‰ˆ
 code: https://github.com/Tencent/rapidjson/
 
-# ±àÒë
+# ç¼–è¯‘
 ```bash
-# windowsÏÂ
+# windowsä¸‹
 cmake -G "MinGW Makefiles" ..
 ```
