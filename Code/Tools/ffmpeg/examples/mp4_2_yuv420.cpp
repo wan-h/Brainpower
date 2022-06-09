@@ -46,19 +46,22 @@ int main(int argc, char** argv)
         //分配一个AVFormatContext，FFMPEG所有的操作都要通过这个AVFormatContext来进行
         fmtCtx = avformat_alloc_context();
         //==================================== 打开文件 ======================================//
+        // 打开一个stream读取header，把封装信息读进fmtCtx
         if ((ret = avformat_open_input(&fmtCtx, filename, NULL, NULL)) != 0)
         {
             printf("cannot open video file\n");
             break;
         }
         //=================================== 获取视频流信息 =================================//
+        // avformat_alloc_context会填充fmtCtx中AVStream字段的部分信息（就是后文用到的fmtCtx->stream）
+        // avformat_find_stream_info会取流中的packets来进一步填充里面的关键信息
         if((ret = avformat_find_stream_info(fmtCtx, NULL)) < 0)
         {
             printf("cannot retrive video info\n");
             break;
         }
-        //循环查找视频中包含的流信息，直到找到视频类型的流
-        //便将其记录下来 保存到videoStreamIndex变量中
+        //循环查找视频中包含的流信息，直到找到视频类型的流（一般视频中又视频流、音频流、字幕流等多种流）
+        //将其记录下来 保存到videoStreamIndex变量中
         for (unsigned int i = 0; i < fmtCtx->nb_streams; i++)
         {
             if (fmtCtx->streams[i]->codecpar->codec_type == AVMEDIA_TYPE_VIDEO)
@@ -77,6 +80,7 @@ int main(int argc, char** argv)
         av_dump_format(fmtCtx, 0, filename, 0);
         //=================================  查找解码器 ===================================//
         avCodecPara = fmtCtx->streams[videoStreamIndex]->codecpar;
+        // 通过解析原视频的解码器参数来寻找对应的解码器
         codec = avcodec_find_decoder(avCodecPara->codec_id);
         if (codec == NULL)
         {
@@ -100,14 +104,21 @@ int main(int argc, char** argv)
         int height = codecCtx->height; // 视频高度
         //============================= 分配AVPacket结构体 ===============================//
         pkt = av_packet_alloc();
-        av_new_packet(pkt, width * height); // 调整packet的数据
+        // 调整packet的数据空间大小
+        // 这个size时预估的，只要能装下一个编码前的一帧数据就可以了，最大也就 width * height * 1.5 (YUV数据需要的Bits)
+        av_new_packet(pkt, width * height); 
         //================================  读取视频信息 =================================//
-        while (av_read_frame(fmtCtx, pkt) > 0) // 读取视频的一帧，数据存入一个AVPacket的结构中
+        int frame_cnt = 0;
+        while (av_read_frame(fmtCtx, pkt) >= 0) // 读取视频的一帧，数据存入一个AVPacket的结构中
         {
             if (pkt->stream_index == videoStreamIndex)
             {
+                // 往解码器发送一个packet进行解码
                 if (avcodec_send_packet(codecCtx, pkt) == 0)
                 {
+                    frame_cnt += 1;
+                    printf("Decode frame: %d\n", frame_cnt);
+                    // 等待解码完成，接收一个解码后的frame
                     while(avcodec_receive_frame(codecCtx, frame) == 0)
                     {
                         // yuv数据写入文件
@@ -117,13 +128,16 @@ int main(int argc, char** argv)
                     }
                 }
             }
-            av_packet_unref(pkt); // 重置pkt内容
+            // 将缓存空间的引用计数-1，并将Packet中的其他字段设为初始值
+            av_packet_unref(pkt);
         }
     } while (0);
     //================================ 释放所有指针 ===================================//
     av_packet_free(&pkt);
     avcodec_close(codecCtx);
     avcodec_parameters_free(&avCodecPara);
+    avformat_close_input(&fmtCtx);
+    avformat_free_context(fmtCtx);
     av_frame_free(&frame);
 
     return 0;
