@@ -1,7 +1,15 @@
 #include <stdio.h>
-#include "libavcodec/avcodec.h"
-#include "libavformat/avformat.h"
-#include "libavutil/avutil.h"
+
+// ffmpeg都是c接口
+#ifdef __cplusplus
+extern "C" {
+#endif
+#include <libavcodec/avcodec.h>
+#include <libavformat/avformat.h>
+#include <libavutil/avutil.h>
+#ifdef __cplusplus
+}
+#endif
 
 int main(int argc, char** argv)
 {
