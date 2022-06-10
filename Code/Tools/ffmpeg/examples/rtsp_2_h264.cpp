@@ -1,3 +1,9 @@
+/*
+* 操作基本和mp4_2_yuv420.cpp一致
+* 如果只是保存h264对于不用的codec代码可以删除，这里时没有删除的
+* AVDictionary相对于解mp4多出来的设置，是为了解决rtsp掉帧的问题，可以进一步研究
+*/
+
 #include <stdio.h>
 
 // ffmpeg都是c接口
@@ -10,6 +16,8 @@ extern "C" {
 #ifdef __cplusplus
 }
 #endif
+
+#define FRAME_END 200
 
 int main(int argc, char** argv)
 {
@@ -46,8 +54,14 @@ int main(int argc, char** argv)
         //分配一个AVFormatContext，FFMPEG所有的操作都要通过这个AVFormatContext来进行
         fmtCtx = avformat_alloc_context();
         //==================================== 打开文件 ======================================//
+        // 一下设置是为了防止解码掉帧的设置
+        AVDictionary *options = NULL;
+        av_dict_set(&options, "buffer_size", "1024000", 0); //设置缓存大小,1080p可将值跳到最大
+        av_dict_set(&options, "rtsp_transport", "tcp", 0); //以tcp的方式打开,
+        av_dict_set(&options, "stimeout", "5000000", 0); //设置超时断开链接时间，单位us
+        av_dict_set(&options, "max_delay", "500000", 0); //设置最大时延
         // 打开一个stream读取header，把封装信息读进fmtCtx
-        if ((ret = avformat_open_input(&fmtCtx, filename, NULL, NULL)) != 0)
+        if ((ret = avformat_open_input(&fmtCtx, filename, NULL, &options)) != 0)
         {
             printf("cannot open video file\n");
             break;
@@ -122,14 +136,19 @@ int main(int argc, char** argv)
                     while(avcodec_receive_frame(codecCtx, frame) == 0)
                     {
                         // yuv数据写入文件
-                        fwrite(frame->data[0], 1, width * height, fp); // Y
-                        fwrite(frame->data[1], 1, width * height / 4, fp); // U
-                        fwrite(frame->data[2], 1, width * height / 4, fp); // V
+                        // fwrite(frame->data[0], 1, width * height, fp); // Y
+                        // fwrite(frame->data[1], 1, width * height / 4, fp); // U
+                        // fwrite(frame->data[2], 1, width * height / 4, fp); // V
+                        fwrite(pkt->data, 1, pkt->size, fp);
+                    }
+                    if (frame_cnt >= FRAME_END)
+                    {
+                        break;
                     }
                 }
+                // 将缓存空间的引用计数-1，并将Packet中的其他字段设为初始值
+                av_packet_unref(pkt);
             }
-            // 将缓存空间的引用计数-1，并将Packet中的其他字段设为初始值
-            av_packet_unref(pkt);
         }
     } while (0);
     //================================ 释放所有指针 ===================================//

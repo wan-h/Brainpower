@@ -17,3 +17,11 @@ target_link_libraries(
     -lavformat
     -lavutil
 )
+
+add_executable(rtsp2h264 rtsp_2_h264.cpp)
+target_link_libraries(
+    rtsp2h264
+    -lavcodec
+    -lavformat
+    -lavutil
+)

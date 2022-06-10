@@ -29,7 +29,19 @@ export PATH=/mnt/c/code/wanhui/ffmpeg:$PATH
 > mp4_2_yuv420.cpp
 ```bash
 # 解封装mp4为yuv裸流
+# 这个inputfile是rtsp流是同样有效的
 ./mp4toyuv420 [inputfile] [outputfile]
 # ffplay验证裸流正确性
 ffplay -pixel_format yuv420p -video_size 1920x1088 [outputfile]
+```
+
+> rtsp_2_yuv420.cpp  
+* [搭建流媒体服务器](https://j6sc416eds.feishu.cn/docx/doxcnLtMIyBN7ODz2emiUOMdrTf)  
+```bash
+# 接收rtsp流存储为h264编码流
+# ./rtsp2h264 [rtsp_url] [outputfile]
+./rtsp2h264 rtsp://localhost:554/test test.h264
+# ffplay验证h264流正确性
+# 会从包含关键帧开始播放正确，因为之前没有SPS PPS帧
+ffplay test.h264
 ```
