@@ -181,4 +181,45 @@
 
 理解：  
 * 构造函数里面已经是赋值操作，在构造函数之前，成员已经被default进行了初始化，所有使用初值列来进入构造函数之前对成员进行初始化  
-* 为保证一个对象是被初始化的，可以用一个函数获取对象实例，函数内部维护一个local static对象，这其实就是单例模式的用法
+* 为保证一个对象是被初始化的，可以用一个函数获取对象实例，函数内部维护一个local static对象，这其实就是单例模式的用法  
+
+---
+
+### 条款05：了解C++默默编写并调用哪些函数  
+请记住：  
+* 编译器可以暗自为class创建default构造函数、copy构造函数、copy assignment操作符，以及析构函数。  
+    ```C++
+    class Empty
+    {
+    public:
+        Empty() {...}                                   // default构造函数
+        Empty(const Empty& rhs) {...}                   // copy构造函数
+        ~Empty() {...}                                  // 析构函数
+
+        Empty& operator=(const Empty& rhs) {...}        // copy assignment操作符
+    }
+    ```
+
+理解：  
+* 如果用户已经申明了对应的构造函数等，编译器就不会在为它创建默认的函数。  
+
+---
+
+### 条款06：若不想使用编译器自动生成的函数，就该明确拒绝  
+请记住：  
+* 为驳回编译器自动（暗自）提供的机能，可将相应的成员函数声明为private并且不予实现。使用像Uncopyable这样的base class也是一种做法。  
+    ```C++
+    class HomeForSale
+    {
+    public:
+        ...
+    private:
+        ...
+        // 这里不用实现函数，所以参数名字可以不写
+        HomeForSale(const HomeForSale&);
+        HomeForSale& operator=(const HomeForSale&);
+    }
+    ```
+
+理解：  
+* private中声明了就意味着编译器不会自动生成，放在private中意味着实例不可调用该函数，从而禁用了该函数。
