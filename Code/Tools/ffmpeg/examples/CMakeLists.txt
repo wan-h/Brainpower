@@ -25,3 +25,11 @@ target_link_libraries(
     -lavformat
     -lavutil
 )
+
+add_executable(yuv420tortsp yuv420_2_rtsp.cpp)
+target_link_libraries(
+    yuv420tortsp
+    -lavcodec
+    -lavformat
+    -lavutil
+)
