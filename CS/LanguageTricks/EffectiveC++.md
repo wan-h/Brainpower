@@ -11,7 +11,7 @@
 ### 条款02：尽量以const,enum,inline替换#define  
 请记住：  
 * 对于单纯常量，最好以const对象或enums替换#define。  
-    ```C++
+    ```c++
     #define ASPECT_RATIO 1.653
     // 替换为
     const double AspectRation = 1.653;
@@ -33,7 +33,7 @@
     }
     ```
 * 对于形似函数的宏(macros)，最好改用inline函数替换#define。  
-    ```C++
+    ```c++
     #define CALL_WITH_MAX(a, b) f((a) > (b) ? (a) : (b))
     // 替换为
     template<typename T>
@@ -56,7 +56,7 @@
 * 将某些东西申明为const可以帮助编译器侦测出错误做法。const可被施加于任何作用域内的对象、函数参数、函数返回类型、成员函数本体。  
 * 编译器强制实施bitwise constness，但你编写程序时应该使用“概念上的常量性”。  
 * 当const和non-const成员函数有着实质等价的实现时，令non-const版本调用const版本可避免代码重复。
-    ```C++
+    ```c++
     class TextBlock
     {
     public:
@@ -91,7 +91,7 @@
 请记住：  
 * 为内置型对象进行手工初始化，因为c++不保证初始化他们。  
 * 构造函数最好使用成员初值列，而不是在构造函数本体内使用赋值操作。初值列列出的成员变量，其排列次序应该和它们在class中的声明次序相同。  
-    ```C++
+    ```c++
     class PhoneNumber {...}
     class ABEntry 
     {
@@ -188,7 +188,7 @@
 ### 条款05：了解C++默默编写并调用哪些函数  
 请记住：  
 * 编译器可以暗自为class创建default构造函数、copy构造函数、copy assignment操作符，以及析构函数。  
-    ```C++
+    ```c++
     class Empty
     {
     public:
@@ -208,7 +208,7 @@
 ### 条款06：若不想使用编译器自动生成的函数，就该明确拒绝  
 请记住：  
 * 为驳回编译器自动（暗自）提供的机能，可将相应的成员函数声明为private并且不予实现。使用像Uncopyable这样的base class也是一种做法。  
-    ```C++
+    ```c++
     class HomeForSale
     {
     public:
@@ -222,4 +222,41 @@
     ```
 
 理解：  
-* private中声明了就意味着编译器不会自动生成，放在private中意味着实例不可调用该函数，从而禁用了该函数。
+* private中声明了就意味着编译器不会自动生成，放在private中意味着实例不可调用该函数，从而禁用了该函数。  
+
+---  
+
+### 条款07：为多态基类声明virtual析构函数
+请记住：  
+* polymorphic(带多态性质的)base classes应该声明一个virtual析构函数。如果class带有任何virtual函数，它就应该拥有一个virtual析构函数。  
+    ```c++
+    class TimeKeeper
+    {
+    public:
+        TimeKeeper();
+        ~TimeKeeper();
+        ...
+    };
+    class AtomicClock: public TimeKeeper() {...}; // 原子钟
+    class WaterClock: public TimeKeeper() {...}; // 水钟
+    class WristClock: public TimeKeeper() {...}; // 腕表
+    // 工厂函数
+    TimeKeeper* ptk = getTimeKeeper();
+    // 这个调用的是基类的析构函数而不是派生类的
+    delete ptk;
+
+    // TimeKeeper替换为
+    class TimeKeeper
+    {
+    public:
+        TimeKeeper();
+        // 虚析构函数
+        virtual ~TimeKeeper();
+        ...
+    };
+    ```
+* Classes的设计目的不是作为base classes使用，或不是为了具备多态性(polymorphically)，就不该声明virtual析构函数。  
+
+理解：  
+* 如果基类的析构函数不是虚函数，那么派生类在释放的时候调用的是基类的析构函数没有调用派生类的析构函数就有可能导致内存泄露等异常情况，如果基类是一个虚析构函数，那么就会先调用派生类的析构再调用基类的析构。  
+* 声明析构函数会消耗额外的资源，所有有上面第二条。
