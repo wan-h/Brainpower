@@ -401,4 +401,39 @@
     ```  
 
 理解：  
-* 凡是遇到构造和析构函数调用虚函数的都要改写一下。
+* 凡是遇到构造和析构函数调用虚函数的都要改写一下。  
+
+---
+
+### 条款10：令operator=返回一个reference to *this
+请记住：  
+* 令赋值(assignment)操作符返回一个reference to *this。  
+    ```c++
+    class Widget
+    {
+    public:
+        ...
+        Widget& operator=(const Widget& rhs)
+        {
+            ...
+            // this是一个指向当前实例的指针
+            // *this就是接指针引用，拿到的就是当前实例对象本身
+            return *this;
+        }
+        // 使用所有赋值相关运算
+        Widget& operator+=(const Widget& rhs)
+        {
+            ...
+            return *this;
+        }
+        Widget& operator+=(int rhs)
+        {
+            ...
+            return *this;
+        }
+        ...
+    }
+    ```
+  
+理解：  
+* 这就是一个标准协议，大家都是这么玩的，跟着这样玩就行
