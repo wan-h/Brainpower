@@ -300,36 +300,105 @@
 
     ```
 * 如果客户需要对某个操作函数运行期间抛出的异常做出反应，那么class应该提供一个普通函数（而非在析构函数中）执行该操作。  
-```c++
-// 改写类，把异常处理交由用户处理，这样至少被异常转移到了析构函数之外，也给客户提供了处理机会
-class DBConn
-{
-public:
-    ...
-    // 提供客户使用的新函数
-    void close()
+    ```c++
+    // 改写类，把异常处理交由用户处理，这样至少被异常转移到了析构函数之外，也给客户提供了处理机会
+    class DBConn
     {
-        db.close();
-        closed = true;
-    }
-    ~DBCoon()
-    {
-        // 双保险
-        if (!closed)
+    public:
+        ...
+        // 提供客户使用的新函数
+        void close()
         {
-            try {
-                db.close();
-            } catch (...) {
-                // 记下调用失败
-                ...
+            db.close();
+            closed = true;
+        }
+        ~DBCoon()
+        {
+            // 双保险
+            if (!closed)
+            {
+                try {
+                    db.close();
+                } catch (...) {
+                    // 记下调用失败
+                    ...
+                }
             }
         }
+    private:
+        DBConnection db;
+        bool closed;
     }
-private:
-    DBConnection db;
-    bool closed;
-}
-```
+    ```
 
 理解：  
-* 编写析构函数的时候，注意异常抛出的问题，最好让客户自己去调用可能产生异常的操作，不要自作聪明包到析构函数里面去。
+* 编写析构函数的时候，注意异常抛出的问题，最好让客户自己去调用可能产生异常的操作，不要自作聪明包到析构函数里面去。  
+
+---
+
+### 条款09：绝不在析构和析构过程中调用virtual函数
+请记住：  
+* 在构造和析构期间不要调用virtual函数，因为这类调用从不下降至derived class(比起当前执行构造函数和析构函数的那层)。
+    ```c++
+    class Transaction()
+    {
+    public:
+        Transaction()
+        {
+            // 这里调用了non-virtual
+            // 正是因为这里包了一层，编译的时候是不会报错的
+            init();
+        }
+        virtual void logTransaction() const = 0;
+    private:
+        void init()
+        {
+            ...
+            // 这里调用的virtual
+            logTransaction();
+        }
+    }
+    // 派生类
+    class BuyTransaction: public Transaction
+    {
+    public:
+        virtual void logTransaction() const;
+        ...
+    }
+    // 实例化
+    // 这里由于会先调用父类的构造函数，但是父类又调用的虚函数，派生类都还没有实例化，所以逻辑上就是不同的
+    // 如果父类是纯虚函数就会报错，如果不是就坑了，就会调用父类的虚函数实现
+    BuyTransaction b;
+
+    // 修改类实现
+    class Transaction
+    {
+    public:
+        explicit Transaction(const std::string& logInfo)
+        {
+            ...
+            logTransaction(logInfo);
+        }
+        // non-virtual函数
+        void logTransaction(const std::string& logInfo) const;
+        ...
+    }
+    // 派生类
+    class BuyTransaction: public Transaction
+    {
+    public:
+        // 派生类把必要信息传递给基类构造函数，让基类调用non-virtual函数
+        BuyTransaction(parameters)
+        : Transaction(createLogString(parameters))
+        {
+            ...
+        }
+        ...
+    private:
+        // 因为构造函数还没执行的时候(初值列)就调用的该函数，所以是static定义的
+        static std::string createLogString(parameters);
+    }
+    ```  
+
+理解：  
+* 凡是遇到构造和析构函数调用虚函数的都要改写一下。
