@@ -436,4 +436,54 @@
     ```
   
 理解：  
-* 这就是一个标准协议，大家都是这么玩的，跟着这样玩就行
+* 这就是一个标准协议，大家都是这么玩的，跟着这样玩就行  
+
+---
+
+### 条款11：在operator=中处理“自我赋值”  
+请记住：  
+* 确保当前对象自我赋值时operator=有良好的行为。其中技术包含“来源对象”和“目标对象”的地址、精心周到的语句顺序、以及copy-and-swap。  
+    ```c++
+    class Bitmap {...};
+    class Widget 
+    {
+    public:
+        // 这是一份不安全的实现
+        // 如果赋值对象rhs就是自己，那么就会导致销毁pb的时候就是销毁的自己的
+        Widget& operator=(const Widget& rhs)
+        {
+            delete pb;
+            pb = new Bitmap(*rhs.pb);
+            return *this;
+        }
+    private:
+        Bitmap* pb;
+    }
+
+    // 修改类实现
+    class Widget 
+    {
+    public:
+        // 这是一份不安全的实现
+        // 如果赋值对象rhs就是自己，那么就会导致销毁pb的时候就是销毁的自己的
+        Widget& operator=(const Widget& rhs)
+        {
+            // 一种方法是加一个证同测试，这个加上提高效率
+            // if (this == &rhs) return *this;
+
+            // 另一种只要严格控制语句顺序就可以了
+            // 先赋值再删除
+            Bitmap* pOrig = pb;
+            pb = new Bitmap(*rhs.pb);
+            delete pOrig;
+            return *this;
+        }
+    private:
+        Bitmap* pb;
+    }
+    ```
+* 确定任何函数如果操作一个以上的对象，而其中多个对象是同一个对象时，其行为仍然正确。  
+
+
+理解：  
+* 写运算符的时候要考虑到对象就是自己本身，这是一种异常情况，按照上面的套路写就行。
