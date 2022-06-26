@@ -491,4 +491,36 @@
 
 ### 条款12：复制对象时勿忘其每一成分
 请记住：  
-* 
+* Copying函数应该确保复制“对象内的所有成员变量”及“所有base class成分”。  
+    ```c++
+    class PriorityCustomer: public Customer
+    {
+    public:
+        ...
+        PriorityCustomer(const PriorityCustomer& rhs);
+        PriorityCustomer& operator=(const PriorityCustomer& rhs);
+        ...
+    private:
+        int priority;
+    };
+    // 初值列调用父类复制构造函数
+    PriorityCustomer::PriorityCustomer(const PriorityCustomer& rhs)
+    : Customer(rhs)
+    priority(rhs.priority)
+    {
+        logCall("PriorityCustomer copy constructor");
+    }
+    PriorityCustomer& 
+    PriorityCustomer::operator=(const PriorityCustomer& rhs)
+    {
+        logCall("PriorityCustomer copy assignment operator");
+        // 调用父类的赋值操作
+        Customer::operator(rhs);
+        priority = rhs.priority;
+        return *this;
+    }
+    ```
+* 不要尝试以某个copying函数实现另一个copying函数。应该将共同机能放进第三个函数，并由两个copying函数共同调用。  
+
+理解：  
+* 派生类在自己编写拷贝函数或赋值操作符时要考虑到父类的所有成员，不然部分成员变量将被默认初始化。
