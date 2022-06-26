@@ -1,2 +1,2 @@
 ## Language Tricks  
-[Effective C++](EffectiveC++.md)
+[Effective C++](effectiveC++/README.md)
