@@ -12,4 +12,6 @@
 * [条款09：绝不在析构和析构过程中调用virtual函数](EffectiveC++#条款09绝不在析构和析构过程中调用virtual函数)  
 * [条款10：令operator=返回一个reference to *this](EffectiveC++#条款10令operator返回一个reference-to-this)  
 * [条款11：在operator=中处理“自我赋值”](EffectiveC++#条款11在operator中处理自我赋值)  
-* [条款12：复制对象时勿忘其每一成分](EffectiveC++#条款12复制对象时勿忘其每一成分)
+* [条款12：复制对象时勿忘其每一成分](EffectiveC++#条款12复制对象时勿忘其每一成分)  
+### 资源管理
+* [条款13：以对象管理资源](EffectiveC++#条款13以对象管理资源)

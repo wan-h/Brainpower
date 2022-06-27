@@ -523,4 +523,46 @@
 * 不要尝试以某个copying函数实现另一个copying函数。应该将共同机能放进第三个函数，并由两个copying函数共同调用。  
 
 理解：  
-* 派生类在自己编写拷贝函数或赋值操作符时要考虑到父类的所有成员，不然部分成员变量将被默认初始化。
+* 派生类在自己编写拷贝函数或赋值操作符时要考虑到父类的所有成员，不然部分成员变量将被默认初始化。  
+
+---
+
+### 条款13：以对象管理资源
+请记住：  
+* 为防止资源泄露，请使用RAII对象，他们在构造函数中获得资源并在构析函数中释放资源。  
+* 两个常被使用的RAII classes分别是tr1::shared_ptr和auto_ptr。前者通常是较佳选择，因为其copy行为比较直观。若选择auto_ptr，复制动作会使他（被复制物）指向null。  
+    ```c++
+    class Investment {...};
+    void f()
+    {
+        // 工厂函数获取Investment实例
+        Investment* pInv = createInvestnebt();
+        // 中间处理就有可能导致提前退出以致于没有释放对象
+        ...
+        // 释放对象
+        delete pInv;
+    }
+
+    // 由于上面释放资源都是自己管理的，容易出错，我们希望对象离开区块时自己释放
+    // 修改f
+    void f()
+    {
+        std::auto_ptr<Investment> pInv1(createInvestment());
+        ...
+        // 该方法唯一的问题就是，这样的copy会导致pInv1=null
+        // 因为智能指针的获得者具有唯一拥有权
+        std::auto_ptr<Investment> pInv2(pInv1);
+    } // 函数块结束时会调用智能指针的析构函数删除对象
+
+    // 于是我们可以使用“引用计数型智慧指针”(RCSP)可以避免以上的问题，只要不被环状引用
+    void f()
+    {
+        std::tr1::shared_ptr<Investment> pInv1(createInvestment());
+        // pInv1 pInv2指向同一个对象
+        std::auto_ptr<Investment> pInv2(pInv1);
+        ...
+    }
+    ```  
+
+理解:  
+* 删除对象这种资源操作尽可能不要自己来做，通过智能指针等方式，让对象析构函数自我管理，避免出现纰漏。
