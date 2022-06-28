@@ -4,9 +4,9 @@
 #include <condition_variable>
 
 /*
-unique_lockÊÇÒ»¸öÀàÄ£°å
-¹¹Ôìº¯ÊýÉÏËø£¬Îö¹¹º¯Êý½âËø
-ËùÒÔ¿ÉÒÔÕë¶Ô´úÂë¿é×Ô¶¯¼Ó½âËø£¬±ÜÃâmutexÊÖ¶¯½âËø·±ÔÓÇÒÈÝÒ×Íü¼ÇºóËÀËø
+unique_lockæ˜¯ä¸€ä¸ªç±»æ¨¡æ¿
+æž„é€ å‡½æ•°ä¸Šé”ï¼Œæžæž„å‡½æ•°è§£é”
+æ‰€ä»¥å¯ä»¥é’ˆå¯¹ä»£ç å—è‡ªåŠ¨åŠ è§£é”ï¼Œé¿å…mutexæ‰‹åŠ¨è§£é”ç¹æ‚ä¸”å®¹æ˜“å¿˜è®°åŽæ­»é”
 */
 
 using namespace std;
@@ -17,24 +17,24 @@ bool ready = false;
 
 void print_id(int id)
 {
-    unique_lock<mutex> lck(mtx); // ¹¹Ôìº¯ÊýÉÏËø
+    unique_lock<mutex> lck(mtx); // æž„é€ å‡½æ•°ä¸Šé”
     while (!ready)
     {
-        // cv.wait»á×èÈûµ±Ç°Ïß³ÌÖªµÀÊÕµ½notify
-        // ×èÈûÊ±»áÊÍ·ÅËømutex.unlock()£¬ÈÃÆäËûµÄÏß³Ì¿ÉÒÔÄÃµ½Ëø
-        // ÊÕµ½notifyÖ®ºó¾ÍÉÏËømutex.unlock()È»ºóÍ£Ö¹×èÈû¼ÌÐøÖ´ÐÐ
+        // cv.waitä¼šé˜»å¡žå½“å‰çº¿ç¨‹çŸ¥é“æ”¶åˆ°notify
+        // é˜»å¡žæ—¶ä¼šé‡Šæ”¾é”mutex.unlock()ï¼Œè®©å…¶ä»–çš„çº¿ç¨‹å¯ä»¥æ‹¿åˆ°é”
+        // æ”¶åˆ°notifyä¹‹åŽå°±ä¸Šé”mutex.unlock()ç„¶åŽåœæ­¢é˜»å¡žç»§ç»­æ‰§è¡Œ
         cv.wait(lck);
     }
 
     cout << "thread " << id << endl;
-    // ¾Ö²¿¿Õ¼äÊÍ·Å£¬unique_lockÎö¹¹º¯Êý½âËø
+    // å±€éƒ¨ç©ºé—´é‡Šæ”¾ï¼Œunique_lockæžæž„å‡½æ•°è§£é”
 }
 
 void go()
 {
     unique_lock<mutex> lck(mtx);
     ready = true;
-    // Í¨ÖªµÈ´ý¸ÃÌõ¼þµÄÆäËûËùÓÐÏß³Ì
+    // é€šçŸ¥ç­‰å¾…è¯¥æ¡ä»¶çš„å…¶ä»–æ‰€æœ‰çº¿ç¨‹
     cv.notify_all();
 }
 

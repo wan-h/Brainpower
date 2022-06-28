@@ -529,7 +529,7 @@
 
 ### 条款13：以对象管理资源
 请记住：  
-* 为防止资源泄露，请使用RAII对象，他们在构造函数中获得资源并在构析函数中释放资源。  
+* 为防止资源泄露，请使用RAII(Resource Acquisition Is Initialization 资源取得时机便是初始化)对象，他们在构造函数中获得资源并在构析函数中释放资源。  
 * 两个常被使用的RAII classes分别是tr1::shared_ptr和auto_ptr。前者通常是较佳选择，因为其copy行为比较直观。若选择auto_ptr，复制动作会使他（被复制物）指向null。  
     ```c++
     class Investment {...};
@@ -565,4 +565,59 @@
     ```  
 
 理解:  
-* 删除对象这种资源操作尽可能不要自己来做，通过智能指针等方式，让对象析构函数自我管理，避免出现纰漏。
+* 删除对象这种资源操作尽可能不要自己来做，通过智能指针等方式，让对象析构函数自我管理，避免出现纰漏。  
+
+---
+
+### 条款14：在资源管理类中小心copying行为
+请记住：  
+* 复制RAII(Resource Acquisition Is Initialization 资源取得时机便是初始化)对象必须一并复制它所管理的资源，所以资源的coping行为决定RAII对象的coping行为。  
+* 普遍而常见的RAII class copying行为是：抑制coping、施引引用计数法。不过其他行为也都可能被实现。  
+    ```c++
+    class Lock
+    {
+    public:
+        explicit Lock(Mutex* pm): mutexPtr(pm)
+        {
+            lock(mutexPtr);
+        }
+        ~Lock()
+        {
+            unlock(mutexPtr);
+        }
+    private:
+        Mutex* mutexPtr;
+    };
+    // 用户对于Lock的用法符合RAII方式
+    Mutex m; //定义互斥器
+    ...
+    {
+        Lock ml(&m); // 构造函数锁定互斥锁
+        ...
+        // Lock ml2(ml1) 这个操作不允许，会报错
+    } // 区块结束，析构函数释放互斥锁
+
+    // 针对以上的copy操作有两种解法，一种是禁止coping操作
+    class Lock: private Uncopyable // 禁止赋值操作，见条款6
+    {
+    public:
+        ...
+    }
+    // 一种是对资源引用计数
+    // 关键点就是shared_ptr允许指定删除器，默认是delete指向的资源
+    class Lock
+    {
+    public:
+        explicit Lock(Mutex* pm)
+        :mutexPtr(pm, unlock) // 以unlock作为函数作为shared_ptr的删除器
+        {
+            lock(mutexPtr.get());
+        }
+    private:
+        // 使用shared_ptr替代raw pointer
+        std::tr1::shared_ptr<Mutex> mutexPtr;
+    };
+    ```
+
+理解：  
+* 对于资源管理类本身的copying操作使用引用计数来解决

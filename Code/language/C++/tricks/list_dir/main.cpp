@@ -12,7 +12,7 @@ void listdir(const string& folder, const string& extension, bool recursive, list
     DIR* subDir;
     struct dirent* ent;
 
-    // ÑéÖ¤ÎÄ¼ş¼Ğ
+    // éªŒè¯æ–‡ä»¶å¤¹
     dir = opendir(folder.c_str());
     if (dir == NULL)
     {
@@ -25,30 +25,30 @@ void listdir(const string& folder, const string& extension, bool recursive, list
     }
 
 
-    // ´¦ÀíÎÄ¼ş¼Ğ¶ÓÁĞ
+    // å¤„ç†æ–‡ä»¶å¤¹é˜Ÿåˆ—
     queue<string> folders;
     folders.push(folder);
 
-    // ±éÀúÎÄ¼ş¼Ğ
+    // éå†æ–‡ä»¶å¤¹
     while (!folders.empty())
     {
-        // ¶ÓÁĞÖĞÈ¡Ò»¸öÎÄ¼ş
+        // é˜Ÿåˆ—ä¸­å–ä¸€ä¸ªæ–‡ä»¶
         string currFolder = folders.front();
         folders.pop();
         dir = opendir(currFolder.c_str());
-        // ·ÇÎÄ¼ş¼ĞÌø¹ı
+        // éæ–‡ä»¶å¤¹è·³è¿‡
         if (dir == NULL) {continue;}
-        // ±éÀúÎÄ¼ş¼ĞÏÂÃæµÄËùÓĞÎÄ¼ş
+        // éå†æ–‡ä»¶å¤¹ä¸‹é¢çš„æ‰€æœ‰æ–‡ä»¶
         while ((ent = readdir(dir)) != NULL)
         {
             string name(ent->d_name);
-            // Ìø¹ı . ºÍ ..
+            // è·³è¿‡ . å’Œ ..
             if (name.compare(".") == 0 || name.compare("..") == 0) {continue;}
             string path = currFolder;
             path.append("/");
             path.append(name);
 
-            // ÅĞ¶ÏÊÇ·ñÎª×ÓÎÄ¼ş¼Ğ
+            // åˆ¤æ–­æ˜¯å¦ä¸ºå­æ–‡ä»¶å¤¹
             subDir = opendir(path.c_str());
             if (subDir != NULL)
             {
@@ -57,7 +57,7 @@ void listdir(const string& folder, const string& extension, bool recursive, list
             }
             else
             {
-                // ÎÄ¼ş´¦Àí£¬ºó×ºÃû¹ıÂË
+                // æ–‡ä»¶å¤„ç†ï¼Œåç¼€åè¿‡æ»¤
                 if (extension.empty())
                 {
                     files.push_back(path);

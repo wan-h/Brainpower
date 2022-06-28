@@ -13,19 +13,19 @@ int rapidjson_write()
 {
     StringBuffer s;
     // Writer<StringBuffer> writer(s);
-    // Õâ¸öµÄjson»á×Ô¶¯»»ĞĞ
+    // è¿™ä¸ªçš„jsonä¼šè‡ªåŠ¨æ¢è¡Œ
     PrettyWriter<StringBuffer> writer(s);
-    // StartObject ºÍ EndObject±íÊ¾Ò»¸ö×ÖµäµÄ¿ªÊ¼ºÍ½áÊø
+    // StartObject å’Œ EndObjectè¡¨ç¤ºä¸€ä¸ªå­—å…¸çš„å¼€å§‹å’Œç»“æŸ
     writer.StartObject();
-    // ³öÈë key value
+    // å‡ºå…¥ key value
     writer.Key("name");writer.String("spring");
 
-    writer.Key("address");writer.String("±±¾©");
+    writer.Key("address");writer.String("åŒ—äº¬");
 
     writer.Key("age");writer.Int(30);
 
     writer.Key("value1");
-    // StartArray ºÍ EndArray±íÊ¾Ò»¸öÁĞ±íµÄ¿ªÊ¼ºÍ½áÊø
+    // StartArray å’Œ EndArrayè¡¨ç¤ºä¸€ä¸ªåˆ—è¡¨çš„å¼€å§‹å’Œç»“æŸ
     writer.StartArray();
     writer.StartArray();
     writer.Double(23);writer.Double(43);writer.Double(-2.3);writer.Double(6.7);writer.Double(90);
@@ -40,11 +40,11 @@ int rapidjson_write()
 
     writer.Key("value2");
     writer.StartObject();
-    writer.Key("address1");writer.String("ËÄ´¨");
+    writer.Key("address1");writer.String("å››å·");
     writer.Key("address2");
     writer.StartArray();
-    writer.StartObject();writer.Key("wanzhou");writer.String("ÍòÖİ");writer.EndObject();
-    writer.StartObject();writer.Key("jiefangbei");writer.String("½â·Å±®");writer.EndObject();
+    writer.StartObject();writer.Key("wanzhou");writer.String("ä¸‡å·");writer.EndObject();
+    writer.StartObject();writer.Key("jiefangbei");writer.String("è§£æ”¾ç¢‘");writer.EndObject();
     writer.EndArray();
     writer.EndObject();
 
@@ -79,14 +79,14 @@ int rapidjson_read()
     Document dom;
     if(!dom.Parse(json_content.c_str()).HasParseError())
     {
-        // »ñÈ¡½Úµã¶ÔÏó
+        // è·å–èŠ‚ç‚¹å¯¹è±¡
         Value& obj = dom["value2"];
         if (obj.HasMember("address2") && obj["address2"].IsArray())
         {
             Value& arr = obj["address2"];
             for (int i = 0; i < arr.Size(); i++)
             { 
-                // ÌáÇ°½áÊø£¬just for test
+                // æå‰ç»“æŸï¼Œjust for test
                 cout << "wanzhou: " << arr[i]["wanzhou"].GetString();
                 break;
             }
@@ -97,7 +97,7 @@ int rapidjson_read()
         cout << "Fail to parse json file." << endl;
     }
 
-    // ±éÀú
+    // éå†
     for (Value::ConstMemberIterator iter = dom.MemberBegin(); iter != dom.MemberEnd(); iter++)
     {
         cout << "iter name: " << iter->name.GetString() << ", type: " << iter->value.GetType() << endl;
