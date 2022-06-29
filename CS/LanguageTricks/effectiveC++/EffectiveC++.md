@@ -620,4 +620,31 @@
     ```
 
 理解：  
-* 对于资源管理类本身的copying操作使用引用计数来解决
+* 对于资源管理类本身的copying操作使用引用计数来解决。
+
+---
+
+### 条款15：在资源管理类中提供对原始资源的访问
+请记住：  
+* APIs往往要求访问原始资源，所以每一个RAII class应该提供一个“取得其所管理之资源”的办法。  
+* 对原始资源的访问可能经由显式转换或隐式转换。一般而言显式转换比较安全，但隐式转换对客户比较方便。  
+    ```c++
+    class Font
+    {
+    public:
+        explicit Font(FontHandle fh)
+        :f(fh)
+        { }
+        ~Font() { releaseFont(f); }
+        // 显式转换函数
+        FontHandle get() const { return f; }
+    private:
+        FontHandle f;
+    }
+    // 当我们想要调用原始资源时
+    Font f(getFont()); // 工厂生产Font实例便通过Font管理类进行管理
+    changeFontSize(f.get(), newSize); // 通过Font的get方法显示转换调用
+    ```
+
+理解：  
+* 资源管理类暴露一个显示获取原始资源的方法来有效处理源码对于原始资源的使用。
