@@ -647,4 +647,42 @@
     ```
 
 理解：  
-* 资源管理类暴露一个显示获取原始资源的方法来有效处理源码对于原始资源的使用。
+* 资源管理类暴露一个显示获取原始资源的方法来有效处理源码对于原始资源的使用。  
+
+---
+
+### 条款16：成对使用new和delete时采用相同的形式  
+请记住：  
+* 如果你在new表达式中使用[]，必须在相应的delete表达式中也是用[]。如果你在new表达式中不使用[]，一定不要在相应的delete表达式中使用[]。  
+    ```c++
+    std::string* stringPtr1 = new std::string;
+    std::string* stringPtr2 = new std::string[100];
+    ...
+    // 删除一个对象
+    delete stringPtr1;
+    // 删除一个由对象组成的数据
+    delete stringPtr2[];
+    ```
+
+理解：  
+* 注意数据对象删除一定要加delete。
+
+---
+
+### 条款17：以独立语句将newed对象置入智能指针
+请记住：  
+* 以独立语句将newed对象存储于（置于）智能智能内。如果不这样做，一旦异常被抛出，有可能导致难以察觉的资源泄露。  
+    ```c++
+    int priority();
+    void processWidget(std::tr1::shared_ptr<Widget> pw, int priority);
+    // 对processWidget函数调用可能存在问题
+    // 如果priority调用在构造智能指针之前切抛出异常就会导致智能指针没有管理资源
+    processWidget(std::tr1::shared_ptr<Widget>(new Widget), priority());
+
+    // 分离语句即可
+    std::tr1::shared_ptr<Widget> pw(new Widget);
+    processWidget(ow, priority());
+    ```
+
+理解：  
+* 当使用智能智能做资源管理的时候单独写这一句。
