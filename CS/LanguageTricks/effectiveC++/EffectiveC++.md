@@ -686,3 +686,59 @@
 
 理解：  
 * 当使用智能智能做资源管理的时候单独写这一句。
+
+---
+
+### 条款18：让接口容易正确使用，不易被误用
+请记住：  
+* 好的接口很容易被正确使用，不容易被误用。你应该在你所有接口中努力达成这些性质。  
+* “促进正确使用”的办法包括接口的一致性，以及与内置类型的行为兼容。  
+* “阻止误用”的办法包括建立新类型、限制类型上的操作，束缚对象值，以及消除客户的资源管理责任。  
+    ```c++
+    class Date
+    {
+    public:
+        Date(int month, int day, int year);
+    }
+
+    //参数只做了int限制，很容易传递错误,通过类型定义做限制
+    class Date
+    {
+    public:
+        Date(const Month& month, const Day& day, const Year& year);
+    }
+    class Month
+    {
+    public:
+        static Month Jan() { return Month(1); }
+        static Month Fed() { return Month(2); }
+        ...
+        static Month Dec() { return Month(12); }
+    private:
+        explicit Month(int m);
+        ...
+    };
+    class Day {...}
+    class Year {...}
+
+    Date d(Month::Mar(), Day(30), Year(1995));
+    ```
+* tr1::shared_ptr支持定制型删除器。这可防范DLL问题，可被用来自动接触互斥锁等等。
+    ```c++
+    // 工厂函数
+    Investment* createInvestment();
+    // 为了避免客户忘记使用智能指针进行管理，直接返回一个智能指针对象
+    // 这样阻止用户产生内存泄露
+    // 设置专属的deleter
+    std::tr1::shared_ptr<Investment> createInvestment()
+    {
+        // getRidOfInvestment是引用为0时的删除器
+        std::tr1::shared_ptr<Investment> retVal(static_cast<Investment*>(0), getRidOfInvestment);
+        retVal = ...; // 令retVal指向正确对象
+        return retVal;
+    }
+    ```
+
+理解：  
+* 接口设计尽可能保持和常见内置类型（容器等）命名等行为一致。  
+* 接口设计竟可能避免客户犯错机会。
