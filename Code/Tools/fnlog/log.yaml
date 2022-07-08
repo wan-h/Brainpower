@@ -1,0 +1,29 @@
+# 配表文件  
+
+ hot_update: true
+# 0通道为多线程带文件和屏显输出
+ - channel: 0  
+    priority: trace
+    category: 0
+    # 过滤类别[0-5]
+    category_extend: 5
+    -device: 0
+        disable: false
+        out_type: file
+        priority: trace
+        # 过滤类别[0-2]
+        category: 0
+        category_extend: 2
+        path: "./log/"
+        file: "$PNAME_$YEAR$MON$DAY"
+        rollback: 4
+        limit_size: 1000 m #only support M byte
+    -device: 1
+        disable: false
+        out_type: screen
+        # 允许所有类别
+        category: 0
+        category_extend: 0
+
+ # 1通道为多线程不挂任何输出端
+ - channel: 1
