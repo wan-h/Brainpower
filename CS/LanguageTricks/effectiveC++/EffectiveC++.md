@@ -773,3 +773,48 @@
 
 理解：  
 * 编码规则就是在传递对象的时候尽可能的使用常引用传递，因为值传递会有多余的拷贝动作，但对于c++内置的一些int之类的，传值反而更快，所以内置对象传值就可以了。
+
+---
+
+### 条款21：必须返回对象时，别妄想返回其reference  
+请记住：  
+* 绝不要返回pointer或reference指向一个local stack对象，或返回reference指向一个heap-allocated对象，或返回pointer或reference指向一个local static对象而有可能同时需要多个这样的对象。条款4已经为“在单线程环境中合理返回reference指向一个local static对象”提供一份设计实例。  
+    ```c++
+    // 错误写法1
+    const Rational& operator*(const Rational& lhs, const Rational& rhs)
+    {
+        Rational result(lhs.n * rhs.n, lhs.d * rhs.d);
+        // result是一个local对象，函数退出就销毁了，所以这个实现很拉垮
+        return result;
+    }
+
+    // 错误写法2
+    const Rational& operator*(const Rational& lhs, const Rational& rhs)
+    {
+        Rational* result = new Rational(lhs.n * rhs.n, lhs.d * rhs.d);
+        // 用户来delete合适?
+        return *result;
+    }
+    Rational w, x, y, z;
+    // 这种写法根本没有机会delete，直接就内存泄露了
+    w = x * y * z;
+
+    // 错误写法3
+    const Rational& operator*(const Rational& lhs, const Rational& rhs)
+    {
+        static Rational result;
+        result = ...;
+        return *result;
+    }
+    // 遇到这种判断永远都是相等的
+    if (operator==(operator*(a, b) operator*(c, d)))
+
+    // 正确写法
+    inline const Rational& operator*(const Rational& lhs, const Rational& rhs)
+    {
+        return Rational(lhs.n * rhs.n, lhs.d * rhs.d);
+    }
+    ```
+
+理解：  
+* 一般按照条例10写就可以了，一定返回一个对象的时候就直接返回其对象。
