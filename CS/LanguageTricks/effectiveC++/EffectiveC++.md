@@ -817,4 +817,28 @@
     ```
 
 理解：  
-* 一般按照条例10写就可以了，一定返回一个对象的时候就直接返回其对象。
+* 一般按照条例10写就可以了，一定返回一个对象的时候就直接返回其对象。  
+
+---
+
+### 条款22：将成员变量声明为private
+请记住：  
+* 切记将成员变量声明为private。这可赋予客户访问数据的一致性、可细微划分访问控制、允许约束条件获得保证，并提供class作者以充分的实现弹性。  
+    ```c++
+    // 确保变量成员都是private, 每个变量成员需要一个setter和getter函数来设置和获取
+    class AccessLevels
+    {
+    public:
+        ...
+        int getReadOnly() const { return readOnly; }
+        void setReadWrite(int value) { readWrite = value; }
+        int getReadWrite() const { return readWrite; }
+    private:
+        int readOnly;
+        int readWrite;
+    }
+    ```
+* protected并不比public更具封装性。  
+
+理解：  
+* 成员变量的封装性和“成员变量的内容改变时可能造成的代码破坏量”成反比，比如获取一个变量时想要做一些操作就可以隐藏在getter和setter函数后面，这样的升级对于用户代码来讲是无感且不侵入的，总之这是一种良好的编程习惯，遵循这种习惯。
