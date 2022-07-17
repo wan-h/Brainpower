@@ -841,4 +841,35 @@
 * protected并不比public更具封装性。  
 
 理解：  
-* 成员变量的封装性和“成员变量的内容改变时可能造成的代码破坏量”成反比，比如获取一个变量时想要做一些操作就可以隐藏在getter和setter函数后面，这样的升级对于用户代码来讲是无感且不侵入的，总之这是一种良好的编程习惯，遵循这种习惯。
+* 成员变量的封装性和“成员变量的内容改变时可能造成的代码破坏量”成反比，比如获取一个变量时想要做一些操作就可以隐藏在getter和setter函数后面，这样的升级对于用户代码来讲是无感且不侵入的，总之这是一种良好的编程习惯，遵循这种习惯。  
+
+---
+
+### 条款23：宁以non-member、non-friend替换member函数
+请记住：  
+* 宁可拿non-member non-friend函数替换member函数。这样做可以增加封装性、包裹弹性和机能扩充性。  
+    ```c++
+    class WebBrowser
+    {
+    public:
+        ...
+        void clearCache();
+        void clearHistory();
+        void removeCookies();
+        // 调用clearCache、clearHistory、removeCookies
+        // void clearEverything();
+        ...
+    }
+    // 这个non member函数是对clearEverything的替换
+    // 这种替换实际是提高了封装性，就像变量都尽可能是private一样减少了用户可以改变的东西
+    // 如果涉及到不同功能的函数还可以将non member函数声明在不同的头文件中
+    void clearEverything(WebBrowser& wb)
+    {
+        wb.clearCache();
+        wb.clearHistory();
+        wb.removeCookies();
+    }
+    ```
+
+理解：  
+* 感觉很多时候还是直接写到类成员函数的，对于这种不访问成员变量的函数尽可能以non member的方式实现。

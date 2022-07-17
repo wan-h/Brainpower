@@ -25,3 +25,4 @@
 * [条款20：宁以pass-by-reference-to-const替换pass-by-value](EffectiveC++#条款20宁以pass-by-reference-to-const替换pass-by-value)  
 * [条款21：必须返回对象时，别妄想返回其reference](EffectiveC++#条款21必须返回对象时别妄想返回其reference)  
 * [条款22：将成员变量声明为private](EffectiveC++#条款22将成员变量声明为private)  
+* [条款23：宁以non-member、non-friend替换member函数](EffectiveC++#条款23宁以non-membernon-friend替换member函数)  
