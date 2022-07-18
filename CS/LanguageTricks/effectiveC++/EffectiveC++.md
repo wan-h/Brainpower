@@ -872,4 +872,36 @@
     ```
 
 理解：  
-* 感觉很多时候还是直接写到类成员函数的，对于这种不访问成员变量的函数尽可能以non member的方式实现。
+* 感觉很多时候还是直接写到类成员函数的，对于这种不访问成员变量的函数尽可能以non member的方式实现。  
+
+---
+
+### 条款24：若所有参数皆需类型转换，请为此采用non-member函数
+请记住：  
+* 如果你需要为某个函数的所有参数（包括被this指针所值的那个隐喻参数）进行类型转换，那么这个函数必须是个non-member。  
+    ```c++
+    class Rational
+    {
+    public:
+        Rational(int numerator=0, int denominator=1);
+        int numerator() const;
+        int denominator() const;
+        const Rational operator* (const Rational& rhs) const;
+    private:
+        ...
+    };
+
+    Rational oneHalf(1, 2);
+    result = oneHalf * 2; // non-explicit构造函数情况系正常运作， 2 做了隐式的类型转换
+    result = 2 * oneHalf; // 无法正常运行
+
+    // 要想支持这种混合运算，可行之道就是让operator*成为一个non-member函数
+    // 编译器会自动搜索这个实现做隐式转换
+    const Rational operator*(const Rational& lhs, const Rational& rhs)
+    {
+        return Rational(lhs.numerator() * rhs.numerator(), lhs.denominator() * rhs.denominator());
+    }
+    ```
+
+理解：  
+* 以上其实可以用friend友元函数实现，但是无论合适能避免friend函数就应该避免，因为就像真实世界一样，朋友带来的麻烦往往多余其价值。
