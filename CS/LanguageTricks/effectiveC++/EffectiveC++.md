@@ -904,4 +904,79 @@
     ```
 
 理解：  
-* 以上其实可以用friend友元函数实现，但是无论合适能避免friend函数就应该避免，因为就像真实世界一样，朋友带来的麻烦往往多余其价值。
+* 以上其实可以用friend友元函数实现，但是无论合适能避免friend函数就应该避免，因为就像真实世界一样，朋友带来的麻烦往往多余其价值。  
+
+---
+
+### 条款25：考虑写出一个不抛异常的swap函数
+请记住：  
+* 当std::swap对你的类型效率不高时，提供一个swap成员函数，并确定这个函数不抛出异常。  
+* 如果你提供一个member swap，以该提供一个non-member swap用来调用前者。对与classes（而非templates），也请特化std::swap。  
+* 调用swap时应对std::swap使用using声明式，然后调用swap并且不带任何“命名空间资格修饰”。  
+* 为“用户定义类型”进行std templates全特化是好的，但千万不要尝试在std内加入某些对std而言全新的东西。
+    ```c++
+    // swap典型实现
+    namespace std
+    {
+        template<typename T>
+        void swap(T& a, T& b)
+        {
+            t temp(a);
+            a = b;
+            b = temp;
+        }
+    }
+    // 如果存在一个对象，实际上swap只需要交换两个内部指针就可以了，那么经典的就很复杂和浪费资源
+    class Widget
+    {
+    public:
+        Widget(const Widget& rhs);
+        Widget& operator=(const Widget& rhs)
+        {
+            ...
+            *pImpl = *(rhs.pImpl);
+            ...
+        }
+        ...
+    private:
+        WidgetImpl* pImpl;
+    }
+    // 优化版本是新增一个swao的public成员函数
+    class Widget
+    {
+    public:
+        ...
+        void swap(Widget& other)
+        {
+            // 指定使用std::swap避免和下面特化的冲突
+            using std::swap;
+            swap(pImpl, other.pImple);
+        }
+        ...
+    private:
+        WidgetImpl* pImpl;
+    }
+    // std重载版本
+    namespace std
+    {
+        // std::swap的特化版本
+        template<>
+        void swap<Widget>(Widget& a, Widget& b)
+        {
+            a.swap(b);
+        }
+    }
+    // 更牛逼的重载版本，但是不能定义在std空间，支持Widget的多态
+    namespace WidgetStuff
+    {
+        // std::swap的特化版本
+        template<typename T>
+        void swap(Widget<T>& a, Widget<T>& b)
+        {
+            a.swap(b);
+        }
+    }
+    ```  
+
+理解：
+* 深层原理有点复杂，遇到再研究下，总之对象的swap通常多一些思考，避免资源的浪费，按照这种写法来做优化即可。
