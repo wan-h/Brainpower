@@ -31,3 +31,6 @@
 * [条款23：宁以non-member、non-friend替换member函数](EffectiveC++#条款23宁以non-membernon-friend替换member函数)  
 * [条款24：若所有参数皆需类型转换，请为此采用non-member函数](EffectiveC++#条款24若所有参数皆需类型转换请为此采用non-member函数)  
 * [条款25：考虑写出一个不抛异常的swap函数](EffectiveC++#条款25考虑写出一个不抛异常的swap函数)  
+
+### 实现  
+* [条款26：尽可能延后变量定义式的出现时间](EffectiveC++#条款26尽可能延后变量定义式的出现时间)  

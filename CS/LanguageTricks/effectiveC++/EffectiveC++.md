@@ -979,4 +979,60 @@
     ```  
 
 理解：
-* 深层原理有点复杂，遇到再研究下，总之对象的swap通常多一些思考，避免资源的浪费，按照这种写法来做优化即可。
+* 深层原理有点复杂，遇到再研究下，总之对象的swap通常多一些思考，避免资源的浪费，按照这种写法来做优化即可。  
+
+---
+
+### 条款26：尽可能延后变量定义式的出现时间
+请记住：  
+* 尽可能延后变量定义式的出现。这样做可增加程序的清晰度并改善程序效率。  
+    ```c++
+    // 这个实现的问题在于如果提前抛出异常了，那么就浪费了encrypted构造和析构成本
+    std::string encryptPassword(const std::string& password)
+    {
+        using namespace std;
+        string encrypted;
+        if (password.length() < MinimumPasswordLength)
+        {
+            throw logic_error("Password is too short");
+        }
+        
+        encrypt(encrypted);
+
+        return encrypted;
+    }
+
+    // 优化版本
+    std::string encryptPassword(const std::string& password)
+    {
+        using namespace std;
+
+        if (password.length() < MinimumPasswordLength)
+        {
+            throw logic_error("Password is too short");
+        }
+        
+        // 直接用构造函数赋值可以避免先声明string encrypted再赋值的毫无意义的default构造过程
+        string encrypted(password);
+        encrypt(encrypted);
+
+        return encrypted;
+    }
+
+    // 对于循环版本
+    // 一个构造函数 + 一个析构函数 + n个赋值操作
+    Widget w;
+    for(int i = 0; i < n; i++)
+    {
+        w = 取决于i的某个值;
+    }
+    // n个构造函数 + n个析构函数
+    for(int i = 0; i < n; i++)
+    {
+        Widget w(取决于i的某个值);
+    }
+    // 具体使用那个版本取决于赋值和构造哪个代价更大，一般还是用第二种
+    ```
+
+理解：  
+* 之前定义局部变量的时候都是随便地方定义的，看样子要在不得不用的时候再定义。
