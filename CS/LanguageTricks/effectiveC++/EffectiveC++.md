@@ -1066,4 +1066,61 @@
 * 宁可使用c++-style（新式），不要使用旧式转型。前者很容易辨识出来，而且也比较有着分门别类的职掌。
   
 理解：  
-* 实际编码中尽可能的减少类型转换，避免不需要的坑以及这是一个比较耗时的操纵。
+* 实际编码中尽可能的减少类型转换，避免不需要的坑以及这是一个比较耗时的操纵。  
+
+---
+
+### 条款28：避免返回handles指向对象内部成分
+请记住：  
+* 避免返回handles（包括references、指针、迭代器）指向对象内部。遵守这个条款可增加封装性，帮助const成员函数的行为像个const，并将发生“虚吊号码牌”的可能性降至最低。  
+    ```c++
+    class Point
+    {
+    public:
+        Point(int x, int y);
+        ...
+        void setX(int newVal);
+        void setY(int newVal);
+        ...
+    };
+
+    struct RectDara
+    {
+        Point ulhc;
+        Point lrhs;
+    };
+
+    class Rectangle
+    {
+        ...
+    private:
+        std::tr1::shared_ptr<RectData> pData;
+    };
+
+    class Rectangle
+    {
+    public:
+        ...
+        // 共有函数返回了私有成员变量的引用，这将导致pData被放松了封装性，因为可以通过指针对他进行操作了
+        // Point& upperLeft() const { return pData->ulhc; }
+        // Point& lowerRight() const { return pData->lrhc; }
+
+        // 优化做法加const，使得返回对象只有读取权限
+        const Point& upperLeft() const { return pData->ulhc; }
+        const Point& lowerRight() const { return pData->lrhc; }
+        ...
+    };
+
+    // 对于上面的放松了封装的阐释
+    Point coord1(0, 0);
+    Point coord2(100, 100);
+    const Rectangle rec(coord1, coord2);
+    // 修改了其私有变量属性
+    rec.upperLeft().setX(50);
+
+    // 其次如果这个私有变量开放出去了，当其他的地方拿到了这个指针但是和Rectangle生命周期不相关
+    // 那么就会导致Rectangle生命周期结束后其他的引用就变成了悬空。
+    ```
+
+理解：  
+* 原则就是尽可能不要public成员函数中返回私有变量的引用或指针。
