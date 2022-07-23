@@ -1123,4 +1123,64 @@
     ```
 
 理解：  
-* 原则就是尽可能不要public成员函数中返回私有变量的引用或指针。
+* 原则就是尽可能不要public成员函数中返回私有变量的引用或指针。  
+
+---
+
+### 条款29：为异常安全而努力是值得的
+请记住：  
+* 异常安全函数即使发生异常也不会泄露资源或允许任何数据结构败坏。这样的函数区分为三种可能的保证：基本型、强烈型、不抛异常型。  
+```c++
+class PrettyMenu
+{
+public:
+    ...
+    void changeBackground(std::istream& imgSrc); // 改变背景图像
+    ...
+private:
+    Mutex mutex; // 互斥器
+    Image* bgImage; // 目前的背景图像
+    int imageChanges; // 背景图像被改变的次数
+}；
+
+// 这个实现很糟糕
+// 1. 资源泄露，当new Image异常时，unlock的调用就绝不会执行，互斥锁就永远锁住了
+// 2. 数据败坏，当new Image异常时，bgImage指向一个已删除的对象
+void PrettyMenu::changeBackground(std::istream& imgSrc)
+{
+    lock(&mutex); // 取得互斥器
+    delete bgImage; // 摆脱旧的背景图像
+    ++imageChanges; // 修改图像变更次数
+    bgImage = new Image(imgSrc); // 安装新的背景图像
+    unlock(&mutex); // 释放互斥器
+}
+
+// 进行以下优化
+class PrettyMenu
+{
+...
+private:
+    ...
+    std::tr1::shared_ptr<Image> bgImage;
+    ...
+}；
+
+void PrettyMenu::changeBackground(std::istream& imgSrc)
+{
+    // 来自条款14，获得互斥锁的同时确保了结束后一定会释放掉
+    Lock ml(&muitex); 
+    // 智能指针的方法，new失败了之后bgImage会保持之前的状态
+    // 一个函数执行失败后也应该让资源都处于之前的状态
+    bgImage.reset(new Image(imgSrc));
+    // 调换了顺序，如果失败了就不会加
+    ++imageChanges;
+}
+
+// 还有一种更加优化的写法是所有的操作都在copy上，成功了之后再swap
+// 这样正常做到了失败后保持所有资源的原始状态
+```
+* “强烈保证”往往能够以copy-and-swap实现出来，但“强烈保证”并非对所有函数都可实现或具备现实意义。  
+* 函数提供的“异常安全保证”通常最高只等于其所调用之各个函数的“异常安全保证”中的最弱者。  
+
+理解：  
+* 这些都是编码的良好习惯，可以避免debug的时间
