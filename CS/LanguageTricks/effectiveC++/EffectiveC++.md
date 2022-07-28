@@ -1195,4 +1195,127 @@ void PrettyMenu::changeBackground(std::istream& imgSrc)
 理解：  
 * 包含inline函数头文件的库都得重编，所以对于移植性性不是很友好，正常换个动态库不用编译就升级了才是最佳体验。  
 * inline函数是不能打断点得，所以无法调试。
-* 总之将inlining限制在小型、被频繁调用的函数身上，其他情况就谨慎使用。
+* 总之将inlining限制在小型、被频繁调用的函数身上，其他情况就谨慎使用。  
+
+---
+
+### 条款31：将文件间的编译依存关系将至最低
+请记住：  
+* 支持“编译依存性最小化”的一般构想是：相依与申明式，不要相依于定义式。基于此构想的两个手段是Handle classes和Interface classes。  
+* 程序库头文件应该以“完全且仅有声明式”的形式存在。这种做法不论是否涉及templates都适用。
+    ```c++
+    // 这样做的问题再与头文件任何一个改变都会导致每一个含入Person class的文件重新编译，这种依存关系就强了
+    #include <string>
+    #include "data.h"
+    #include "address.h"
+
+    class Person
+    {
+    public:
+        Person(const std::string& name, const Dare& birthday, const Address& addr);
+        std::string name() const;
+        std::string birthDate() const;
+        std::string address() const;
+        ...
+    private:
+        std::string theName;
+        Date theBirthDate;
+        Address theAddress;
+    }
+
+    // 为了解耦这种依存性我们有两种写法
+    // =========== Handle classes ============
+    // Person.h 头文件定义
+    #include <string>
+    #include <memory>
+    // 前置声明
+    class PersonImpl;
+    class Date;
+    class Address;
+
+    class Person
+    {
+    public:
+        Person(const std::string& name, const Dare& birthday, const Address& addr);
+        std::string name() const;
+        std::string birthDate() const;
+        std::string address() const;
+        ...
+    private:
+        std::tr1::shared_ptr<PersonImpl> pImpl; // 指针指向实现物
+    }
+
+    // .cpp 函数实现
+    #include "Person.h"
+    #include "PersonImpl.h"
+    Person::Person(const std::string& name, const Dare& birthday, const Address& addr)
+    : pImpl(new PersonImpl(name, birthday, addr)){}
+    std::string Person::name() const
+    {
+        return pImpl->name();
+    }
+
+    // =========== Interface classes ============
+    // 写一个Person.h纯虚基类头文件
+    // 前置声明
+    class Date;
+    class Address;
+
+    class Person
+    {
+    public:
+        virtual ~Person();
+        virtual std::String name() const = 0;
+        virtual std::string birthDate() const = 0;
+        virtual std::string address() const = 0;
+        ...
+        static std::tr1::shared_ptr<Person> create(const std::string& name, const Date& birthday, const Address& addr);
+        ...
+    }
+
+    // 衍生类的头文件RealPerson.h,然后cpp文件实现
+    #include "Person.h"
+    #include "data.h"
+    #include "address.h"
+    class RealPerson: public Person
+    {
+    public:
+        RealPerson(const std::string& name, const Date& birthday, const Address& addr)
+        : theNmae(name), thrBirthDate(birthday), theAddress(addr){}
+        virtual ~RealPerson();
+        std::string name() const;
+        std::string birthDate() const() const;
+        std::string address() const;
+    private:
+        std::string theName;
+        Date theBirthDate;
+        Address theAddress;
+    };
+
+    // Person的cpp实现
+    #include "Person.h"
+    #include "RealPerson.h"
+    std::tr1::shared_ptr<Person> create(const std::string& name, const Date& birthday, const Address& addr)
+    {
+        return std::tr1::shared_ptr<Person>(new RealPerson(name, birthday, addr));
+    }
+
+    // 客户调用方式
+    #include "Person.h
+    std::string name;
+    Date dateOfBirth;
+    Address address;
+    ...
+    // 创建一个对象支持Person接口
+    std::tr1::shared_ptr<Person> pp(Person::create(name, dateOfBirth, address));
+    ...
+    std::cout << pp->name()
+            << " was born on "
+            << pp->birthDate()
+            << " and now lives at "
+            << pp->address();
+    ...
+```  
+
+理解：  
+* 以上两种方式Handle classes和Interface classes均解除了接口和实现之间的耦合关系，用户包含的头文件基本都只包含声明而没有实现，这样满足了编译依存最小化的原则。
