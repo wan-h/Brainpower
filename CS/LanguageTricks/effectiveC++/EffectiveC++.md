@@ -1315,7 +1315,16 @@ void PrettyMenu::changeBackground(std::istream& imgSrc)
             << " and now lives at "
             << pp->address();
     ...
-```  
+    ```  
 
 理解：  
 * 以上两种方式Handle classes和Interface classes均解除了接口和实现之间的耦合关系，用户包含的头文件基本都只包含声明而没有实现，这样满足了编译依存最小化的原则。
+
+---
+
+### 条款32：确定你的public继承塑模出is-a关系
+请记住：  
+* “public继承”意味is-a。适用于base classes身上的每一件事情一定适用于derived classes身上，因为每一个derived class对象也都是一个base class对象。  
+
+理解：  
+* 没有一个“适用于所有软件”的完美设计，用继承的方式可以做出一些根据当前情况的最佳设计，例如Student继承Person，表示Student is a Person，我们的设计也必须要满足这种关系。
