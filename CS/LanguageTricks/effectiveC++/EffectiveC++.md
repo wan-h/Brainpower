@@ -1328,3 +1328,71 @@ void PrettyMenu::changeBackground(std::istream& imgSrc)
 
 理解：  
 * 没有一个“适用于所有软件”的完美设计，用继承的方式可以做出一些根据当前情况的最佳设计，例如Student继承Person，表示Student is a Person，我们的设计也必须要满足这种关系。
+
+---
+
+### 条款33：避免遮掩继承而来的名称
+请记住：  
+* derived classes内的名称会遮掩base classes内的名称。在public继承下从来没有人希望如此。  
+* 为了让被遮掩的名称重见天日，可使用using声明式或转交函数。  
+    ```c++
+    class Base
+    {
+    private:
+        int x;
+    public:
+        virtual void mf1() = 0;
+        virtual void mf1(int);
+        virtual void mf2();
+        void mf3();
+        void mf3(double);
+        ...
+    };
+    class Derived: public Base
+    {
+    public:
+        virtual void mf1();
+        void mf3();
+        void mf4();
+    };
+
+    // 应用时是根据名称掩盖的，不管传参类型
+    Derived d;
+    int x;
+    ...
+    d.mf1(); // OK，调用Derived::mf1
+    d.mf3(x); // ERROR, Derived::mf3掩盖了Base::mf3
+    d.mf2(); // OK，调用Base::mf2
+    d.mf3(); // OK，调用Derived::mf3
+    d.mf3(x); // ERROR, Derived::mf3掩盖了Base::mf3
+
+    // 通过using声明式进行优化
+    class Derived: public Base
+    {
+    public:
+        // 让Base Class内名为mf1和mf3的所有东西在Derived作用域内都可见(并且public)
+        using Base::mf1;
+        using Base::mf3;
+        virtual void mf1();
+        void mf3();
+        void mf4();
+    };
+
+    d.mf1(x); // OK, 调用Base::mf1
+    d.mf3(x); // OK, 调用Base::mf3
+
+    // 通过转交函数实现只想继承无参mf1版本
+    class Derived: private Base // 这里是private继承
+    {
+    public:
+        virtual void mf1() // 转交函数
+        {
+            Base::mf1(); // 暗自成为Inline，C++ 中在类中实现的成员函数会被编译器自动默认判定为 inline 函数
+        }
+    }
+    d.mf1(); // OK，调用Derived::mf1
+    d.mf1(x); // ERROR, Base::mf1()被掩盖了
+    ```  
+
+理解：  
+* 实用类继承的时候对于同名的函数一定要多点心思，有时候不能符合预期，或则写的时候尽量去避免同名的成员函数。
