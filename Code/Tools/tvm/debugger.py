@@ -25,7 +25,7 @@ def get_debug_output():
         "resnet50-v2-7.onnx"
     )
 
-    # ÏÂÔØÌ«ÂıÁË
+    # ä¸‹è½½å¤ªæ…¢äº†
     # model_path = download_testdata(model_url, "resnet50-v2-7.onnx", module="onnx")
     model_path = "resnet50-v2-7.onnx"
     onnx_model = onnx.load(model_path)
@@ -44,11 +44,11 @@ def get_debug_output():
     img_data = np.asarray(resized_image).astype("float32")
     # HWC -> CHW for onnx
     img_data = np.transpose(img_data, (2, 0, 1))
-    # ÊäÈë¹éÒ»»¯
+    # è¾“å…¥å½’ä¸€åŒ–
     imagenet_mean = np.array([0.485, 0.456, 0.406]).reshape((3, 1, 1))
     imagenet_stddev = np.array([0.229, 0.224, 0.225]).reshape((3, 1, 1))
     norm_img_data = (img_data / 255 - imagenet_mean) / imagenet_stddev
-    # À©Õ¹batchÎ¬¶È
+    # æ‰©å±•batchç»´åº¦
     img_data = np.expand_dims(norm_img_data, axis=0)
 
 
@@ -65,7 +65,7 @@ def get_debug_output():
 
     with tvm.transform.PassContext(opt_level=3):
         lib = relay.build(mod, target=target, params=params)
-    # ´æ´¢Ä£ĞÍ£¬±ÜÃâÖØ¸´Build
+    # å­˜å‚¨æ¨¡å‹ï¼Œé¿å…é‡å¤Build
     lib.export_library('model.so')
 
 
@@ -73,12 +73,12 @@ def get_debug_output():
     """
     Load the Model and get debug output
     """
-    # Ö±½Ó»ñÈ¡´æ´¢µÄso¿â
+    # ç›´æ¥è·å–å­˜å‚¨çš„soåº“
     # lib = tvm.runtime.load_module("model.so")
-    # »ñÈ¡tvmÔËĞĞÉè±¸
+    # è·å–tvmè¿è¡Œè®¾å¤‡
     dev = tvm.device(str('llvm'), 0)
 
-    # ¶ÔÓ¦¼ÓÔØso¿â»ñÈ¡Í¼Ö´ĞĞÆ÷µÄ·½·¨
+    # å¯¹åº”åŠ è½½soåº“è·å–å›¾æ‰§è¡Œå™¨çš„æ–¹æ³•
     # m = graph_executor.create(lib["get_graph_json"](), lib, dev, dump_root="/tmp/tvmdbg")
 
     module = GraphModuleDebug(
@@ -93,7 +93,7 @@ def get_debug_output():
     module.set_input(input_name, img_data)
     module.run()
     output_shape = (1, 1000)
-    # tvm.nd¾ÍÊÇtvmµÄndarray
+    # tvm.ndå°±æ˜¯tvmçš„ndarray
     tvm_output = module.get_output(0, tvm.nd.empty(output_shape)).numpy()
 
 def get_output_tensor():
