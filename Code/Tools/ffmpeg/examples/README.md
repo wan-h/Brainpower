@@ -51,3 +51,8 @@ ffplay test.h264
 # ./yuv420tortsp [inputfile] [rtsp_url]
 ./yuv420tortsp test.h264 rtsp://localhost:554/test
 ```
+
+> h264_2_mp4.cpp  
+```bash
+# ./h264_2_mp4 [inputfile] [rtsp_url]
+```
