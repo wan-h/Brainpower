@@ -1396,3 +1396,15 @@ void PrettyMenu::changeBackground(std::istream& imgSrc)
 
 理解：  
 * 实用类继承的时候对于同名的函数一定要多点心思，有时候不能符合预期，或则写的时候尽量去避免同名的成员函数。
+
+---  
+
+### 条款34：区分接口继承和实现继承
+请记住：  
+* 接口继承和实现继承不同。在public继承之下，derived classes总是继承base class的接口。  
+* pure virtual函数只具体指定接口继承。  
+* 简朴的（非纯）impure virtual函数具体指定接口继承及缺省实现继承。  
+* non-virtual函数具体指定接口继承以及强制性实现继承。  
+
+理解：  
+* 分析类的继承结构来决定使用什么样的方式定义类函数
