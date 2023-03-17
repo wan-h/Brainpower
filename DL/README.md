@@ -10,6 +10,9 @@
 [Natural Language Processing](Models/NLP/README.md)
 
 ---
+[Face](ModelFace/README.md)
+
+---
 [Model Compression](ModelCompression/README.md)  
 [Model Inspiration](ModelInspiration/README.md)  
 [Model Operator](ModelOperator/README.md)
