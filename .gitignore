@@ -11,6 +11,7 @@ cmake-build-debug
 *.param
 build
 node_modules
+package-lock.json
 dist
 _build
 3rdparty
