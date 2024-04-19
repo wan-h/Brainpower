@@ -1,3 +1,7 @@
+"""
+https://www.langchain.com.cn/modules/prompts/chat_prompt_template
+"""
+
 from langchain.prompts import (
     ChatPromptTemplate, 
     PromptTemplate, 

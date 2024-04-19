@@ -1,3 +1,7 @@
+"""
+https://www.langchain.com.cn/modules/prompts/example_selectors/examples/custom_example_selector
+"""
+
 from langchain.prompts.example_selector.base import BaseExampleSelector
 from typing import List, Dict
 import numpy as np
