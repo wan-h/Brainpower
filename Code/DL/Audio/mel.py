@@ -1,17 +1,5 @@
 """
 梅尔频谱
-<<<<<<< HEAD
-"""
-
-import librosa
-import matplotlib.pyplot as plt
-
-y, sr = librosa.load("/home/vastai/workspace/AICSystem/test/src/zh.wav", sr=None)
-plt.plot(y)
-plt.title('Signal')
-plt.xlabel('Time (samples)')
-plt.ylabel('Amplitude')
-=======
 
 pip install librosa
 pip install matplotlib
@@ -67,5 +55,4 @@ librosa.display.specshow(mel_spect, sr=sr, x_axis='time', y_axis='mel')
 plt.title('Mel Spectrogram')
 plt.colorbar(format='%+2.f dB')
 
->>>>>>> 77766ad18cabcf32a0b106223af088ad8824d0da
 plt.show()
